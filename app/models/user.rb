@@ -14,6 +14,7 @@
 
 class User < ApplicationRecord
   validates :username, :email, :session_token, :password_digest, :image_url, presence: true
+  validates :email, :session_token, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
   attr_reader :password
   after_initialize :ensure_session_token
@@ -22,8 +23,8 @@ class User < ApplicationRecord
     foreign_key: :uploader_id,
     class_name: :Video
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
     user && user.is_password?(password) ? user : nil
   end
 
