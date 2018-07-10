@@ -9,15 +9,17 @@ import {
 } from 'react-router-dom';
 import SignupFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
     <h1>Eutewbz in the app</h1>
     <NavbarContainer />
 
-    <Route path="/login" component={LoginFormContainer} />
+    <AuthRoute exact path="/login" component={LoginFormContainer} />
     <Route path="/signup" component={SignupFormContainer} />
   </div>
 );
 
 export default App;
+// <Route path="/login" component={LoginFormContainer} />
