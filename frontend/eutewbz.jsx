@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.dispatch = store.dispatch;
 
   const root = document.getElementById('root');
-  ReactDOM.render(<h1>Hello World</h1>, root);
+  // ReactDOM.render(<h1>Hello World</h1>, root);
+  root.innerHTML = 'hello world';
 });
 // <Root store={ store } />
