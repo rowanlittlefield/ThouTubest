@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+
+  // border-bottom: 1px solid lightgrey;
+  box-shadow: -0.5px 0.5px 1px 0.5px rgba(0, 0, 0, 0.09);
+
+  z-index: 1;
+}
+
+.navbar-signup-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #4285f4;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  margin-right: 16px;
+
+  cursor: pointer;
+}
+
+.navbar-profile-image {
+  border-radius: 50%;
+}

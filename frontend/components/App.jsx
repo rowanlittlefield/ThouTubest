@@ -13,7 +13,6 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
-    <h1>Eutewbz in the app</h1>
     <NavbarContainer />
 
     <AuthRoute exact path="/login" component={LoginFormContainer} />
