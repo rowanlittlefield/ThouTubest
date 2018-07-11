@@ -17,9 +17,8 @@ const App = () => (
     <NavbarContainer />
 
     <AuthRoute exact path="/login" component={LoginFormContainer} />
-    <Route path="/signup" component={SignupFormContainer} />
+    <AuthRoute exact path="/signup" component={SignupFormContainer} />
   </div>
 );
 
 export default App;
-// <Route path="/login" component={LoginFormContainer} />
