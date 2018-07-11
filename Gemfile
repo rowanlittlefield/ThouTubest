@@ -36,7 +36,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'figaro'
 gem 'jquery-rails'
-gem 'aws-sdk-s3', '~>1', require: false
+gem 'aws-sdk-s3', '~>1'#, require: false
 gem 'mini_magick', '~> 4.8'
 
 group :development, :test do
