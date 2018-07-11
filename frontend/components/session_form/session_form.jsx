@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -37,34 +37,43 @@ class SessionForm extends React.Component {
 
   render() {
     return (
+
       <div className="login-form-container">
+        <h2 className="login-form-container-logo">Logo Place Holder</h2>
+        <h3 className="login-form-container-header">Sign in</h3>
+        <p className="login-form-container-subheader">to continue to Eutewbz</p>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Eutewbz!
           <br/>
-          Please {this.props.formType} or {this.props.navLink}
+        
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>Email:
+            <label className="login-form-label">Email
+              <br/>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="login-input"
+                className="login-form-input"
               />
             </label>
             <br/>
-            <label>Password:
+            <label className="login-form-label">Password
+              <br/>
               <input type="password"
+                className='login-form-input'
                 value={this.state.password}
                 onChange={this.update('password')}
-                className="login-input"
               />
             </label>
             <br/>
-            <input className="session-submit" type="submit" value={this.props.formType} />
+            <div className="login-form-container-actions">
+              <Link className="login-link" to="/signup">Create account</Link>
+              <input className="session-submit" type="submit" value="next" />
+            </div>
           </div>
         </form>
       </div>
+
     );
   }
 }

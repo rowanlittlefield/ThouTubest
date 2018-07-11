@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -77,52 +77,63 @@ class SignupForm extends React.Component {
 
   render() {
     console.log(this.state);
-    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
+    const preview = this.state.photoUrl ? <img width='60px' height="60px" src={this.state.photoUrl} /> : null;
 
     return (
       <div className="login-form-container">
+        <h2 className="login-form-container-logo">Logo Place Holder</h2>
+        <h3 className="login-form-container-header">Create your NotGewgul Account</h3>
+        <p className="login-form-container-subheader">to continue to Eutewbz</p>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Eutewbz!
+
           <br/>
-          Please {this.props.formType} or {this.props.navLink}
+
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>Email:
+            <label className="login-form-label">Email
+              <br/>
               <input type="text"
+                className="login-form-input"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="login-input"
               />
             </label>
             <br/>
-            <label>Username:
+            <label className="login-form-label">Username
+              <br/>
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
-                className="login-input"
+                className="login-form-input"
               />
             </label>
             <br/>
-            <label>Password:
+            <label className="login-form-label">Password
+              <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
-                className="login-input"
+                className="login-form-input"
               />
             </label>
             <br/>
+            <div className="login-form-photo-upload">
+              <label className="login-form-label">Photo
+                <br/>
+                <input type="file"
+                  onChange={this.handleFile.bind(this)} />
+              </label>
+              <div className="login-form-image-preview">
 
-            <label>Photo
-              <input type="file"
-                onChange={this.handleFile.bind(this)} />
-            </label>
-
-            <h3>Image preview</h3>
-            {preview}
+                {preview}
+              </div>
+            </div>
             <br/>
-
-            <input className="session-submit" type="submit" value={this.props.formType} />
+            <div className="login-form-container-actions">
+              <Link className="login-link" to="/login">Sign in instead</Link>
+              <input className="session-submit" type="submit" value={this.props.formType} />
+            </div>
           </div>
         </form>
       </div>
