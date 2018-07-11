@@ -6,7 +6,7 @@ import * as SessionActions from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  
+
   if (window.currentUser) {
     const preloadedState = {
       entities: {
@@ -21,5 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const root = document.getElementById('root');
-  ReactDOM.render(<Root store={ store } />, root);
+  ReactDOM.render(<h1>testing heroku</h1>, root);
 });
+
+// <Root store={ store } />
