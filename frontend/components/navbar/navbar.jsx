@@ -14,6 +14,7 @@ const Navbar = ({ currentUser, logout }) => {
   const personalGreeting = () => (
     <hgroup className="header-group">
       <h2 className="header-name">Hi, {currentUser.username}!</h2>
+      <img src={currentUser.image_url} />
       <button className="header-button" onClick={logout}>Log Out</button>
     </hgroup>
   );

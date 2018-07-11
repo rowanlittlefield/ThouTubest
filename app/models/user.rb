@@ -16,6 +16,8 @@ class User < ApplicationRecord
   validates :username, :email, :session_token, :password_digest, :image_url, presence: true
   validates :email, :session_token, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
+  validate :ensure_photo
+
   attr_reader :password
   after_initialize :ensure_session_token
 
@@ -24,6 +26,12 @@ class User < ApplicationRecord
     class_name: :Video
 
   has_one_attached :photo
+
+  def ensure_photo
+    unless self.photo.attached?
+      errors[:photo] << "Must attach photo"
+    end
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

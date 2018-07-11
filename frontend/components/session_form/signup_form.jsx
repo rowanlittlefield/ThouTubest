@@ -7,7 +7,10 @@ class SignupForm extends React.Component {
     this.state = {
       email: '',
       username: '',
-      password: ''
+      password: '',
+      image_url: 'dummy',
+      photoFile: null,
+      photoUrl: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,10 +21,46 @@ class SignupForm extends React.Component {
     });
   }
 
+  handleFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+
+      this.setState({photoFile: file, photoUrl: fileReader.result});
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    const formProcessor = this.props.processForm;
     const user = Object.assign({}, this.state);
-    this.props.processForm(user)//.then( () => {this.props.history.push('/');});
+    // this.props.processForm(user)//.then( () => {this.props.history.push('/');});
+    const formData = new FormData();
+    formData.append('user[email]', this.state.email);
+    formData.append('user[username]', this.state.username);
+    formData.append('user[password]', this.state.password);
+    formData.append('user[image_url]', this.state.image_url);
+    formData.append('user[photo]', this.state.photoFile);
+    const email = this.state.email;
+    const password = this.state.password;
+    $.ajax({
+      url: '/api/users',
+      method: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false
+    }).then(
+        response => {
+          const user = {email: email, password: password};
+          formProcessor(user);
+        },
+        response => console.log(response.responseJSON)
+      );
+
   }
 
   renderErrors() {
@@ -37,6 +76,9 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    console.log(this.state);
+    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
+
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -70,6 +112,16 @@ class SignupForm extends React.Component {
               />
             </label>
             <br/>
+
+            <label>Photo
+              <input type="file"
+                onChange={this.handleFile.bind(this)} />
+            </label>
+
+            <h3>Image preview</h3>
+            {preview}
+            <br/>
+
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
         </form>

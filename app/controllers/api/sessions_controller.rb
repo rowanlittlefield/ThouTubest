@@ -14,7 +14,8 @@ class Api::SessionsController < ApplicationController
   end
 
   def show
-
+    @current_user = current_user
+    render "api/users/show"
   end
 
   def destroy
