@@ -1,11 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class SessionForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
+      username: '',
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,6 +54,14 @@ class SessionForm extends React.Component {
               />
             </label>
             <br/>
+            <label>Username:
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                className="login-input"
+              />
+            </label>
+            <br/>
             <label>Password:
               <input type="password"
                 value={this.state.password}
@@ -69,4 +78,4 @@ class SessionForm extends React.Component {
   }
 }
 
-export default withRouter(SessionForm);
+export default withRouter(SignupForm);
