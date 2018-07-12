@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 
-const Navbar = ({ currentUser, logout }) => {
+const Navbar = ({ currentUser, logout, location }) => {
+  // debugger
+  // if(location.pathname === '/signup' || location.pathname === '/login') {
+  //   return null;
+  // }
 
   const toggleDropDown = () => {
     const dropDown = document.getElementById("hamburger-dropdown");
@@ -48,6 +52,6 @@ const Navbar = ({ currentUser, logout }) => {
 };
 
 
-export default Navbar;
+export default withRouter(Navbar);
 
 // <h2 className="header-name">Hi, {currentUser.username}!</h2>
