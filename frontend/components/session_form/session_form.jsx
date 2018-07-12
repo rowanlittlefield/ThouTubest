@@ -12,9 +12,9 @@ class SessionForm extends React.Component {
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return e => {
+      return this.setState({[field]: e.currentTarget.value});
+    } ;
   }
 
   handleSubmit(e) {
@@ -36,7 +36,9 @@ class SessionForm extends React.Component {
   }
 
   clearErrors() {
-    this.props.clearErrors();
+    if (this.props.errors.length > 0) {
+      this.props.clearErrors();
+    }
   }
 
   render() {
@@ -50,7 +52,7 @@ class SessionForm extends React.Component {
             <br/>
 
             {this.renderErrors()}
-            <div className="login-form">
+            <div onClick={this.clearErrors.bind(this)} className="login-form">
               <br/>
               <label className="login-form-label">Email
                 <br/>

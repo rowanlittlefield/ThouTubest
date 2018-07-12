@@ -4,10 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 
 const Navbar = ({ currentUser, logout, location }) => {
-  // debugger
-  // if(location.pathname === '/signup' || location.pathname === '/login') {
-  //   return null;
-  // }
 
   const toggleDropDown = () => {
     const dropDown = document.getElementById("hamburger-dropdown");
@@ -21,6 +17,9 @@ const Navbar = ({ currentUser, logout, location }) => {
   );
   const personalGreeting = () => (
     <nav className="navbar">
+      <Link to="/videos/new">
+        <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
+      </Link>
       <ul>
         <li>
           <img onClick={toggleDropDown} id="navbar-profile-image-nav" className='navbar-profile-image' width="40" height="40" src={currentUser.image_url} />

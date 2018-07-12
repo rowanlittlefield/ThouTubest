@@ -79,7 +79,9 @@ class SignupForm extends React.Component {
   }
 
   clearErrors() {
-    this.props.clearErrors();
+    if (this.props.errors.length > 0) {
+      this.props.clearErrors();
+    }
   }
 
   render() {
@@ -91,7 +93,7 @@ class SignupForm extends React.Component {
         <h2 className="login-form-container-logo">Logo Place Holder</h2>
         <h3 className="login-form-container-header">Create your NotGewgul Account</h3>
         <p className="login-form-container-subheader">to continue to Eutewbz</p>
-        <form onSubmit={this.handleSubmit} className="login-form-box">
+        <form onClick={this.clearErrors.bind(this)} onSubmit={this.handleSubmit} className="login-form-box">
 
           <br/>
 

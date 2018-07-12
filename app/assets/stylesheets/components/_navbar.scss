@@ -11,6 +11,11 @@
   z-index: 1;
 
 }
+
+nav.navbar ul {
+  padding-left: 0;
+}
+
 .navbar ul li {
   list-style: none;
 }
@@ -31,8 +36,12 @@
   border-radius: 50%;
 }
 
+#add-video-icon {
+  margin-right: 50px;
+}
+
 #navbar-profile-image-nav {
-  padding: 50px;
+  margin-right: 50px;
   cursor: pointer;
 }
 
