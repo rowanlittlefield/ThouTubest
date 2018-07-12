@@ -49,3 +49,11 @@ export const logout = () => dispatch => (
     dispatch(logoutCurrentUser())
   ))
 );
+
+export const clearErrors = () => dispatch => {
+  return dispatch(receiveErrors([]));
+};
+
+export const dispatchErrors = errors => dispatch => {
+  return dispatch(receiveErrors(errors));
+};

@@ -25,14 +25,18 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="session-errors">
         {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className="session-error" key={`error-${i}`}>
             {error}
           </li>
         ))}
       </ul>
     );
+  }
+
+  clearErrors() {
+    this.props.clearErrors();
   }
 
   render() {
@@ -44,7 +48,7 @@ class SessionForm extends React.Component {
         <p className="login-form-container-subheader">to continue to Eutewbz</p>
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
-        
+
           {this.renderErrors()}
           <div className="login-form">
             <br/>
@@ -67,7 +71,8 @@ class SessionForm extends React.Component {
             </label>
             <br/>
             <div className="login-form-container-actions">
-              <Link className="login-link" to="/signup">Create account</Link>
+              <Link onClick={this.clearErrors.bind(this)} className="login-link" to="/signup">Create account</Link>
+              <button className="demo-login-button" onClick={this.props.demoLogin.bind(this)}>Demo Login</button>
               <input className="session-submit" type="submit" value="next" />
             </div>
           </div>

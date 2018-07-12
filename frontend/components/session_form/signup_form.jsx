@@ -37,6 +37,7 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const formProcessor = this.props.processForm;
+    const errorDispatcher = this.props.dispatchErrors
     const user = Object.assign({}, this.state);
     // this.props.processForm(user)//.then( () => {this.props.history.push('/');});
     const formData = new FormData();
@@ -56,16 +57,17 @@ class SignupForm extends React.Component {
     }).then(
         response => {
           const user = {email: email, password: password};
+          debugger
           formProcessor(user);
         },
-        response => console.log(response.responseJSON)
+        response => errorDispatcher(response.responseJSON)
       );
 
   }
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="session-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -73,6 +75,10 @@ class SignupForm extends React.Component {
         ))}
       </ul>
     );
+  }
+
+  clearErrors() {
+    this.props.clearErrors();
   }
 
   render() {
@@ -132,7 +138,7 @@ class SignupForm extends React.Component {
             </div>
             <br/>
             <div className="login-form-container-actions">
-              <Link className="login-link" to="/login">Sign in instead</Link>
+              <Link onClick={this.clearErrors.bind(this)} className="login-link" to="/login">Sign in instead</Link>
               <input className="session-submit" type="submit" value={this.props.formType} />
             </div>
           </div>

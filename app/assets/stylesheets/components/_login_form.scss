@@ -61,7 +61,7 @@
 
 .login-form-input:focus {
   outline-width: 0;
-  border-bottom: 2px solid #4285f4;
+  border-bottom: 1px solid #4285f4;
   transition-duration: 2s;
 }
 
@@ -101,3 +101,15 @@
 
   cursor: pointer;
 }
+
+.session-errors {
+  color: red;
+  font-size: 12px;
+
+  list-style: none;
+  min-height: 14px;
+}
+
+// .session-error {
+//   color: red;
+// }
