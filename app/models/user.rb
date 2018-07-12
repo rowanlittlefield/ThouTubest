@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   def ensure_photo
     unless self.photo.attached?
-      errors[:photo] << "Must attach photo"
+      errors[:photo] << "must be attached"
     end
   end
 
