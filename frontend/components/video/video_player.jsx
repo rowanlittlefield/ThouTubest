@@ -30,20 +30,20 @@ class VideoPlayer extends React.Component {
     }
   }
 
-  // displayThumbnailImage() {
-  //   debugger
-  //   if (this.state.video.thumbnail_image_url) {
-  //     return (
-  //       <div className="thumbnail">
-  //         <img className="thumbnail-image" width="170px" height="95px"
-  //           src={this.state.video.thumbnail_image_url} />
-  //         <span className="thumbnail-duration"></span>
-  //       </div>
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  displayThumbnailImage() {
+    debugger
+    if (this.state.video.thumbnail_image_url) {
+      return (
+        <div className="thumbnail">
+          <img className="thumbnail-image" width="170px" height="95px"
+            src={this.state.video.thumbnail_image_url} />
+          <span className="thumbnail-duration"></span>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
 
   render() {
     return(
