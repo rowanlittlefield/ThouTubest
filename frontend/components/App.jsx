@@ -10,7 +10,8 @@ import {
 import SignupFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import VideoPlayerContainer  from './video/video_player_container'
+import VideoIndexContainer from './video/video_index_container';
+import VideoPlayerContainer  from './video/video_player_container';
 
 const App = () => {
 
@@ -21,7 +22,10 @@ const App = () => {
       <NavbarContainer />
     </Switch>
 
-    <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
+
+      <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
+      <Route exact path="/" component={VideoIndexContainer} />
+    
 
   </div>);
 };

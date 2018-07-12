@@ -1,7 +1,8 @@
 class Api::VideosController < ApplicationController
 
   def index
-
+    @videos = Video.all
+    render "api/videos/index"
   end
 
   def show

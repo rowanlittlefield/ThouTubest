@@ -11,6 +11,7 @@ class VideoPlayer extends React.Component {
   }
 
   componentDidMount() {
+    debugger;
     this.props.getVideo(this.props.match.params.videoId).then(response => {
         this.setState({video: response.video})
     });

@@ -4,3 +4,10 @@ export const getVideo = videoId => (
     method: 'GET'
   })
 );
+
+export const getVideos = () => (
+  $.ajax({
+    url: 'api/videos',
+    method: 'GET'
+  })
+);

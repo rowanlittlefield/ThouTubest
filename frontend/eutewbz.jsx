@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionActions from './actions/session_actions';
-import { getVideo } from './actions/video_actions';
+import * as VideoApiUtil from './util/video_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -25,4 +25,4 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={ store } />, root);
 });
 
-window.getVideo = getVideo;
+window.getVideos = VideoApiUtil.getVideos;
