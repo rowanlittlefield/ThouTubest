@@ -45,7 +45,9 @@ class SignupForm extends React.Component {
     formData.append('user[username]', this.state.username);
     formData.append('user[password]', this.state.password);
     formData.append('user[image_url]', this.state.image_url);
-    formData.append('user[photo]', this.state.photoFile);
+    if (this.state.photoFile) {
+      formData.append('user[photo]', this.state.photoFile);
+    }
     const email = this.state.email;
     const password = this.state.password;
     $.ajax({
@@ -57,7 +59,6 @@ class SignupForm extends React.Component {
     }).then(
         response => {
           const user = {email: email, password: password};
-          debugger
           formProcessor(user);
         },
         response => errorDispatcher(response.responseJSON)

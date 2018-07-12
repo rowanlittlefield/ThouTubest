@@ -6,12 +6,10 @@
   min-height: 500px;
 
   padding: 48 40 36 40;
-  // border: solid lightgrey 1px;
   border: none;
   border-radius: 10px;
   box-shadow: 1px 2px 4px 2px rgba(0, 0, 0, 0.09);
 
-  // background-color: green;
   margin: auto;
 }
 
@@ -110,6 +108,15 @@
   min-height: 14px;
 }
 
-// .session-error {
-//   color: red;
-// }
+.demo-login-button {
+  font-size: 12px;
+  font-weight: 400;
+  color: #4285f4;
+
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 470px;
+  border: none;
+
+  cursor: pointer;
+}

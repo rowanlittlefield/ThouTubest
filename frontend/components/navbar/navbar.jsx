@@ -30,7 +30,7 @@ const Navbar = ({ currentUser, logout }) => {
 
                   <div className="navbar-profile-detail-info">
                     <div className="navbar-profile-detail-username">{currentUser.username}</div>
-                    <span>email</span>
+                    <span>{currentUser.email}</span>
                   </div>
 
                 </li>
