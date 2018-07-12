@@ -33,10 +33,15 @@
 
 #navbar-profile-image-nav {
   padding: 50px;
+  cursor: pointer;
 }
 
 #navbar-profile-image-hamburger {
   margin-left: 15px;
+}
+
+.hidden {
+  display: none;
 }
 
 .hamburger-dropdown {
