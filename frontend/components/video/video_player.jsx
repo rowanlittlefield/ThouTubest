@@ -11,7 +11,6 @@ class VideoPlayer extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.props.getVideo(this.props.match.params.videoId).then(response => {
         this.setState({video: response.video})
     });
@@ -50,14 +49,7 @@ class VideoPlayer extends React.Component {
       <div className="video-player">
         <h1>VideoPlayer Component render</h1>
         <h2>Video Sample</h2>
-        <div>
-          {this.displayVideoPlayerElement()}
-        </div>
-
-        <h2>Thumnail Sample</h2>
-        <div>
-          {this.displayThumbnailImage()}
-        </div>
+        {this.displayVideoPlayerElement()}
       </div>
     );
   }
