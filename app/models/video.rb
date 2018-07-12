@@ -20,4 +20,7 @@ class Video < ApplicationRecord
   belongs_to :user,
     foreign_key: :uploader_id,
     class_name: :User
+
+  has_one_attached :film
+  has_one_attached :thumbnail_image
 end

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionActions from './actions/session_actions';
+import { getVideo } from './actions/video_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -23,3 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, root);
 });
+
+window.getVideo = getVideo;
