@@ -1,0 +1,63 @@
+.show-list-header {
+  display: block;
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.show-list-item {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+div.show-list-item:first-of-type {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.show-list-item-link {
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.show-thumbnail-image {
+  width: 170px;
+  height: 95px;
+}
+
+.show-thumbnail-duration {
+  color: white;
+  font-size: 12px;
+
+  position: absolute;
+  top: 70px;
+  left: 135px;
+  z-index: 2;
+
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+}
+
+.show-thumbnail-content {
+  color: rgba(17, 17, 17, 0.6);
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.show-list-item-title {
+  color: rgb(17, 17, 17);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.show-list-item-age {
+  display: none;
+}

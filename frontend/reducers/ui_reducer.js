@@ -12,7 +12,7 @@ export default (state = {}, action) => {
       const newState = merge({}, state, {currentVideo: action.video.id});
       return newState;
     case RECEIVE_VIDEOS:
-      const otherNewState = {videoList: action.videoList}
+      const otherNewState = merge({}, state, {videoList: action.videoList});
       return otherNewState;
     default:
       return state;

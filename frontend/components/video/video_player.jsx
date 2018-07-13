@@ -1,20 +1,33 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import VideoList from './video_list';
 
 class VideoPlayer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      video: {}
+      video: {},
+      videos: {},
+      videoListIds: []
     };
 
   }
 
   componentDidMount() {
-    this.props.getVideo(this.props.match.params.videoId).then(response => {
-        this.setState({video: response.video})
+    // this.props.getVideo(this.props.match.params.videoId).then(response => {
+    //     this.setState({video: response.video})
+    // });
+
+    this.props.getVideos().then(response => {
+        const videoId = this.props.match.params.videoId;
+        this.setState({
+          video: response.videos[videoId],
+          videos: response.videos,
+          videoListIds: response.videoList
+        });
     });
+
   }
 
   componentDidUpdate() {
@@ -30,12 +43,11 @@ class VideoPlayer extends React.Component {
         </div>
       );
     } else {
-      return null
+      return null;
     }
   }
 
   videoPlayerControlsScript() {
-    console.log('you are on');
     const video = document.getElementById("video");
     const playpause = document.getElementById("playpause");
     const progess = document.getElementById("progress");
@@ -65,6 +77,16 @@ class VideoPlayer extends React.Component {
     );
   }
 
+  displayVideoList() {
+    if (this.state.videoListIds.length > 0) {
+      return (
+        <VideoList header="Up next" type="show" videos={this.state.videos} videoList={this.state.videoListIds} />
+      );
+    } else {
+      return null;
+    }
+  }
+
   togglePlayPause(video, playpause) {
     if (video.paused || video.ended) {
       playpause.title = "pause";
@@ -85,14 +107,10 @@ class VideoPlayer extends React.Component {
   }
 
   updateProgressDigitalClock(video, digitalClock) {
-    // const digitalClock = document.getElementById("digitalClock");
-    // const video = document.getElementById("video");
-    // debugger
-    var minutes = Math.floor(video.currentTime / 60);
-    var seconds = Math.floor(video.currentTime % 60);
-
-    var durationMin = Math.floor(video.duration / 60);
-    var durationSec = Math.floor(video.duration % 60);
+    const minutes = Math.floor(video.currentTime / 60);
+    const seconds = Math.floor(video.currentTime % 60);
+    const durationMin = Math.floor(video.duration / 60);
+    const durationSec = Math.floor(video.duration % 60);
     digitalClock.innerHTML = `${minutes}:${seconds}` + ' / ' +`${durationMin}:${durationSec}`;
   }
 
@@ -100,13 +118,18 @@ class VideoPlayer extends React.Component {
 
     return(
       <div className="video-show">
-        <div className="video-show-player">
-          {this.displayVideoPlayerElement()}
-          {this.displayVideoControls()}
+        <div className="video-show-left-col">
+          <div className="video-show-player">
+            {this.displayVideoPlayerElement()}
+            {this.displayVideoControls()}
+          </div>
+          <div className="video-show-footer">
+          </div>
+          <div className="commont-componentGoesHere"></div>
         </div>
-        <div className="video-show-footer">
-        </div>
-
+      <div className="video-show-right-col">
+        {this.displayVideoList()}
+      </div>
       </div>
     );
   }

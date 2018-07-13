@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VideoListItem from './video_list_item';
 
-const VideoList = ({type, videos, videoList}) => {
+const VideoList = ({type, videos, videoList, header}) => {
   const listItems = videoList.map(idx => {
   const video = videos[idx];
   return (
@@ -12,7 +12,7 @@ const VideoList = ({type, videos, videoList}) => {
 
   return (
     <div className={`${type}-list`}>
-      <span className={`${type}-list-header`}>List header</span>
+      <span className={`${type}-list-header`}>{header}</span>
       <ul>
         {listItems}
       </ul>

@@ -37,7 +37,7 @@ class VideoIndex extends React.Component {
     if (that.state.videoList.length > 0) {
       const videoKeysInGroupsOfFive = this.sortVideoKeysIntoLists();
       const videoLists = videoKeysInGroupsOfFive.map((groupOfFive, idx) => {
-        return (<VideoList key={idx} type="index" videoList={groupOfFive} videos={that.state.videos} />);
+        return (<VideoList header="List Header" key={idx} type="index" videoList={groupOfFive} videos={that.state.videos} />);
       });
 
       return (
