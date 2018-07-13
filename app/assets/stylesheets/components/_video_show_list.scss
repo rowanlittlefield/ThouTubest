@@ -1,3 +1,7 @@
+div.show-list {
+  padding-left: 24px;
+}
+
 .show-list-header {
   display: block;
   font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
@@ -7,6 +11,7 @@
 }
 
 .show-list-item {
+  width: 400px;
   position: relative;
   margin-bottom: 8px;
 }

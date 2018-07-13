@@ -1,10 +1,9 @@
-
-
 .video-show {
   display: flex;
   flex-direction: row;
-
-  margin-top: 25px;
+  justify-content: center;
+  // margin-top: 25px;
+  margin: 25px auto 0 auto;
 }
 
 .video-show-player {
