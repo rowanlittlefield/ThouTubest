@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import VideoListItem from './video_list_item';
+import VideoList from './video_list';
+// import VideoListItem from './video_list_item';
 
 class VideoIndex extends React.Component {
 
@@ -24,19 +25,15 @@ class VideoIndex extends React.Component {
   displayVideoIndexItems() {
     const that = this;
     if (that.state.videoList.length > 0) {
-      const listItems = that.state.videoList.map(idx => {
-      const video = that.state.videos[idx];
-      return (
-        <VideoListItem key={video.id} type="index" video={video} />
-        );
-      });
+      // const listItems = that.state.videoList.map(idx => {
+      // const video = that.state.videos[idx];
+      // return (
+      //   <VideoListItem key={video.id} type="index" video={video} />
+      //   );
+      // });
 
       return (
-        <div>
-          <ul>
-            {listItems}
-          </ul>
-        </div>
+        <VideoList type="index" videoList={this.state.videoList} videos={this.state.videos} />
       );
     } else {
       return null;
@@ -54,3 +51,9 @@ class VideoIndex extends React.Component {
 }
 
 export default withRouter(VideoIndex);
+
+// <div>
+//   <ul>
+//     {listItems}
+//   </ul>
+// </div>
