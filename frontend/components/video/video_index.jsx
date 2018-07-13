@@ -22,9 +22,24 @@ class VideoIndex extends React.Component {
     });
   }
 
+  sortVideoKeysIntoLists() {
+    const groupsOfFive = [];
+    for(let i = 0; i < this.state.videoList.length; i++) {
+      if(i % 5 === 0) groupsOfFive.push([]);
+      let videoKey = this.state.videoList[i];
+      groupsOfFive[groupsOfFive.length - 1].push(videoKey);
+    }
+    return groupsOfFive;
+  }
+
   displayVideoIndexItems() {
     const that = this;
     if (that.state.videoList.length > 0) {
+      const videoKeysInGroupsOfFive = this.sortVideoKeysIntoLists();
+      debugger
+      const videoLists = videoKeysInGroupsOfFive.map((groupOfFive, idx) => {
+        return (<VideoList key={idx} type="index" videoList={groupOfFive} videos={that.state.videos} />);
+      });
       // const listItems = that.state.videoList.map(idx => {
       // const video = that.state.videos[idx];
       // return (
@@ -33,7 +48,9 @@ class VideoIndex extends React.Component {
       // });
 
       return (
-        <VideoList type="index" videoList={this.state.videoList} videos={this.state.videos} />
+        <ul className="video-index-list-rows">
+          {videoLists}
+        </ul>
       );
     } else {
       return null;
@@ -52,8 +69,4 @@ class VideoIndex extends React.Component {
 
 export default withRouter(VideoIndex);
 
-// <div>
-//   <ul>
-//     {listItems}
-//   </ul>
-// </div>
+// <VideoList type="index" videoList={this.state.videoList} videos={this.state.videos} />
