@@ -1,6 +1,20 @@
+div.video-index {
+  display: flex;
+  flex-direction: column;
+  width: 1070px;
+  margin: auto;
+}
+
+.video-index > h1 {
+  background-color: red;
+  margin: 0 auto;
+  padding: 0 20%;
+}
+
 .index-list-item {
   font-family: Roboto, Arial, sans-serif;
   display: inline-block;
+  position: relative;
 
   width: 210px;
   height: 188px;
@@ -14,7 +28,7 @@ div.index-list-item > a {
 .index-list-item-title {
   font-size: 14px;
   line-height: 16px;
-  font-weight: 520;
+  font-weight: 530;
   color: rgb(17, 17, 17);
   text-decoration: none;
   text-decoration-style: solid;
@@ -33,4 +47,26 @@ div.index-list-item > a {
   color: rgba(17, 17, 17, 0.6);
 
   // margin-top: 8px;
+}
+
+.index-list-item-views {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration-style: solid;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.thumbnail-duration {
+  color: white;
+  font-size: 12px;
+
+  position: absolute;
+  top: 92px;
+  left: 170px;
+  z-index: 2;
+
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
 }

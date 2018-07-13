@@ -43,7 +43,7 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="session-form-background">
         <div className="login-form-container">
           <h2 className="login-form-container-logo">Logo Place Holder</h2>
           <h3 className="login-form-container-header">Sign in</h3>

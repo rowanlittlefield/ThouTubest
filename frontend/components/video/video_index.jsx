@@ -31,8 +31,10 @@ class VideoIndex extends React.Component {
         <div key={idx} className="index-list-item">
           <Link to={`videos/${video.id}`}>
             <img className="index-thumbnail-image" width="210px" height="118px" src={thumbnail_image_url} />
+            <span className="thumbnail-duration">0:00</span>
             <div className="index-list-item-title">{videoTitle}</div>
             <div className="index-list-item-author">Author Username</div>
+            <div className="index-list-item-views">{video.views} views <span>&middot;</span> _ days ago</div>
           </Link>
         </div>
         );
