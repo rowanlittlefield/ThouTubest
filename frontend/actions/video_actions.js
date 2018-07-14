@@ -35,3 +35,11 @@ export const getVideos = () => dispatch => (
     dispatch(receiveErrors(err.responseJSON))
   ))
 );
+
+export const clearErrors = () => dispatch => {
+  return dispatch(receiveErrors([]));
+};
+
+export const dispatchErrors = errors => dispatch => {
+  return dispatch(receiveErrors(errors));
+};

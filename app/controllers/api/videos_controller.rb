@@ -16,7 +16,13 @@ class Api::VideosController < ApplicationController
   end
 
   def create
+    @video = Video.new(video_params)
 
+    if @video.save
+      render "api/videos/show"
+    else
+      render json: @video.errors.full_messages, status: 422
+    end
   end
 
   def update

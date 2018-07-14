@@ -11,3 +11,11 @@ export const getVideos = () => (
     method: 'GET'
   })
 );
+
+export const createVideo = video => (
+  $.ajax({
+    url: 'api/videos',
+    method: 'POST',
+    data: video
+  })
+)
