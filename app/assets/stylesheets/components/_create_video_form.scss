@@ -1,0 +1,70 @@
+.create-video-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  margin-top: 20px;
+}
+
+.create-video-right-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-video-title-box label {
+  color: rgb(68, 68, 68);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  height: auto;
+
+  padding: 10px;
+  box-shadow: 1px 2px 4px 2px rgba(0, 0, 0, 0.09);
+}
+
+.create-video-title-box input {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+}
+
+.create-video-title-box input:focus {
+  outline-width: 0;
+  border-bottom: 1px solid #4285f4;
+  transition-duration: 2s;
+}
+
+.create-video-description-box label {
+  color: rgb(68, 68, 68);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+  height: auto;
+
+  padding: 10px;
+  box-shadow: 1px 2px 4px 2px rgba(0, 0, 0, 0.09);
+}
+
+.create-video-description-box textarea {
+  height: 200px;
+  border: 2px solid lightgrey;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+.create-video-description-box textarea:focus {
+  outline-width: 0;
+  background-color: white;
+  border: 2px solid #4285f4;
+  transition-duration: 2s;
+}

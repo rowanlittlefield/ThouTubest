@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 class CreateVideoForm extends React.Component {
   constructor(props) {
-    debugger
     super(props);
     this.state = {
 
@@ -117,41 +116,51 @@ class CreateVideoForm extends React.Component {
 
     return (
       <div>
-        <form onClick={this.clearErrors.bind(this)} onSubmit={this.handleSubmit}>
+        <form className="create-video-form" onClick={this.clearErrors.bind(this)} onSubmit={this.handleSubmit}>
 
           <br/>
           {this.renderErrors()}
-          <label>Title
-            <input type="text"
-              value={this.state.title}
-              onChange={this.update('title')} />
-          </label>
-          <br/>
-          <label>Description
-            <textarea value={this.state.description}
-              onChange={this.update('description')}/>
-          </label>
-          <br/>
+          <div className="create-video-right-col">
+            <div className="create-video-title-box">
+              <label>Title
+                <input type="text"
+                  value={this.state.title}
+                  onChange={this.update('title')} />
+              </label>
+              <br/>
+            </div>
+            <div className="create-video-description-box">
+              <label>Description
+                <textarea value={this.state.description}
+                  onChange={this.update('description')}/>
+              </label>
+            </div>
 
-          <div className="create-video-thumbnail-upload">
+            <div className="create-video-thumbnail-upload">
+              <label>Thumbnail Upload
+                <input type="file"
+                  onChange={this.handleFile('thumbnail')}/>
+              </label>
+              {thumbnailPreview}
+            </div>
+            <br/>
 
-            <label>Thumbnail Upload
-              <input type="file"
-                onChange={this.handleFile('thumbnail')}/>
-            </label>
-            {thumbnailPreview}
           </div>
 
-          <div className="create-video-film-upload">
-
-            <label>Video Upload
-              <input type="file"
-                onChange={this.handleFile('film')}/>
-            </label>
-            {filmPreview}
+          <div className="create-video-left-col">
+            <div className="create-video-film-upload">
+              <label>Video Upload
+                <input type="file"
+                  onChange={this.handleFile('film')}/>
+              </label>
+              {filmPreview}
+            </div>
+            <input type="submit" value={this.props.formType}/>
           </div>
 
-          <input type="submit" value={this.props.formType}/>
+
+
+
         </form>
       </div>
     );
