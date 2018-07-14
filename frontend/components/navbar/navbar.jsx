@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 
 
-const Navbar = ({ currentUser, logout, location }) => {
+const Navbar = ({ currentUser, logout, location, history }) => {
 
   const toggleDropDown = () => {
     const dropDown = document.getElementById("hamburger-dropdown");
@@ -12,12 +12,15 @@ const Navbar = ({ currentUser, logout, location }) => {
 
   const sessionLinks = () => (
     <nav className="navbar">
+      <Link to={currentUser ? "/videos/new" : "/login"}>
+        <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
+      </Link>
       <Link className="navbar-signup-link" to="/login">Sign In</Link>
     </nav>
   );
   const personalGreeting = () => (
     <nav className="navbar">
-      <Link to="/videos/new">
+      <Link to={currentUser ? "/videos/new" : "/login"}>
         <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
       </Link>
       <ul>
@@ -37,7 +40,10 @@ const Navbar = ({ currentUser, logout, location }) => {
                   </div>
 
                 </li>
-                <li><button className="header-button" onClick={logout}>Log Out</button></li>
+                <li><button className="header-button" onClick={() => {
+                    logout();
+                    history.push('/')
+                  }}>Log Out</button></li>
               </ul>
             </li>
           </ul>

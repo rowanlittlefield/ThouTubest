@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 class CreateVideoForm extends React.Component {
   constructor(props) {
+    debugger
     super(props);
     this.state = {
 
@@ -102,11 +103,17 @@ class CreateVideoForm extends React.Component {
     }
   }
 
+  componentWillMount() {
+    if (this.state.uploader_id === null) {
+      debugger
+      this.props.history.push('/login');
+    }
+  }
+
   render() {
     console.log(this.state);
     const thumbnailPreview = this.state.thumbnailUrl ? <img width='60px' height="60px" src={this.state.thumbnailUrl} /> : null;
     const filmPreview = this.state.filmUrl ? <video width="200px" height="120px" src={this.state.filmUrl} /> : null;
-
 
     return (
       <div>

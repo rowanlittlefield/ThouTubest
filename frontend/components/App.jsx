@@ -16,7 +16,6 @@ import CreateVideoFormContainer from './video/create_video_form_container';
 
 
 const App = () => {
-
   return (<div>
     <Switch>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -36,3 +35,5 @@ const App = () => {
 };
 
 export default App;
+// <Route exact path="/videos/new" render={() => } />
+// <Route exact path="/videos/new" component={CreateVideoFormContainer} />
