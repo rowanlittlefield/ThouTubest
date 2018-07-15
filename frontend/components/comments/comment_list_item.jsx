@@ -25,9 +25,7 @@ const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
       </span>`;
 
     const hideButton = document.getElementById(`comment-${comment.id}-hide-button`);
-    debugger
     hideButton.addEventListener('click', () => {
-      debugger;
       hideReplies(comment);
     });
 
@@ -46,23 +44,17 @@ const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
     const elClone = commy.cloneNode(true);
     commy.parentNode.replaceChild(elClone, commy);
 
-    // elClone.innerHTML = `<span id=comment-${comment.id}-reply-button
-    //   class=${type}-comment-show-listitem-child-comments-button>View all # replies ^
-    //   </span>`;
-    //   debugger
-    debugger
     const replyButton = document.createElement('div');
     replyButton.setAttribute('id', `comment-${comment.id}-reply-button`);
     replyButton.classList.add(`${type}-comment-show-listitem-child-comments-button`);
     replyButton.innerHTML = 'View all # replies ^';
-    debugger
-    // const replyButton = document.getElementById(`comment-${comment.id}-reply-button`);
+
     replyButton.addEventListener('click', () => {
         getComments(videoId, comment.id).then((response) => {
           renderChildComments(response.comments, comment);
         })
       });
-      debugger
+      
     elClone.innerHTML = '';
     elClone.appendChild(replyButton);
   };

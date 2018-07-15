@@ -1,0 +1,32 @@
+.create-comment-form-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.create-comment-form-image {
+  border-radius: 50%;
+}
+
+.create-comment-form {
+  margin-left: 20px;
+}
+
+.create-comment-form-body {
+  font-size: 14px;
+
+  resize: none;
+  width: 700px;
+  height: 14px;
+  overflow: hidden;
+  border: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid lightgrey;
+  cursor: text;
+}
+
+.create-comment-form-body:focus {
+  border-bottom: 1px solid black;
+  outline: none;
+  transition: 2s;
+
+}

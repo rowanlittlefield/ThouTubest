@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
-// import CreateCommentForm from './create_comment_form'
+import CreateCommentFormContainer from './create_comment_form_container'
 
 class CommentShow extends React.Component {
   constructor(props) {
@@ -24,8 +24,8 @@ class CommentShow extends React.Component {
     return (
       <div>
         <div className="comment-show-header">
-          <h2>{commentIds.length} Comments</h2>
-          <div className="comment form goes here"></div>
+          <h2 className="comment-show-number">{commentIds.length} Comments</h2>
+          <CreateCommentFormContainer />
         </div>
 
         <CommentList getComments={this.props.getComments}
