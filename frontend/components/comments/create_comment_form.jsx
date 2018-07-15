@@ -47,11 +47,12 @@ class CreateCommentForm extends React.Component {
 
 textAreaAdjust() {
   const textarea = document.getElementById('create-comment-form-body');
-  // textarea.style.height = "14px";
-  // if (this.state.body.length > 50) {
-    textarea.style.height = 14 + (16 *(Math.floor( this.state.body.length / 130))) + "px";
-  // }
-  // textarea.style.height = (25+textarea.scrollHeight)+"px";
+  textarea.style.height = 14 + (16 *(Math.floor( this.state.body.length / 130))) + "px";
+}
+
+toggleFormFooter() {
+  const footer = document.getElementById('create-comment-form-footer');
+  footer.setAttribute('style', "display: flex");
 }
 
   render() {
@@ -67,9 +68,11 @@ textAreaAdjust() {
               onChange={this.update('body')}
               className="create-comment-form-body"
               onKeyUp={this.textAreaAdjust.bind(this)}
+              onClick={this.toggleFormFooter.bind(this)}
               />
-            <div className="create-comment-form-footer">
-
+            <div id="create-comment-form-footer" className="create-comment-form-footer">
+              <span className="create-comment-cancel">cancel</span>
+              <input type="submit" value="comment" className="create-comment-submit" />
             </div>
           </div>
         </form>

@@ -1,4 +1,6 @@
 .create-comment-form-div {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+
   display: flex;
   flex-direction: row;
 }
@@ -28,5 +30,44 @@
   border-bottom: 1px solid black;
   outline: none;
   transition: 2s;
+}
 
+.create-comment-cancel {
+  color: grey;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+
+  margin-right: 15px;
+
+  cursor: pointer;
+}
+
+.create-comment-form-footer {
+  margin-top: 5px;
+  display: none;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.create-comment-cancel:hover {
+  color: black;
+}
+
+.create-comment-submit {
+  color: #fff;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+
+  width: 88px;
+  height: 36px;
+
+  background-color: #4285f4;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
+
+  cursor: pointer;
 }
