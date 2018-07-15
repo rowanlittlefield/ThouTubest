@@ -12,7 +12,7 @@ class VideoPlayer extends React.Component {
       videos: {},
       videoListIds: []
     };
-
+    this.updated = false;
   }
 
   componentWillMount() {
@@ -31,11 +31,13 @@ class VideoPlayer extends React.Component {
           videoListIds: response.videoList
         });
     });
-
   }
 
   componentDidUpdate() {
-    this.videoPlayerControlsScript();
+    if(!this.updated) {
+      this.updated = true;
+      this.videoPlayerControlsScript();
+    }
   }
 
   displayVideoPlayerElement() {
