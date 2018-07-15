@@ -1,0 +1,21 @@
+.comment-listitem {
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-show-listitem-image {
+  border-radius: 50%;
+}
+
+.comment-show-listitem-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-show-listitem-content-username {
+  color: black;
+  font-weight: 600;
+  font-size: 12px;
+}

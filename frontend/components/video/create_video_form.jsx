@@ -104,7 +104,6 @@ class CreateVideoForm extends React.Component {
 
   componentWillMount() {
     if (this.state.uploader_id === null) {
-      debugger
       this.props.history.push('/login');
     }
   }

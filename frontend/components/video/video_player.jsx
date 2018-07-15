@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import VideoList from './video_list';
+import CommentShowContainer from '../comments/comment_show_container'
 
 class VideoPlayer extends React.Component {
 
@@ -14,10 +15,13 @@ class VideoPlayer extends React.Component {
 
   }
 
+  componentWillMount() {
+    this.props.getVideo(this.props.match.params.videoId).then(response => {
+        this.setState({video: response.video})
+    });
+  }
+
   componentDidMount() {
-    // this.props.getVideo(this.props.match.params.videoId).then(response => {
-    //     this.setState({video: response.video})
-    // });
 
     this.props.getVideos().then(response => {
         const videoId = this.props.match.params.videoId;
@@ -125,7 +129,9 @@ class VideoPlayer extends React.Component {
           </div>
           <div className="video-show-footer">
           </div>
-          <div className="commont-componentGoesHere"></div>
+          <div className="comment-show">
+            <CommentShowContainer videoId={this.state.videoId} />
+          </div>
         </div>
       <div className="video-show-right-col">
         {this.displayVideoList()}

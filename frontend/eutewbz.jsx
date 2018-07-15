@@ -4,6 +4,8 @@ import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionActions from './actions/session_actions';
 import * as VideoApiUtil from './util/video_api_util';
+import * as CommentApiUtil from './util/comment_api_util';
+import * as CommentActions from './actions/comment_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -20,9 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-
+  window.dispatch = store.dispatch;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, root);
 });
 
 window.createVideo = VideoApiUtil.createVideo;
+window.getComments = CommentActions.getComments
