@@ -19,7 +19,7 @@ const CommentList = ({comments, commentIds, getComments, videoId, type}) => {
       commentIds={commentIds}
       type={type}/>);
   });
-  // debugger
+  
   return (
     <ul className="comment-show-commentlist">
       {listItems}

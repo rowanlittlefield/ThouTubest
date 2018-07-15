@@ -12,10 +12,11 @@ class CreateCommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const that = this;
     const comment = Object.assign({}, this.state);
-    comment.userId = this.props.currentUserId;
-    comment.videoId = this.props.currentUserId;
-    this.props.processForm(comment)//.then( () => {this.props.history.push('/');});
+    comment.user_id = this.props.currentUserId;
+    comment.video_id = this.props.currentVideoId;
+    this.props.processForm({comment})
   }
 
   update(field) {
@@ -55,11 +56,17 @@ toggleFormFooter() {
   footer.setAttribute('style', "display: flex");
 }
 
+redirectUnlessSignedInt() {
+  if (!this.props.currentUserId) {
+    this.props.history.push('/login');
+  }
+}
+
   render() {
     return(
       <div className="create-comment-form-div">
         <img className="create-comment-form-image" width="40px" height="40px"/>
-        <form className="create-comment-form">
+        <form className="create-comment-form" onSubmit={this.handleSubmit} onClick={this.redirectUnlessSignedInt.bind(this)}>
           {this.renderErrors()}
           <div onClick={this.clearErrors.bind(this)} className="create-comment-form-error-clearer">
             <textarea
@@ -69,6 +76,7 @@ toggleFormFooter() {
               className="create-comment-form-body"
               onKeyUp={this.textAreaAdjust.bind(this)}
               onClick={this.toggleFormFooter.bind(this)}
+              placeholder="Add a public comment..."
               />
             <div id="create-comment-form-footer" className="create-comment-form-footer">
               <span className="create-comment-cancel">cancel</span>

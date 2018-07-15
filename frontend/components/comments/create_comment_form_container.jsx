@@ -4,11 +4,13 @@ import React from 'react';
 import { createComment } from '../../actions/comment_actions';
 import CreateCommentForm from './create_comment_form';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  return {
   errors: state.errors.comments,
-  currentVideoId: state.entities[state.ui.currentVideo],
-  currentUserId: state.entities[state.session.currentUserId]
-});
+  currentVideoId: state.ui.currentVideo,
+  currentUserId: state.session.id
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   processForm: comment => dispatch(createComment(comment))

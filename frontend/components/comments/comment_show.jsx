@@ -8,18 +8,34 @@ class CommentShow extends React.Component {
     super(props);
     this.state = {
       videoId: props.match.params.videoId,
-      comments: {}
+      comments: {},
+      commentIds: props.commentIds
     };
   }
 
     componentDidMount() {
     this.props.getComments(this.state.videoId, null).then(response => {
-      return this.setState({comments: response.comments});
+      return this.setState({
+        comments: response.comments,
+        commentIds: this.props.commentIds
+      });
+    });
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      commentIds: nextProps.commentIds
     });
   }
 
   render() {
-    const commentIds = this.props.video ? this.props.video.comment_ids : [];
+    // const commentIds = this.props.video ? this.props.video.comment_ids : [];
+    const commentIds = this.state.commentIds ? this.state.commentIds: [];
+
 
     return (
       <div>

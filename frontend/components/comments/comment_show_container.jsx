@@ -5,8 +5,10 @@ import { getComments } from '../../actions/comment_actions';
 import CommentShow from './comment_show';
 
 const mapStateToProps = (state, ownProps) => {
+  const currentVideo = state.entities.videos[state.ui.currentVideo];
   return {
-    video: state.entities.videos[state.ui.currentVideo],
+    video: currentVideo,
+    commentIds: (currentVideo ? currentVideo.comment_ids : [])
   };
 };
 
