@@ -27,8 +27,12 @@ class CommentShow extends React.Component {
           <h2>{commentIds.length} Comments</h2>
           <div className="comment form goes here"></div>
         </div>
-        
-        <CommentList comments={this.state.comments} commentIds={commentIds} />
+
+        <CommentList getComments={this.props.getComments}
+           comments={this.state.comments}
+           commentIds={commentIds}
+           videoId={this.state.videoId}
+           type={'tl'}/>
       </div>
     );
   }

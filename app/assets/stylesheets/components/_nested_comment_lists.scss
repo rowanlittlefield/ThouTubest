@@ -1,12 +1,4 @@
-.tl-comment-listitem {
-  // font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
-  // font-size: 12px;
-  // display: flex;
-  // flex-direction: row;
-  //
-  // width: 100%;
-  // height: auto;
-  // margin-bottom: 16px;
+.nested-comment-listitem {
   display: flex;
   flex-direction: column;
 
@@ -14,7 +6,7 @@
   height: auto;
 }
 
-.tl-comment-listitem-div {
+.nested-comment-listitem-div {
   font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
   font-size: 12px;
   display: flex;
@@ -25,52 +17,55 @@
   margin-bottom: 16px;
 }
 
-.tl-comment-show-listitem-image {
+.nested-comment-show-listitem-image {
   border-radius: 50%;
   margin-right: 15px;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
 }
 
-.tl-comment-show-listitem-content {
+.nested-comment-show-listitem-content {
   display: flex;
   flex-direction: column;
 }
 
-.tl-comment-show-listitem-content-username {
+.nested-comment-show-listitem-content-username {
   color: black;
   font-weight: 700;
   font-size: 12px;
 }
 
-.tl-comment-show-listitem-content-timestamp {
+.nested-comment-show-listitem-content-timestamp {
   color: grey;
 }
 
-.tl-comment-show-listitem-content-body {
+.nested-comment-show-listitem-content-body {
   font-weight: 400;
   margin-top: 5px;
+  margin-bottom: 10px;
 }
 
-.tl-comment-show-listitem-content-reply-like-bar {
+.nested-comment-show-listitem-content-reply-like-bar {
   font-size: 13px;
   text-transform: uppercase;
   color: grey;
   margin-top: 8px;
+  display: none;
 }
 
-.tl-comment-show-listitem-content-reply-like-bar:hover {
+.nested-comment-show-listitem-content-reply-like-bar:hover {
   text-transform: uppercase;
   cursor: pointer;
   color: black;
 
 }
-.tl-comment-show-listitem-child-comments-button {
+.nested-comment-show-listitem-child-comments-button {
   font-style: Roboto, Arial, Helvetica, sans-serif;
   font-weight: 700;
   display: block;
   cursor: pointer;
   margin: 10px 8px;
+  display: none;
 }
 
 .down-carrot {
