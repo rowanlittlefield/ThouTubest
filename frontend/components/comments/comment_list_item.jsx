@@ -18,10 +18,19 @@ const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
 
   const renderChildComments = (comments, comment) => {
     const commy = document.getElementById(`comment-${comment.id}-reply-button-div`);
-    debugger
     const elClone = commy.cloneNode(true);
-
     commy.parentNode.replaceChild(elClone, commy);
+    elClone.innerHTML = `<span id=comment-${comment.id}-hide-button
+      class=${type}-comment-show-listitem-child-comments-button>Hide replies ^
+      </span>`;
+
+    const hideButton = document.getElementById(`comment-${comment.id}-hide-button`);
+    debugger
+    hideButton.addEventListener('click', () => {
+      debugger;
+      hideReplies(comment);
+    });
+
 
     const childCommentList = displayChildComments(comments);
     const newDiv = document.createElement('div');
@@ -32,8 +41,24 @@ const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
 
   };
 
-  const updateEventListener = comment => {
-    
+  const hideReplies = comment => {
+    const commy = document.getElementById(`comment-${comment.id}-reply-button-div`);
+    debugger
+    const elClone = commy.cloneNode(true);
+
+    commy.parentNode.replaceChild(elClone, commy);
+    elClone.innerHTML = `<span id=comment-${comment.id}-reply-button
+      class=${type}-comment-show-listitem-child-comments-button>View all # replies ^
+      </span>`;
+    //   debugger
+    // const replyButton = document.getElementById(`comment-${comment.id}-reply-button`);
+    // relpyButton.addEventListener('click', () => {
+    //     getComments(videoId, comment.id).then((response) => {
+    //       renderChildComments(response.comments, comment);
+    //     })
+    //   });
+
+
   };
 
   return (<li className={`${type}-comment-listitem`}>
@@ -50,7 +75,6 @@ const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
           <span id={`comment-${comment.id}-reply-button`} onClick={() => {
               getComments(videoId, comment.id).then((response) => {
                 renderChildComments(response.comments, comment);
-                updateEventListener(comment);
               });
             }}
             className={`${type}-comment-show-listitem-child-comments-button`}>View all # replies<span className={`${type}-down-carrot`}>&or;</span>
