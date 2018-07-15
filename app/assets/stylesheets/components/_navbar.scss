@@ -69,6 +69,7 @@ ul.hamburger-dropdown ul {
 
 .hamburger-dropdown > li {
   background-color: #fff;
+  z-index: 3;
 
   position: absolute;
   top: 45px;
