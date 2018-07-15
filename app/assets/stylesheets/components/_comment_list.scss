@@ -3,10 +3,15 @@
   font-size: 12px;
   display: flex;
   flex-direction: row;
+
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
 }
 
 .comment-show-listitem-image {
   border-radius: 50%;
+  margin-right: 15px;
 }
 
 .comment-show-listitem-content {
@@ -16,6 +21,41 @@
 
 .comment-show-listitem-content-username {
   color: black;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
+}
+
+.comment-show-listitem-content-timestamp {
+  color: grey;
+}
+
+.comment-show-listitem-content-body {
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.comment-show-listitem-content-reply-like-bar {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: grey;
+  margin-top: 8px;
+}
+
+.comment-show-listitem-content-reply-like-bar:hover {
+  text-transform: uppercase;
+  cursor: pointer;
+  color: black;
+
+}
+.comment-show-listitem-child-comments-button {
+  font-style: Roboto, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  display: block;
+  cursor: pointer;
+  margin: 10px 8px;
+}
+
+.down-carrot {
+  font-size: 18px;
+  font-weight: bolder;
 }

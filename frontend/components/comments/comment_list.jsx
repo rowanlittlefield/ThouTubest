@@ -13,7 +13,7 @@ const CommentList = ({comments, commentIds}) => {
   const listItems = filteredComments.map(comment => {
     return (<CommentListItem key={comment.id} comment={comment}/>);
   });
-  
+  debugger
   return (
     <ul className="comment-show-commentlist">
       {listItems}
