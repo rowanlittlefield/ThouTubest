@@ -1,9 +1,21 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
+function clearDropDownCb(eve) {
+  const dropDown = document.getElementById("hamburger-dropdown");
+  const profileButton = document.getElementById('navbar-profile-image-nav');
+  const targ = eve.target;
+  if ( dropDown && !Array.from(dropDown.classList).includes('hidden') &&
+  profileButton && targ.id != profileButton.id) {
+    dropDown.classList.toggle('hidden');
+  }
+}
 
 
 const Navbar = ({ currentUser, logout, location, history }) => {
+
+  document.removeEventListener('click', clearDropDownCb, {capture: true});
+  document.addEventListener('click', clearDropDownCb);
 
   const toggleDropDown = () => {
     const dropDown = document.getElementById("hamburger-dropdown");
@@ -40,7 +52,7 @@ const Navbar = ({ currentUser, logout, location, history }) => {
                   </div>
 
                 </li>
-                <li><button className="header-button" onClick={() => {
+                <li><button id="header-profile-button" className="header-button" onClick={() => {
                     logout();
                     history.push('/')
                   }}>Log Out</button></li>
