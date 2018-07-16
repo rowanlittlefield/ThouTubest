@@ -41,7 +41,16 @@ class CommentListItem extends React.Component {
           <span className={`${type}-comment-show-listitem-content-reply-like-bar`}>reply</span>
           <div id={`comment-${comment.id}-reply-button-div`}>
             <span id={`comment-${comment.id}-reply-button`}
-              className={`${type}-comment-show-listitem-child-comments-button`}>{this.state.showChildrenText}<span className={`${type}-down-carrot`}>&or;</span>
+              className={`${type}-comment-show-listitem-child-comments-button`} onClick={() => {
+                console.log("Hello");
+                const boolean = !this.state.displayChildren;
+                const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
+
+                this.setState({
+                  displayChildren: boolean,
+                  showChildrenText: text
+                })
+              }}>{this.state.showChildrenText}<span className={`${type}-down-carrot`}>&or;</span>
             </span>
             {this.renderChildren()}
           </div>
