@@ -32,6 +32,8 @@ class VideoStreamer extends React.Component {
     const progess = document.getElementById("progress");
     const progressBar = document.getElementById("progressBar");
     const digitalClock = document.getElementById("digitalClock");
+    const muteButton = document.getElementById("mute-button");
+    const volumeSlider = document.getElementById("volume-slider");
     this.updateProgressDigitalClock(video, digitalClock);
 
     video.controls = false;
@@ -39,6 +41,8 @@ class VideoStreamer extends React.Component {
     video.addEventListener("timeupdate", this.updateProgress.bind(this, video, progress), false);
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
     progressBar.addEventListener('click', this.changeProgress.bind(this, video));
+    muteButton.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
+    muteButton.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
   }
 
   displayVideoControls() {
@@ -53,11 +57,13 @@ class VideoStreamer extends React.Component {
         </div>
 
         <div className="video-player-digital-clock" id="digitalClock"></div>
-        <img className="video-player-mute-button"
+        <img className="video-player-mute-button" id="mute-button"
            width="45px"
            height="45px"
            src={window.volumeIcon}/>
-        <input id="volume" min="0" max="1" step="0.1" type="range" />
+        <input id="volume"
+           min="0" max="1" step="0.1" id="volume-slider"
+           className={"video-layer-volume-slider" + " hidden"} type="range" />
       </div>
     );
   }
@@ -82,12 +88,14 @@ class VideoStreamer extends React.Component {
   }
 
   changeProgress(video, eve) {
-    // eve.layerX = 200;
-    // debugger
     if (video && eve.layerX / 810 <= 1) {
       video.currentTime = (eve.layerX / 810) * video.duration;
     }
     console.log(eve.layerX / 810);
+  }
+
+  toggleVolumeControls(volumeSlider) {
+    volumeSlider.classList.toggle('hidden');
   }
 
   updateProgressDigitalClock(video, digitalClock) {
