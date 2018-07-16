@@ -23,13 +23,9 @@ const App = () => {
       <NavbarContainer />
     </Switch>
 
-    <Switch>
-      <Route exact path="/videos/new" component={CreateVideoFormContainer} />
-      <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
-
-    </Switch>
-      <Route exact path="/" component={VideoIndexContainer} />
-
+    <Route exact path="/videos/new" component={CreateVideoFormContainer} />
+    <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
+    <Route exact path="/" component={VideoIndexContainer} />
 
   </div>);
 };

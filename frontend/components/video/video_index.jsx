@@ -7,48 +7,34 @@ class VideoIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      videos: {},
-      videoList: [],
-      users: {}
-    };
   }
 
   componentDidMount() {
-    this.props.getVideos().then(response => {
-      return this.setState({
-        videos: response.videos,
-        videoList: response.videoList
-      });
-    });
-  }
-
-  componentDidUpdate() {
-
+    this.props.getVideos();
   }
 
   sortVideoKeysIntoLists() {
+
     const groupsOfFive = [];
-    for(let i = 0; i < this.state.videoList.length; i++) {
+    for(let i = 0; i < this.props.videoIds.length; i++) {
       if(i % 5 === 0) groupsOfFive.push([]);
-      let videoKey = this.state.videoList[i];
+      let videoKey = this.props.videoIds[i];
       groupsOfFive[groupsOfFive.length - 1].push(videoKey);
     }
+
     return groupsOfFive;
   }
 
   displayVideoIndexItems() {
+    
     const that = this;
-    if (that.state.videoList.length > 0) {
+    if (that.props.videoIds.length > 0) {
       const videoKeysInGroupsOfFive = this.sortVideoKeysIntoLists();
       const videoLists = videoKeysInGroupsOfFive.map((groupOfFive, idx) => {
         return (<VideoList header="List Header"
           key={idx}
           type="index"
-          videoList={groupOfFive}
-          videos={that.state.videos}
-          urlPrefix='videos'
-          users={this.props.users} />);
+          videoIds={groupOfFive} />);
       });
 
       return (

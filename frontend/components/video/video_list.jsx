@@ -1,16 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import VideoListItem from './video_list_item';
+import { connect } from 'react-redux';
 
-const VideoList = ({type, videos, videoList, header, urlPrefix, users}) => {
-  const listItems = videoList.map(idx => {
-  const video = videos[idx];
+const VideoList = ({videoIds, type, currentVideoId, header}) => {
+  const siftedIds = [];
+  
+  for(let i = 0; i < videoIds.length; i++) {
+    if(videoIds[i] != currentVideoId) {
+      siftedIds.push(videoIds[i]);
+    }
+  }
+  const listItems = siftedIds.map(id => {
   return (
-    <VideoListItem key={video.id}
+    <VideoListItem key={id}
        type={type}
-       video={video}
-       urlPrefix={urlPrefix}
-       user={users ? users[video.uploader_id] : {}}/>
+       videoId={id} />
     );
   });
 
@@ -24,4 +29,10 @@ const VideoList = ({type, videos, videoList, header, urlPrefix, users}) => {
   );
 }
 
-export default VideoList;
+const msp = (state, ownProps) => {
+  return {
+    currentVideoId: ownProps.match.params.videoId
+  };
+};
+
+export default withRouter(connect(msp, null)(VideoList));

@@ -5,11 +5,8 @@ import { getVideos } from '../../actions/video_actions';
 import VideoIndex from './video_index';
 
 const mapStateToProps = (state, ownProps) => {
-  
   return {
-  videos: state.entities.videos,
-  videoList: state.ui.videoList,
-  users: state.entities.users
+  videoIds: Object.values(state.entities.videos).map(video => video.id)
   }
 };
 

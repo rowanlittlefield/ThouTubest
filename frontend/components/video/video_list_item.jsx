@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-const VideoListItem = ({type, video, urlPrefix, history, user}) => {
+const VideoListItem = ({type, video, user}) => {
   const username = user ? user.username : '';
-  
+
   return (
     <div className={`${type}-list-item`}>
-      <Link className={`${type}-list-item-link`} to={`videos/${video.id}`}>
+      <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`}>
 
         <img className={`${type}-thumbnail-image`} src={video.thumbnail_image_url} />
         <span className={`${type}-thumbnail-duration`}>0:00</span>
@@ -22,4 +23,13 @@ const VideoListItem = ({type, video, urlPrefix, history, user}) => {
   );
 };
 
-export default withRouter(VideoListItem);
+const msp = (state, ownProps) => {
+  const video = state.entities.videos[ownProps.videoId];
+  
+  return {
+    video,
+    user: state.entities.users[video.uploader_id]
+  };
+};
+
+export default connect(msp, null)(VideoListItem);

@@ -5,22 +5,19 @@ class VideoStreamer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      video: {}
-    };
-
     this.updated = false;
   }
 
+  // componentWillReceiveProps() {
+  // }
+
   componentWillMount() {
     const videoId = this.props.match.params.videoId;
-    this.props.getVideo(videoId).then( response => {
-      this.setState({video: response.video});
-    });
+    this.props.getVideo(videoId);
   }
 
   componentDidUpdate() {
-    if(!this.updated) {
+    if (!this.updated) {
       this.updated = true;
       this.videoPlayerControlsScript();
     }
@@ -109,10 +106,10 @@ class VideoStreamer extends React.Component {
 
   render() {
     if (!this.props.video) return null;
-
+    
     return(
       <div className="video-streamer-div">
-        <video src={this.state.video.film_url}
+        <video src={this.props.video.film_url}
             width="850px" height="480px" id="video" autoPlay/>
         {this.displayVideoControls()}
       </div>
