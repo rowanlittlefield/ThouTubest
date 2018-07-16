@@ -53,6 +53,11 @@ class VideoStreamer extends React.Component {
         </div>
 
         <div className="video-player-digital-clock" id="digitalClock"></div>
+        <img className="video-player-mute-button"
+           width="45px"
+           height="45px"
+           src={window.volumeIcon}/>
+        <input id="volume" min="0" max="1" step="0.1" type="range" />
       </div>
     );
   }
