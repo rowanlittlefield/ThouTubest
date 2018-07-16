@@ -43,3 +43,86 @@ Comment.destroy_all
     c2.save!
   end
 end
+
+# v2 = Video.new(
+#   title: 'Another cassowary', description: 'A cassowary',
+#   video_url: 'dummy', thumbnail_url: 'dummy', views: 500,
+#   uploader_id: u1.id
+#  )
+# thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/Cassowary_MissionBeach1.jpg")
+# v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'Cassowary_MissionBeach1.jpg')
+# film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/ARKive-video-467B76B0-1509-49D4-A5F0-B4C4D000E739.mov")
+# v2.film.attach(io: film_file1, filename: 'ARKive-video-467B76B0-1509-49D4-A5F0-B4C4D000E739.mov')
+# v2.save!
+
+v2 = Video.new(
+  title: 'Hooded Oriole', description: 'A hodded oriole',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 300,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/hooded_oriole.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'hooded_oriole.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4")
+v2.film.attach(io: film_file1, filename: 'ARKive-video-467B76B0-1509-49D4-A5F0-B4C4D000E739.mov')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end
+
+v2 = Video.new(
+  title: 'Buff Breasted Sandpiper', description: 'A really cool bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 340,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/Buff-breasted_Sandpiper_c27-6-108_l_1.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'Buff-breasted_Sandpiper_c27-6-108_l_1.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/BBSA_20090506AM081500_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4")
+v2.film.attach(io: film_file1, filename: 'BBSA_20090506AM081500_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end
+
+v2 = Video.new(
+  title: 'Spotted Owl', description: 'A really really cool bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/spotted_owl_07.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'spotted_owl_07.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4")
+v2.film.attach(io: film_file1, filename: 'SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end

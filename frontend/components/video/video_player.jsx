@@ -86,7 +86,11 @@ class VideoPlayer extends React.Component {
   displayVideoList() {
     if (this.state.videoListIds.length > 0) {
       return (
-        <VideoList header="Up next" type="show" videos={this.state.videos} videoList={this.state.videoListIds} />
+        <VideoList header="Up next"
+          type="show"
+          videos={this.state.videos}
+          videoList={this.state.videoListIds}
+          urlPrefix={'videos'} />
       );
     } else {
       return null;
