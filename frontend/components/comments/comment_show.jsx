@@ -8,15 +8,17 @@ class CommentShow extends React.Component {
     super(props);
   }
 
-    componentDidMount() {
+  componentWillMount() {
     this.props.getComments(this.props.currentVideoId, null);
   }
 
   render() {
+    const commentIds = this.props.commentIds
+
     return (
       <div>
         <div className="comment-show-header">
-          <h2 className="comment-show-number">{this.props.commentIds.length} Comments</h2>
+          <h2 className="comment-show-number">{commentIds.length} Comments</h2>
           <CreateCommentFormContainer />
         </div>
 

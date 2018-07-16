@@ -106,7 +106,7 @@ class VideoStreamer extends React.Component {
 
   render() {
     if (!this.props.video) return null;
-    
+
     return(
       <div className="video-streamer-div">
         <video src={this.props.video.film_url}

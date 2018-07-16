@@ -3,7 +3,7 @@ json.set! 'videos' do
   @videos.each do |video|
     id_list << video.id
     json.set! video.id do
-      json.extract! video, :id, :title, :views, :uploader_id
+      json.extract! video, :id, :title, :views, :uploader_id, :comment_ids
       json.thumbnail_image_url url_for(video.thumbnail_image)
       json.film_url url_for(video.film)
     end

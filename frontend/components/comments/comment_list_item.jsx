@@ -40,17 +40,7 @@ class CommentListItem extends React.Component {
           <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
           <span className={`${type}-comment-show-listitem-content-reply-like-bar`}>reply</span>
           <div id={`comment-${comment.id}-reply-button-div`}>
-            <span id={`comment-${comment.id}-reply-button`} onClick={() => {
-
-                this.props.getComments(this.props.currentVideoId, comment.id);
-                  const boolean = !this.state.displayChildren
-                  const text = boolean ? 'Hide Replies' : `View all ${comment.child_comment_ids.length} replies`
-
-                  this.setState({
-                    displayChildren: boolean,
-                    showChildrenText: text
-                  })
-              }}
+            <span id={`comment-${comment.id}-reply-button`}
               className={`${type}-comment-show-listitem-child-comments-button`}>{this.state.showChildrenText}<span className={`${type}-down-carrot`}>&or;</span>
             </span>
             {this.renderChildren()}
@@ -70,10 +60,4 @@ const msp = (state, ownProps) => {
  };
 };
 
-const mdp = dispatch => {
-  return {
-    getComments: (videoId, parentCommentId) => dispatch(getComments(videoId, parentCommentId))
-  };
-};
-
-export default withRouter(connect(msp, mdp)(CommentListItem));
+export default withRouter(connect(msp, null)(CommentListItem));
