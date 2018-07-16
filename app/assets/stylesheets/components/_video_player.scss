@@ -45,9 +45,14 @@
    display: block;
 }
 
+#progressBar:hover {
+  height: 5px;
+  transition: 0.5s;
+}
+
 span#progress {
    background-color:#ee0f0f; // red
-   height: 2.5px;
+   height: 100%;
    display: block;
    opacity: 1;
  }

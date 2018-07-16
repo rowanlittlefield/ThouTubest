@@ -5,7 +5,6 @@ import VideoListItem from './video_list_item';
 const VideoList = ({type, videos, videoList, header, urlPrefix, users}) => {
   const listItems = videoList.map(idx => {
   const video = videos[idx];
-  debugger
   return (
     <VideoListItem key={video.id}
        type={type}
