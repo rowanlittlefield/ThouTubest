@@ -9,10 +9,11 @@ export const receiveVideo = video => ({
   video
 });
 
-export const receiveVideos = ({videos, videoList}) => ({
+export const receiveVideos = ({videos, videoList, users}) => ({
   type: RECEIVE_VIDEOS,
   videos,
-  videoList
+  videoList,
+  users
 });
 
 export const receiveErrors = errors => ({

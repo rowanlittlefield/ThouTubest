@@ -112,7 +112,6 @@ class CreateVideoForm extends React.Component {
     if (this.state.thumbnailUrl) {
       return (<img width='95px' height="95px" src={this.state.thumbnailUrl} />);
     } else {
-      // return null;
       return (<div className="create-video-thumbnail-preview" width='60px' height="60px">
       <span>Thumbnail</span> <span>Preview</span>
       </div>);

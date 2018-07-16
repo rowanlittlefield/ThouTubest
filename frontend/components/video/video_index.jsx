@@ -9,7 +9,8 @@ class VideoIndex extends React.Component {
     super(props);
     this.state = {
       videos: {},
-      videoList: []
+      videoList: [],
+      users: {}
     };
   }
 
@@ -20,6 +21,10 @@ class VideoIndex extends React.Component {
         videoList: response.videoList
       });
     });
+  }
+
+  componentDidUpdate() {
+
   }
 
   sortVideoKeysIntoLists() {
@@ -42,7 +47,8 @@ class VideoIndex extends React.Component {
           type="index"
           videoList={groupOfFive}
           videos={that.state.videos}
-          urlPrefix='videos' />);
+          urlPrefix='videos'
+          users={this.props.users} />);
       });
 
       return (

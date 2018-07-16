@@ -90,7 +90,8 @@ class VideoPlayer extends React.Component {
           type="show"
           videos={this.state.videos}
           videoList={this.state.videoListIds}
-          urlPrefix={'videos'} />
+          urlPrefix={'videos'}
+          users={this.props.users} />
       );
     } else {
       return null;

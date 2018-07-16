@@ -60,9 +60,9 @@ v2 = Video.new(
   video_url: 'dummy', thumbnail_url: 'dummy', views: 300,
   uploader_id: u1.id
  )
-thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/hooded_oriole.jpg")
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg")
 v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'hooded_oriole.jpg')
-film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4")
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/hooded_oriole/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4")
 v2.film.attach(io: film_file1, filename: 'ARKive-video-467B76B0-1509-49D4-A5F0-B4C4D000E739.mov')
 v2.save!
 
@@ -84,9 +84,9 @@ v2 = Video.new(
   video_url: 'dummy', thumbnail_url: 'dummy', views: 340,
   uploader_id: u1.id
  )
-thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/Buff-breasted_Sandpiper_c27-6-108_l_1.jpg")
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/buff_breasted_sandpiper/Buff-breasted_Sandpiper_c27-6-108_l_1.jpg")
 v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'Buff-breasted_Sandpiper_c27-6-108_l_1.jpg')
-film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/BBSA_20090506AM081500_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4")
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/buff_breasted_sandpiper/BBSA_20090506AM080900_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4")
 v2.film.attach(io: film_file1, filename: 'BBSA_20090506AM081500_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4')
 v2.save!
 
@@ -108,9 +108,9 @@ v2 = Video.new(
   video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
   uploader_id: u1.id
  )
-thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/spotted_owl_07.jpg")
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/spotted_owl/spotted_owl_07.jpg")
 v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'spotted_owl_07.jpg')
-film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4")
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/spotted_owl/SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4")
 v2.film.attach(io: film_file1, filename: 'SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4')
 v2.save!
 

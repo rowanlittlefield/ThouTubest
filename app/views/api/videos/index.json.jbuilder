@@ -13,3 +13,12 @@ end
 json.set! 'videoList' do
   json.array! id_list
 end
+
+json.set! 'users' do
+  @users.each do |user|
+    json.set! user.id do
+      json.extract! user, :id, :username
+      json.image_url url_for(user.photo)
+    end
+  end
+end

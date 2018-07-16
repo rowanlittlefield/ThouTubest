@@ -2,11 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VideoListItem from './video_list_item';
 
-const VideoList = ({type, videos, videoList, header, urlPrefix}) => {
+const VideoList = ({type, videos, videoList, header, urlPrefix, users}) => {
   const listItems = videoList.map(idx => {
   const video = videos[idx];
+  debugger
   return (
-    <VideoListItem key={video.id} type={type} video={video} urlPrefix={urlPrefix} />
+    <VideoListItem key={video.id}
+       type={type}
+       video={video}
+       urlPrefix={urlPrefix}
+       user={users ? users[video.uploader_id] : {}}/>
     );
   });
 

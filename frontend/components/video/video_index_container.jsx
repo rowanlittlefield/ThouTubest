@@ -4,10 +4,14 @@ import React from 'react';
 import { getVideos } from '../../actions/video_actions';
 import VideoIndex from './video_index';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  
+  return {
   videos: state.entities.videos,
-  videoList: state.ui.videoList
-});
+  videoList: state.ui.videoList,
+  users: state.entities.users
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   getVideos: () => dispatch(getVideos())

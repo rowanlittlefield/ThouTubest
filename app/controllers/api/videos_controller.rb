@@ -1,7 +1,8 @@
 class Api::VideosController < ApplicationController
 
   def index
-    @videos = Video.all
+    @videos = Video.all.includes(:user)
+    @users = @videos.map {|video| video.user}
     render "api/videos/index"
   end
 
@@ -16,7 +17,7 @@ class Api::VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
-    
+
     if @video.save
       render "api/videos/show"
     else

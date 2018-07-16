@@ -5,7 +5,8 @@ import { getVideo, getVideos } from '../../actions/video_actions';
 import VideoPlayer from './video_player';
 
 const mapStateToProps = (state, ownProps) => ({
-  video: state.entities[state.ui.currentVideo]
+  video: state.entities[state.ui.currentVideo],
+  users: state.entities.users
 });
 
 const mapDispatchToProps = dispatch => ({
