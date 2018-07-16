@@ -35,7 +35,7 @@ class VideoPlayer extends React.Component {
           <div className="video-show-footer">
           </div>
           <div className="comment-show">
-
+            <CommentShowContainer />
           </div>
         </div>
       <div className="video-show-right-col">
@@ -47,5 +47,3 @@ class VideoPlayer extends React.Component {
 }
 
 export default withRouter(VideoPlayer);
-
-// <CommentShowContainer videoId={this.state.videoId} />

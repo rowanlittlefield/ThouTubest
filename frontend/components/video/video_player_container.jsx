@@ -14,6 +14,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   getVideo: id => dispatch(getVideo(id)),
   getVideos: () => dispatch(getVideos())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);

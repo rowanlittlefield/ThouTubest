@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getComments } from '../../actions/comment_actions';
 import CommentShow from './comment_show';
 
 const mapStateToProps = (state, ownProps) => {
-  const currentVideo = state.entities.videos[state.ui.currentVideo];
+  const currentVideoId = ownProps.match.params.videoId;
+  const currentVideo = state.entities.videos[currentVideoId];
   return {
-    video: currentVideo,
-    commentIds: (currentVideo ? currentVideo.comment_ids : [])
+    currentVideoId: currentVideoId,
+    commentIds: currentVideo ? currentVideo.comment_ids : []
   };
 };
 
@@ -16,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   getComments: (videoId, parentCommentId) => dispatch(getComments(videoId, parentCommentId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentShow);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentShow));

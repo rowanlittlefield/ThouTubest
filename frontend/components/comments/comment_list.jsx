@@ -1,25 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import CommentListItem from './comment_list_item';
 
-const CommentList = ({comments, commentIds, getComments, videoId, type}) => {
-  const filteredComments = [];
-  for(let i = 0; i < commentIds.length; i++) {
-    if(comments[commentIds[i]]) {
-      filteredComments.push(comments[commentIds[i]]);
-    }
-  }
+const CommentList = ({currentLevelCommentIds, currentVideoId, type}) => {
 
-  const listItems = filteredComments.map(comment => {
+  const listItems = currentLevelCommentIds.map(id => {
     return (<CommentListItem
-      key={comment.id}
-      comment={comment}
-      getComments={getComments}
-      videoId={videoId}
-      commentIds={commentIds}
+      key={id}
+      id={id}
+      currentVideoId={currentVideoId}
       type={type}/>);
   });
-  
+
   return (
     <ul className="comment-show-commentlist">
       {listItems}
@@ -27,4 +20,29 @@ const CommentList = ({comments, commentIds, getComments, videoId, type}) => {
   );
 }
 
-export default CommentList;
+export const msp = (state, ownProps) => {
+  const filteredCommentIds = [];
+
+  const currentVideoId = ownProps.match.params.videoId;
+  const commentIds = ownProps.commentIds;
+  const parentCommentId = ownProps.parentCommentId;
+
+  for(let i = 0; i < commentIds.length; i++) {
+    const comment = state.entities.comments[commentIds[i]];
+    if(comment && `${comment.video_id}` === currentVideoId &&
+      comment.parent_comment_id === parentCommentId) {
+      filteredCommentIds.push(commentIds[i]);
+    }
+  }
+
+  return {
+    currentVideoId: ownProps.match.params.videoId,
+    currentLevelCommentIds: filteredCommentIds
+  };
+};
+
+const mdp = dispatch => ({
+
+})
+
+export default withRouter(connect(msp, null)(CommentList));

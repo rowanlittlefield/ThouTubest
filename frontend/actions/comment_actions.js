@@ -19,13 +19,13 @@ export const receiveErrors = errors => ({
   errors
 })
 
-export const getComments = (videoId, parentCommentId) => dispatch => (
-  APIUtil.getComments({videoId, parentCommentId}).then(comments => (
+export const getComments = (videoId, parentCommentId) => dispatch => {
+  return APIUtil.getComments({videoId, parentCommentId}).then(comments => {
     dispatch(receiveComments(comments))
-  ), err => (
+  }, err => (
     dispatch(recieveErrors(err.responseJSON))
   ))
-);
+};
 
 export const createComment = comment => dispatch => (
   APIUtil.createComment(comment).then(comment => (

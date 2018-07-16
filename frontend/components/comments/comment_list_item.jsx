@@ -1,86 +1,79 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
+import { getComments } from '../../actions/comment_actions';
 
-const CommentListItem = ({comment, getComments, videoId, commentIds, type}) => {
-  const displayChildComments = (childComments) => {
-    if (Object.keys(childComments).length === 0 && childComments.constructor === Object) {
+class CommentListItem extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      displayChildren: false,
+      showChildrenText: `View all ${this.props.comment.child_comment_ids.length} replies`
+    };
+  }
+
+  renderChildren() {
+    if (this.state.displayChildren) {
+      return (<CommentList
+         commentIds={this.props.comment.child_comment_ids}
+         parentCommentId={this.props.comment.id}
+         type={'nested'}/>);
+    } else {
       return null;
     }
-    return (<CommentList getComments={getComments}
-       comments={childComments}
-       commentIds={commentIds}
-       videoId={videoId}
-       type={'nested'}/>
-      );
-  };
+  }
 
-  const renderChildComments = (comments, comment) => {
-    const commy = document.getElementById(`comment-${comment.id}-reply-button-div`);
-    const elClone = commy.cloneNode(true);
-    commy.parentNode.replaceChild(elClone, commy);
-    elClone.innerHTML = `<span id=comment-${comment.id}-hide-button
-      class=${type}-comment-show-listitem-child-comments-button>Hide replies ^
-      </span>`;
+  render() {
+    const comment = this.props.comment;
+    const user = this.props.user;
+    const type = this.props.type;
+    return (<li className={`${type}-comment-listitem`}>
+      <div className={`${type}-comment-listitem-div`}>
+        <img src={user.image_url} className={`${type}-comment-show-listitem-image`} />
+        <div className={`${type}-comment-show-listitem-content`}>
+          <div className={`${type}-comment-show-listitem-content-toprow`}>
+            <span className={`${type}-comment-show-listitem-content-username`}>{user.username} &nbsp;&nbsp;</span>
+            <span className={`${type}-comment-show-listitem-content-timestamp`}>_ days ago</span>
+          </div>
+          <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
+          <span className={`${type}-comment-show-listitem-content-reply-like-bar`}>reply</span>
+          <div id={`comment-${comment.id}-reply-button-div`}>
+            <span id={`comment-${comment.id}-reply-button`} onClick={() => {
 
-    const hideButton = document.getElementById(`comment-${comment.id}-hide-button`);
-    hideButton.addEventListener('click', () => {
-      hideReplies(comment);
-    });
+                this.props.getComments(this.props.currentVideoId, comment.id);
+                  const boolean = !this.state.displayChildren
+                  const text = boolean ? 'Hide Replies' : `View all ${comment.child_comment_ids.length} replies`
 
-
-    const childCommentList = displayChildComments(comments);
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('nested-comment-list');
-    elClone.appendChild(newDiv);
-
-    ReactDOM.render(childCommentList, newDiv);
-
-  };
-
-  const hideReplies = comment => {
-    const commy = document.getElementById(`comment-${comment.id}-reply-button-div`);
-    const elClone = commy.cloneNode(true);
-    commy.parentNode.replaceChild(elClone, commy);
-
-    const replyButton = document.createElement('div');
-    replyButton.setAttribute('id', `comment-${comment.id}-reply-button`);
-    replyButton.classList.add(`${type}-comment-show-listitem-child-comments-button`);
-    replyButton.innerHTML = 'View all # replies ^';
-
-    replyButton.addEventListener('click', () => {
-        getComments(videoId, comment.id).then((response) => {
-          renderChildComments(response.comments, comment);
-        })
-      });
-      
-    elClone.innerHTML = '';
-    elClone.appendChild(replyButton);
-  };
-
-  return (<li className={`${type}-comment-listitem`}>
-    <div className={`${type}-comment-listitem-div`}>
-      <img className={`${type}-comment-show-listitem-image`} />
-      <div className={`${type}-comment-show-listitem-content`}>
-        <div className={`${type}-comment-show-listitem-content-toprow`}>
-          <span className={`${type}-comment-show-listitem-content-username`}>username for {comment.id} &nbsp;&nbsp;</span>
-          <span className={`${type}-comment-show-listitem-content-timestamp`}>_ days ago</span>
-        </div>
-        <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
-        <span className={`${type}-comment-show-listitem-content-reply-like-bar`}>reply</span>
-        <div id={`comment-${comment.id}-reply-button-div`}>
-          <span id={`comment-${comment.id}-reply-button`} onClick={() => {
-              getComments(videoId, comment.id).then((response) => {
-                renderChildComments(response.comments, comment);
-              });
-            }}
-            className={`${type}-comment-show-listitem-child-comments-button`}>View all # replies<span className={`${type}-down-carrot`}>&or;</span>
-          </span>
+                  this.setState({
+                    displayChildren: boolean,
+                    showChildrenText: text
+                  })
+              }}
+              className={`${type}-comment-show-listitem-child-comments-button`}>{this.state.showChildrenText}<span className={`${type}-down-carrot`}>&or;</span>
+            </span>
+            {this.renderChildren()}
+          </div>
         </div>
       </div>
-    </div>
-  </li>);
+    </li>);
+  }
+}
+
+const msp = (state, ownProps) => {
+  const comment = state.entities.comments[ownProps.id];
+
+  return {
+   comment: comment,
+   user: comment ? state.entities.users[comment.user_id] : null
+ };
 };
 
-export default CommentListItem;
+const mdp = dispatch => {
+  return {
+    getComments: (videoId, parentCommentId) => dispatch(getComments(videoId, parentCommentId))
+  };
+};
+
+export default withRouter(connect(msp, mdp)(CommentListItem));
