@@ -4,9 +4,11 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 
-export const receiveComment = comment => ({
+export const receiveComment = ({comment, user, video}) => ({
   type: RECEIVE_COMMENT,
-  comment
+  comment,
+  user,
+  video
 })
 
 export const receiveComments = comments => ({
@@ -28,9 +30,9 @@ export const getComments = (videoId, parentCommentId) => dispatch => {
 };
 
 export const createComment = comment => dispatch => (
-  APIUtil.createComment(comment).then(comment => (
+  APIUtil.createComment(comment).then(comment => {
     dispatch(receiveComment(comment))
-  ), err => (
+  }, err => (
     dispatch(receiveCommentErrors(err.responseJSON))
   ))
 );

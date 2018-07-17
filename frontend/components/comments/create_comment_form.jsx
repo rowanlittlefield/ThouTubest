@@ -10,6 +10,7 @@ class CreateCommentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
     const that = this;
@@ -63,9 +64,11 @@ redirectUnlessSignedInt() {
 }
 
   render() {
+    const currentUser = this.props.currentUser;
+
     return(
       <div className="create-comment-form-div">
-        <img className="create-comment-form-image" width="40px" height="40px"/>
+        <img src={currentUser ? currentUser.image_url : ''} className="create-comment-form-image" width="40px" height="40px"/>
         <form className="create-comment-form" onSubmit={this.handleSubmit} onClick={this.redirectUnlessSignedInt.bind(this)}>
           {this.renderErrors()}
           <div onClick={this.clearErrors.bind(this)} className="create-comment-form-error-clearer">

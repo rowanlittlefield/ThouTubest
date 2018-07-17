@@ -21,6 +21,7 @@ const CommentList = ({currentLevelCommentIds, currentVideoId, type}) => {
 }
 
 export const msp = (state, ownProps) => {
+  debugger
   const filteredCommentIds = [];
 
   const currentVideoId = ownProps.match.params.videoId;
@@ -34,7 +35,7 @@ export const msp = (state, ownProps) => {
       filteredCommentIds.push(commentIds[i]);
     }
   }
-
+debugger
   return {
     currentVideoId: ownProps.match.params.videoId,
     currentLevelCommentIds: filteredCommentIds

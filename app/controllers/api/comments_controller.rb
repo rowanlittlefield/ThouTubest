@@ -12,6 +12,8 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
+      @user = @comment.user
+      @video = @comment.video
       render "api/comments/single_comment_show"
     else
       render json:  @comment.errors.full_messages, status: 422
