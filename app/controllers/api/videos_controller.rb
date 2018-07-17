@@ -36,7 +36,7 @@ class Api::VideosController < ApplicationController
       @user = @video.user
       render "api/videos/show"
     else
-      render json: @video.errors.full_messages, state: 422
+      render json: @video.errors.full_messages, status: 422
     end
   end
 

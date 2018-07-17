@@ -139,7 +139,23 @@ class UpdateVideoForm extends React.Component {
 
   filmPreview() {
     if (this.state.filmUrl) {
-      return (<video className="update-video-film-preview" width='340px' height="300px" src={this.state.filmUrl} />);
+      return (<div className="create-video-film-preview-div">
+        <video id="video" width='340px' height="300px" src={this.state.filmUrl}
+           onTimeUpdate={(eve) => {
+             const video = eve.target
+             let value = 0;
+             if (video.currentTime >= 8) {
+               video.currentTime = 0;
+               video.pause();
+                  }
+                }
+              }/>
+        <div className={"create-video-film-preview-play-icon"} onClick={() => {
+            const video = document.getElementById("video");
+            (video.paused || video.ended) ? video.play() : video.pause();
+            }
+          }></div>
+      </div>);
     } else {
       return (<div className="create-video-film-preview" width='200px' height="200px">
       <span>Video</span> <span>Preview</span>
@@ -193,10 +209,6 @@ class UpdateVideoForm extends React.Component {
               {this.renderErrors()}
             </div>
           </div>
-
-
-
-
         </form>
       </div>
     );
