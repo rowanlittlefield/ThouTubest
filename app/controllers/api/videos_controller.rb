@@ -8,7 +8,8 @@ class Api::VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @comments = @video.comments
+    @user = @video.user
+    
     if @video
       render "api/videos/show"
     else

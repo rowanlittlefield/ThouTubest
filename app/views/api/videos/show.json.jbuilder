@@ -1,1 +1,1 @@
-json.partial! "api/videos/video", video: @video, comments: @comments
+json.partial! "api/videos/video", video: @video, user: @user

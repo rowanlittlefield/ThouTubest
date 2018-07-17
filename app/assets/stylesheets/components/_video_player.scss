@@ -185,3 +185,107 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-lower {
 input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background: #ffffff;
 }
+
+.video-show-footer {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid lightgrey;
+}
+
+.video-player-title {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.video-player-footer-views {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 0.6);
+  padding-bottom: 15px;
+}
+
+.video-player-secondary-info {
+  padding-top: 16px;
+  border-top: 1px solid lightgrey;
+  margin-top: 20px;
+}
+
+.video-player-secondary-info-top-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-player-image-and-uploader-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.video-player-secondary-info-image {
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.video-player-uploader-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-player-footer-username {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration-style: solid;
+}
+
+.video-player-footer-date {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.video-player-edit-button {
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  min-width: 72px;
+  height: 36px;
+  padding: 10px 16px;
+  align-items: center;
+
+  background-color: #4285f4;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
+
+  cursor: pointer;
+}
+
+.video-player-delete-button {
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  min-width: 72px;
+  height: 36px;
+  padding: 10px 16px;
+  margin-left: 15px;
+  align-items: center;
+
+  background-color: red;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
+
+  cursor: pointer;
+}

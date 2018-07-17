@@ -4,9 +4,10 @@ export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
 export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 
-export const receiveVideo = video => ({
+export const receiveVideo = ({video, user}) => ({
   type: RECEIVE_VIDEO,
-  video
+  video,
+  user
 });
 
 export const receiveVideos = ({videos, videoList, users}) => ({
@@ -22,8 +23,8 @@ export const receiveErrors = errors => ({
 })
 
 export const getVideo = id => dispatch => (
-  APIUtil.getVideo(id).then(user => (
-    dispatch(receiveVideo(user))
+  APIUtil.getVideo(id).then(payload => (
+    dispatch(receiveVideo(payload))
   ), err => (
     dispatch(receiveErrors(err.responseJSON))
   ))

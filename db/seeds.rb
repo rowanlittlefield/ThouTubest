@@ -126,3 +126,54 @@ v2.save!
   )
   c2.save!
 end
+
+
+
+v2 = Video.new(
+  title: 'Painted Redstart', description: 'An unremarkable bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/painted_redstart/painted_redstart.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'painted_redstart.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/painted_redstart/PARE_20090729PM030500_os_ManyBirds-video-of-painted-redstart.MP4")
+v2.film.attach(io: film_file1, filename: 'PARE_20090729PM030500_os_ManyBirds-video-of-painted-redstart.MP4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end
+
+
+v2 = Video.new(
+  title: 'Shoebill Stork', description: 'An beautiful bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/shoebill/shoebill_meme.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'shoebill_meme.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/shoebill/Shoebill.mp4")
+v2.film.attach(io: film_file1, filename: 'Shoebill.mp4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end

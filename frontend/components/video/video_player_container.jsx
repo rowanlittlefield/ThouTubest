@@ -5,9 +5,13 @@ import { getVideo, getVideos } from '../../actions/video_actions';
 import VideoPlayer from './video_player';
 
 const mapStateToProps = (state, ownProps) => {
+  const video = state.entities.videos[ownProps.match.params.videoId];
+
   return {
-  video: state.entities[ownProps.match.params.videoId],
-  videoIds: Object.values(state.entities.videos).map(video => video.id)
+  video: video,
+  user: video ? state.entities.users[video.uploader_id] : {},
+  videoIds: Object.values(state.entities.videos).map(video => video.id),
+  currentUserId: state.session.id
   };
 };
 
