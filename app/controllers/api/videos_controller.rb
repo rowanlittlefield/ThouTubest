@@ -9,7 +9,7 @@ class Api::VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @user = @video.user
-    
+
     if @video
       render "api/videos/show"
     else
@@ -36,7 +36,9 @@ class Api::VideosController < ApplicationController
   end
 
   def destroy
-
+    @video = Video.find(params[:id])
+    @video.destroy
+    render 'api/videos/destroy'
   end
 
   private

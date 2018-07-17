@@ -6,6 +6,8 @@ import * as SessionActions from './actions/session_actions';
 import * as VideoApiUtil from './util/video_api_util';
 import * as CommentApiUtil from './util/comment_api_util';
 import * as CommentActions from './actions/comment_actions';
+import * as VideoActions from './actions/video_actions';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -28,4 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.createVideo = VideoApiUtil.createVideo;
-window.getComments = CommentActions.getComments
+window.getComments = CommentActions.getComments;
+window.deleteVideo = VideoActions.deleteVideo;

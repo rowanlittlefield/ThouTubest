@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import { getVideo, getVideos } from '../../actions/video_actions';
+import { getVideo, getVideos, deleteVideo } from '../../actions/video_actions';
 import VideoPlayer from './video_player';
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   getVideo: id => dispatch(getVideo(id)),
-  getVideos: () => dispatch(getVideos())
+  getVideos: () => dispatch(getVideos()),
+  deleteVideo: id => dispatch(deleteVideo(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);

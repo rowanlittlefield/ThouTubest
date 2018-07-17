@@ -23,6 +23,14 @@ class VideoPlayer extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.video) nextProps.history.push('/');
+  }
+
+  handleDeleteVideo() {
+    this.props.deleteVideo(this.props.match.params.videoId)
+  }
+
   render() {
     const video = this.props.video;
     const user = this.props.user;
@@ -55,7 +63,7 @@ class VideoPlayer extends React.Component {
                 </div>
                 <div className={"video-player-edit-and-delete" + isCurrentUser}>
                   <Link className="video-player-edit-button" to="">edit video</Link>
-                  <Link className="video-player-delete-button" to="">delete video</Link>
+                  <button className="video-player-delete-button" onClick={this.handleDeleteVideo.bind(this)}>delete video</button>
                 </div>
               </div>
             </div>
