@@ -18,11 +18,19 @@ export const createVideo = video => (
     method: 'POST',
     data: video
   })
-)
+);
 
 export const deleteVideo = id => (
   $.ajax({
     url: `api/videos/${id}`,
     method: 'DELETE'
   })
-)
+);
+
+export const updateVideo = video => (
+  $.ajax({
+    url: `api/videos/${video.id}`,
+    method: 'PATCH',
+    data: {video: video}
+  })
+);

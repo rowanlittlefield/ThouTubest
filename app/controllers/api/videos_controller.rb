@@ -11,6 +11,7 @@ class Api::VideosController < ApplicationController
     @user = @video.user
 
     if @video
+      @user = @video.user
       render "api/videos/show"
     else
       render json: ['Cannot find video'], status: 422
@@ -21,6 +22,7 @@ class Api::VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
+      @user = @video.user
       render "api/videos/show"
     else
       render json: @video.errors.full_messages, status: 422
@@ -28,11 +30,14 @@ class Api::VideosController < ApplicationController
   end
 
   def update
+    @video = Video.update(params[:id], video_params)
 
-  end
-
-  def edit
-
+    if @video.save
+      @user = @video.user
+      render "api/videos/show"
+    else
+      render json: @video.errors.full_messages, state: 422
+    end
   end
 
   def destroy

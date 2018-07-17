@@ -39,6 +39,7 @@ class VideoPlayer extends React.Component {
     const image_url = user ? user.image_url: '';
     const isCurrentUser = (this.props.currentUserId && user && this.props.currentUserId === user.id ? '' : ' hidden');
 
+    if(!video) return null;
 
     return(
       <div className="video-show">
@@ -62,7 +63,7 @@ class VideoPlayer extends React.Component {
                   </div>
                 </div>
                 <div className={"video-player-edit-and-delete" + isCurrentUser}>
-                  <Link className="video-player-edit-button" to="">edit video</Link>
+                  <Link className="video-player-edit-button" to={`/videos/${this.props.video.id}/edit`}>edit video</Link>
                   <button className="video-player-delete-button" onClick={this.handleDeleteVideo.bind(this)}>delete video</button>
                 </div>
               </div>

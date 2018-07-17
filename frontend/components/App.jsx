@@ -13,6 +13,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import VideoIndexContainer from './video/video_index_container';
 import VideoPlayerContainer from './video/video_player_container';
 import CreateVideoFormContainer from './video/create_video_form_container';
+import UpdateVideoFormContainer from './video/update_video_form_container';
 
 
 const App = () => {
@@ -23,13 +24,14 @@ const App = () => {
       <NavbarContainer />
     </Switch>
 
-    <Route exact path="/videos/new" component={CreateVideoFormContainer} />
-    <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
-    <Route exact path="/" component={VideoIndexContainer} />
+    <Switch>
+      <Route exact path="/videos/new" component={CreateVideoFormContainer} />
+      <Route exact path="/videos/:videoId/edit" component={UpdateVideoFormContainer} />
+      <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
+      <Route exact path="/" component={VideoIndexContainer} />
+    </Switch>
 
   </div>);
 };
 
 export default App;
-// <Route exact path="/videos/new" render={() => } />
-// <Route exact path="/videos/new" component={CreateVideoFormContainer} />

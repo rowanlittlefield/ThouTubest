@@ -197,3 +197,35 @@
   border: 2px solid lightgrey;
   border-radius: 4px;
 }
+
+.create-video-film-preview-div {
+  position: relative;
+}
+
+.create-video-film-preview-play-icon {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: none;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 28px solid rgba(255, 255, 255, 0.8);
+  top: 170px;
+  left: 158px;
+  cursor: pointer;
+}
+
+.create-video-film-preview-success {
+  width: 340px;
+  height: 300px;
+  text-transform: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: wrap;
+  background-color: white;
+  // border: 2px solid lightgrey;
+  border-radius: 4px;
+}

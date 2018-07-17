@@ -53,6 +53,15 @@ export const deleteVideo = id => dispatch => (
   ))
 );
 
+export const updateVideo = video => dispatch => (
+  APIUtil.updateVideo(video).then(video => (
+    dispatch(receiveVideo(video))
+  ), err => (
+    dispatch(receiveErrors(err.responseJSON))
+  ))
+);
+
+
 export const clearErrors = () => dispatch => {
   return dispatch(receiveErrors([]));
 };
