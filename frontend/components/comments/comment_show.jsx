@@ -19,7 +19,7 @@ class CommentShow extends React.Component {
       <div>
         <div className="comment-show-header">
           <h2 className="comment-show-number">{commentIds.length} Comments</h2>
-          <CreateCommentFormContainer />
+          <CreateCommentFormContainer type={'tl'} parentCommentId={null} />
         </div>
 
         <CommentList

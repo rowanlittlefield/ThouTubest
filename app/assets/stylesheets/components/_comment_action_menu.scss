@@ -1,0 +1,42 @@
+.comment-listitem-action-menu {
+  font-family: 'Noto', 'Roboto', 'Arial', sans-serif;
+  font-size: 12px;
+  list-style: none;
+}
+
+ul.action-menu-dropdown {
+  padding-left: 0;
+  list-style: none;
+}
+
+
+
+ul.action-menu-dropdown ul {
+  list-style: none;
+  padding-left: 0;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
+  padding: 8px 0;
+}
+
+.action-menu-dropdown > li {
+  background-color: #fff;
+  z-index: 2;
+
+  position: absolute;
+  top: 30px;
+  right: -20px;
+}
+
+ul.action-menu-dropdown ul > li  {
+  padding: 16px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+ul.action-menu-dropdown ul > li:hover  {
+  background-color: rgba(17, 17, 17, 0.1);
+}
+
+ul {
+  list-style: none;
+}

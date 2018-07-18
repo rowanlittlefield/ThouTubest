@@ -1,8 +1,9 @@
 .nested-comment-listitem {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
 
-  width: 100%;
+  min-width: 100%;
   height: auto;
 }
 
@@ -43,6 +44,7 @@
   font-weight: 400;
   margin-top: 5px;
   margin-bottom: 10px;
+  width: 600px;
 }
 
 .nested-comment-show-listitem-content-reply-like-bar {

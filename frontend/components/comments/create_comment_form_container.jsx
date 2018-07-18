@@ -7,12 +7,13 @@ import CreateCommentForm from './create_comment_form';
 const mapStateToProps = (state, ownProps) => {
   const currentUserId = state.session.id;
 
-  debugger
   return {
   errors: state.errors.comments,
   currentVideoId: ownProps.match.params.videoId,
   currentUserId: state.session.id,
-  currentUser: currentUserId ? state.entities.users[currentUserId] : {}
+  currentUser: currentUserId ? state.entities.users[currentUserId] : {},
+  type: ownProps.type,
+  parentCommentId: ownProps.parentCommentId
   };
 };
 

@@ -70,5 +70,3 @@ const Navbar = ({ currentUser, logout, location, history }) => {
 
 
 export default withRouter(Navbar);
-
-// <h2 className="header-name">Hi, {currentUser.username}!</h2>

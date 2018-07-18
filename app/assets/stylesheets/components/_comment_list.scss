@@ -8,7 +8,7 @@
   // height: auto;
   // margin-bottom: 16px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   width: 100%;
   height: auto;
@@ -50,6 +50,7 @@
 .tl-comment-show-listitem-content-body {
   font-weight: 400;
   margin-top: 5px;
+  max-width: 550px;
 }
 
 .tl-comment-show-listitem-content-reply-like-bar {
@@ -76,4 +77,14 @@
 .down-carrot {
   font-size: 18px;
   font-weight: bolder;
+}
+
+.comment-listitem-action-menu {
+  cursor: pointer;
+  background-color: transparent;
+  position: relative;
+}
+
+div.comment-listitem-action-menu > ul > li {
+  list-style: none;
 }

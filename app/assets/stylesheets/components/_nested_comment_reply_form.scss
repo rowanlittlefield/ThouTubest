@@ -1,19 +1,19 @@
-.tl-create-comment-form-div {
+.reply-create-comment-form-div {
   font-family: Roboto, Arial, Helvetica, sans-serif;
 
   display: flex;
   flex-direction: row;
 }
 
-.tl-create-comment-form-image {
+.reply-create-comment-form-image {
   border-radius: 50%;
 }
 
-.tl-create-comment-form {
+.reply-create-comment-form {
   margin-left: 20px;
 }
 
-.tl-create-comment-form-body {
+.reply-create-comment-form-body {
   font-size: 14px;
 
   resize: none;
@@ -26,13 +26,13 @@
   cursor: text;
 }
 
-.tl-create-comment-form-body:focus {
+.reply-create-comment-form-body:focus {
   border-bottom: 1px solid black;
   outline: none;
   transition: 2s;
 }
 
-.tl-create-comment-cancel {
+.reply-create-comment-cancel {
   color: grey;
   font-weight: 500;
   font-size: 13px;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.tl-create-comment-form-footer {
+.reply-create-comment-form-footer {
   margin-top: 5px;
   display: none;
   flex-direction: row;
@@ -51,11 +51,11 @@
   align-items: center;
 }
 
-.tl-create-comment-cancel:hover {
+.reply-create-comment-cancel:hover {
   color: black;
 }
 
-.tl-create-comment-submit {
+.reply-create-comment-submit {
   color: #fff;
   font-weight: 500;
   font-size: 13px;
@@ -70,8 +70,4 @@
   box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
 
   cursor: pointer;
-}
-
-.update-video-film-preview {
-  margin-top: 30px;
 }

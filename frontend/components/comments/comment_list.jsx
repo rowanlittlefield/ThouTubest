@@ -25,8 +25,9 @@ export const msp = (state, ownProps) => {
   const filteredCommentIds = [];
 
   const currentVideoId = ownProps.match.params.videoId;
-  const commentIds = ownProps.commentIds;
   const parentCommentId = ownProps.parentCommentId;
+  const commentIds = (state.entities.videos[currentVideoId] ?
+    state.entities.videos[currentVideoId].comment_ids : []);
 
   for(let i = 0; i < commentIds.length; i++) {
     const comment = state.entities.comments[commentIds[i]];
