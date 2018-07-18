@@ -43,7 +43,7 @@ export const createComment = comment => dispatch => (
   APIUtil.createComment(comment).then(comment => {
     dispatch(receiveComment(comment))
   }, err => (
-    dispatch(receiveCommentErrors(err.responseJSON))
+    dispatch(receiveErrors(err.responseJSON))
   ))
 );
 
@@ -51,7 +51,7 @@ export const deleteComment = id => dispatch => (
   APIUtil.deleteComment(id).then(comment => {
     dispatch(removeComment(comment))
   }, err => (
-    dispatch(receiveCommentErrors(err.responseJSON))
+    dispatch(receiveErrors(err.responseJSON))
   ))
 );
 
@@ -59,7 +59,7 @@ export const updateComment = comment => dispatch => (
   APIUtil.updateComment(comment).then(comment => {
     dispatch(receiveComment(comment))
   }, err => (
-    dispatch(receiveCommentErrors(err.responseJSON))
+    dispatch(receiveErrors(err.responseJSON))
   ))
 );
 

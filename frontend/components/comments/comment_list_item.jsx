@@ -33,7 +33,7 @@ class CommentListItem extends React.Component {
   renderReplyForm() {
     if (this.state.displayReplyForm) {
       return (
-        <CreateCommentFormContainer type={'reply'} parentCommentId={this.props.comment.id}/>
+        <CreateCommentFormContainer commentListItem={this} type={'reply'} parentCommentId={this.props.comment.id}/>
       );
     } else {
       return null;
@@ -85,6 +85,12 @@ class CommentListItem extends React.Component {
     return text;
   }
 
+  redirectUnlessSignedIn() {
+    if (!this.props.currentUserId) {
+      this.props.history.push('/login');
+    }
+  }
+
   render() {
     const comment = this.props.comment;
     const user = this.props.user;
@@ -112,7 +118,7 @@ class CommentListItem extends React.Component {
           </div>
           <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
           <span onClick={() => {
-              console.log('clicking reply button');
+              this.redirectUnlessSignedIn();
               const boolean = !this.state.displayReplyForm;
               this.setState( {displayReplyForm: boolean});
             }} className={`${type}-comment-show-listitem-content-reply-like-bar`}>reply</span>
