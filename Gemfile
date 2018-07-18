@@ -39,6 +39,11 @@ gem 'jquery-rails'
 gem 'aws-sdk-s3', '~>1'#, require: false
 # gem 'mini_magick', '~> 4.8'
 gem 'ez_download', git: 'https://github.com/OscarAlvarez8830/EZDownload.git'
+
+# gem 'heroku', '~> 2.20.0'#, '< 3.0'#, '>= 2.26.0'
+# gem 'multipart-post', '~> 1.1.3'#, '~>1.2.0'
+# gem 'rest-client'#, '~>1.6.7'
+# gem 'thor'#, '~>0.14.6'
 # gem 'vulcan'
 
 group :development, :test do
