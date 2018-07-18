@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from './create_comment_form_container';
-import { getComments } from '../../actions/comment_actions';
+import { getComments, deleteComment } from '../../actions/comment_actions';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -16,13 +16,12 @@ class CommentListItem extends React.Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    debugger;
-  }
+  // componentWillReceiveProps(newProps) {
+  // }
 
   renderChildren() {
     if (this.state.displayChildren) {
-      debugger
+
       return (<CommentList
          commentIds={this.props.comment.child_comment_ids}
          parentCommentId={this.props.comment.id}
@@ -45,7 +44,6 @@ class CommentListItem extends React.Component {
   toggleActionMenu() {
     const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
     const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
-
     actionMenu.classList.toggle('hidden');
     if (!Array.from(dropDown.classList).includes('hidden')) {
       dropDown.classList.toggle('hidden');
@@ -92,8 +90,10 @@ class CommentListItem extends React.Component {
       </div>
       <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu" + " hidden"}
         onClick={() => {
-          const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
-          dropDown.classList.toggle('hidden');
+          if (this.props.comment && this.props.currentUserId === this.props.comment.user_id) {
+            const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
+            dropDown.classList.toggle('hidden');
+          }
         }}>
 
           <ul id="no-list-bullets">
@@ -105,7 +105,7 @@ class CommentListItem extends React.Component {
                 <li>
                   <ul>
                     <li><span>Edit</span></li>
-                    <li><span>Delete</span></li>
+                    <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
                   </ul>
                 </li>
               </ul>
@@ -124,8 +124,16 @@ const msp = (state, ownProps) => {
 
   return {
    comment: comment,
-   user: comment ? state.entities.users[comment.user_id] : null
+   user: comment ? state.entities.users[comment.user_id] : null,
+   currentUserId: state.session.id
  };
 };
 
-export default withRouter(connect(msp, null)(CommentListItem));
+const mdp = (dispatch, ownProps) => {
+
+  return {
+    deleteComment: id => dispatch(deleteComment(id))
+  };
+}
+
+export default withRouter(connect(msp, mdp)(CommentListItem));

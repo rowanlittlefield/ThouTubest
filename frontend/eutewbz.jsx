@@ -32,3 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
 window.createVideo = VideoApiUtil.createVideo;
 window.getComments = CommentActions.getComments;
 window.updateVideo = VideoActions.updateVideo;
+window.deleteComment = CommentActions.deleteComment;

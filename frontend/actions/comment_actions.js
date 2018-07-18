@@ -2,6 +2,7 @@ import * as APIUtil from '../util/comment_api_util';
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 
 export const receiveComment = ({comment, user, video}) => ({
@@ -16,10 +17,16 @@ export const receiveComments = comments => ({
   comments
 });
 
+export const removeComment = comment => ({
+  type: REMOVE_COMMENT,
+  id: comment.id
+});
+
 export const receiveErrors = errors => ({
   type: RECEIVE_COMMENT_ERRORS,
   errors
-})
+});
+
 
 export const getComments = (videoId, parentCommentId) => dispatch => {
   return APIUtil.getComments({videoId, parentCommentId}).then(comments => {
@@ -32,6 +39,14 @@ export const getComments = (videoId, parentCommentId) => dispatch => {
 export const createComment = comment => dispatch => (
   APIUtil.createComment(comment).then(comment => {
     dispatch(receiveComment(comment))
+  }, err => (
+    dispatch(receiveCommentErrors(err.responseJSON))
+  ))
+);
+
+export const deleteComment = id => dispatch => (
+  APIUtil.deleteComment(id).then(comment => {
+    dispatch(removeComment(comment))
   }, err => (
     dispatch(receiveCommentErrors(err.responseJSON))
   ))
