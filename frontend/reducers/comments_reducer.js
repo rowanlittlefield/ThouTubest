@@ -11,7 +11,7 @@ const commentReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENT:
       let newState = merge({}, state, {[action.comment.id]: action.comment})
-      
+
       if (action.parentComment) {
         const newerState = merge(newState, {[action.parentComment.id]: action.parentComment})
         newerState[action.comment.parent_comment_id].child_comment_ids = action.parentComment.child_comment_ids.slice();
@@ -24,7 +24,6 @@ const commentReducer = (state = {}, action) => {
     case REMOVE_COMMENT:
       const stateDup = merge({}, state);
       delete stateDup[action.comment.id];
-      // debugger
       return stateDup;
     default:
       return state;

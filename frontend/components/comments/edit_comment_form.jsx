@@ -58,7 +58,7 @@ redirectUnlessSignedInt() {
 
 pressCancel() {
   this.props.commentComponent.setState({displayEditForm: false},
-    this.props.commentComponent.toggleActionMenu.bind(this.props.commentComponent));
+    this.props.commentComponent.hideActionMenu.bind(this.props.commentComponent));
 }
 
   render() {

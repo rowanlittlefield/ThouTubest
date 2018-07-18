@@ -51,6 +51,28 @@ class CommentListItem extends React.Component {
     }
   }
 
+  showActionMenu() {
+    if (!this.state.displayEditForm) {
+      const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
+      const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
+      actionMenu.setAttribute('style', 'display: block');
+      if (!Array.from(dropDown.classList).includes('hidden')) {
+        dropDown.classList.toggle('hidden');
+      }
+    }
+  }
+
+  hideActionMenu() {
+    if (!this.state.displayEditForm) {
+      const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
+      const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
+      actionMenu.setAttribute('style', 'display: none');
+      if (!Array.from(dropDown.classList).includes('hidden')) {
+        dropDown.classList.toggle('hidden');
+      }
+    }
+  }
+
   renderEditForm() {
     return (<EditCommentFormContainer commentComponent={this} comment={this.props.comment}/>);
   }
@@ -71,16 +93,16 @@ class CommentListItem extends React.Component {
     if (this.state.displayEditForm) {
       return (
         <li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
-          onMouseEnter={this.toggleActionMenu.bind(this)}
-          onMouseLeave={this.toggleActionMenu.bind(this)}>
+          onMouseEnter={this.showActionMenu.bind(this)}
+          onMouseOut={this.hideActionMenu.bind(this)}>
           {this.renderEditForm()}
         </li>
       );
     }
 
     return (<li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
-      onMouseEnter={this.toggleActionMenu.bind(this)}
-      onMouseLeave={this.toggleActionMenu.bind(this)}>
+      onMouseEnter={this.showActionMenu.bind(this)}
+      onMouseLeave={this.hideActionMenu.bind(this)}>
       <div className={`${type}-comment-listitem-div`}>
         <img src={user.image_url} className={`${type}-comment-show-listitem-image`} />
         <div className={`${type}-comment-show-listitem-content`}>
@@ -111,7 +133,7 @@ class CommentListItem extends React.Component {
           </div>
         </div>
       </div>
-      <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu" + " hidden"}
+      <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu"}
         onClick={() => {
           if (this.props.comment && this.props.currentUserId === this.props.comment.user_id) {
             const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
