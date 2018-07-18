@@ -1,0 +1,73 @@
+.edit-create-comment-form-div {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-create-comment-form-image {
+  border-radius: 50%;
+}
+
+.edit-create-comment-form {
+  margin-left: 20px;
+}
+
+.edit-create-comment-form-body {
+  font-size: 14px;
+
+  resize: none;
+  width: 700px;
+  height: 14px;
+  overflow: hidden;
+  border: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid lightgrey;
+  cursor: text;
+}
+
+.edit-create-comment-form-body:focus {
+  border-bottom: 1px solid black;
+  outline: none;
+  transition: 2s;
+}
+
+.edit-create-comment-cancel {
+  color: grey;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+
+  margin-right: 15px;
+
+  cursor: pointer;
+}
+
+.edit-create-comment-form-footer {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.edit-create-comment-cancel:hover {
+  color: black;
+}
+
+.edit-create-comment-submit {
+  background-color: none;
+  border: none;
+
+  color: grey;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.edit-create-comment-submit:hover {
+  color: black;
+}

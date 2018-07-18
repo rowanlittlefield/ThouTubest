@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
-import { RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 
 const usersReducer = (state = {}, action) => {
 
@@ -16,7 +16,9 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_VIDEO:
       return merge({}, state, action.users);
       case RECEIVE_COMMENT:
-      return merge({}, state, action.user);
+      case REMOVE_COMMENT:
+      // debugger
+      return merge({}, state, { [action.user.id]: action.user});
     default:
       return state;
   }

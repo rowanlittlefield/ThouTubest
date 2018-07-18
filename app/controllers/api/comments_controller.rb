@@ -12,9 +12,15 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
+      @parent_comment = @comment.parent_comment
       @user = @comment.user
       @video = @comment.video
-      render "api/comments/single_comment_show"
+
+      if @parent_comment
+        render "api/comments/comment_show_with_parent"
+      else
+        render "api/comments/single_comment_show"
+      end
     else
       render json:  @comment.errors.full_messages, status: 422
     end
@@ -23,7 +29,21 @@ class Api::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    @video = @comment.video
+    @user = @comment.user
     render "api/comments/destroy"
+  end
+
+  def update
+    @comment = Comment.update(params[:id], comment_params)
+
+    if @comment.save
+      @video = @comment.video
+      @user = @comment.user
+      render "api/comments/single_comment_show"
+    else
+      render json: @comment.errors.full_messages, status: 422
+    end
   end
 
   private

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from './create_comment_form_container';
+import EditCommentFormContainer from './edit_comment_form_container';
 import { getComments, deleteComment } from '../../actions/comment_actions';
 
 class CommentListItem extends React.Component {
@@ -12,12 +13,10 @@ class CommentListItem extends React.Component {
     this.state = {
       displayChildren: false,
       displayReplyForm: false,
+      displayEditForm: false,
       showChildrenText: `View all ${this.props.comment.child_comment_ids.length} replies`
     };
   }
-
-  // componentWillReceiveProps(newProps) {
-  // }
 
   renderChildren() {
     if (this.state.displayChildren) {
@@ -42,18 +41,43 @@ class CommentListItem extends React.Component {
   }
 
   toggleActionMenu() {
-    const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
-    const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
-    actionMenu.classList.toggle('hidden');
-    if (!Array.from(dropDown.classList).includes('hidden')) {
-      dropDown.classList.toggle('hidden');
+    if (!this.state.displayEditForm) {
+      const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
+      const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
+      actionMenu.classList.toggle('hidden');
+      if (!Array.from(dropDown.classList).includes('hidden')) {
+        dropDown.classList.toggle('hidden');
+      }
     }
+  }
+
+  renderEditForm() {
+    return (<EditCommentFormContainer commentComponent={this} comment={this.props.comment}/>);
+  }
+
+  showChildrenText() {
+    // return `${this.props.comment.child_comment_ids.length}`;
+    const boolean = this.state.displayChildren;
+    // debugger
+    const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
+    return text;
   }
 
   render() {
     const comment = this.props.comment;
     const user = this.props.user;
     const type = this.props.type;
+
+    if (this.state.displayEditForm) {
+      return (
+        <li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
+          onMouseEnter={this.toggleActionMenu.bind(this)}
+          onMouseLeave={this.toggleActionMenu.bind(this)}>
+          {this.renderEditForm()}
+        </li>
+      );
+    }
+
     return (<li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
       onMouseEnter={this.toggleActionMenu.bind(this)}
       onMouseLeave={this.toggleActionMenu.bind(this)}>
@@ -80,9 +104,8 @@ class CommentListItem extends React.Component {
 
                 this.setState({
                   displayChildren: boolean,
-                  showChildrenText: text
                 })
-              }}>{this.state.showChildrenText}<span className={`${type}-down-carrot`}>&or;</span>
+              }}>{this.showChildrenText()}<span className={`${type}-down-carrot`}>&or;</span>
             </span>
             {this.renderChildren()}
           </div>
@@ -104,7 +127,10 @@ class CommentListItem extends React.Component {
               <ul id={`${comment.id}-action-menu-dropdown`} className={"action-menu-dropdown" + " hidden"}>
                 <li>
                   <ul>
-                    <li><span>Edit</span></li>
+                    <li onClick={() => {
+                        this.setState({displayEditForm: true});
+                        console.log('hello');
+                      }}><span>Edit</span></li>
                     <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
                   </ul>
                 </li>
