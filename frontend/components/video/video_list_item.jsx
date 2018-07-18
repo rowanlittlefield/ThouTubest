@@ -5,7 +5,8 @@ import { getComments } from '../../actions/comment_actions';
 
 const VideoListItem = ({type, video, user, getComments}) => {
   const username = user ? user.username : '';
-  
+  const length = video.length;
+
   return (
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
@@ -15,7 +16,7 @@ const VideoListItem = ({type, video, user, getComments}) => {
         }}>
 
         <img className={`${type}-thumbnail-image`} src={video.thumbnail_image_url} />
-        <span className={`${type}-thumbnail-duration`}>0:00</span>
+        <span className={`${type}-thumbnail-duration`}>{length ? `${Math.floor(length / 60)}:${length % 60}` :'0:00'}</span>
         <div className={`${type}-thumbnail-content`}>
           <div className={`${type}-list-item-title`}>{video.title}</div>
           <div className={`${type}-list-item-author`}>{username}</div>

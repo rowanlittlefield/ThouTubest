@@ -13,6 +13,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+require 'streamio-ffmpeg'
 
 class Video < ApplicationRecord
   validates :title, :description, :video_url, :thumbnail_url, :uploader_id, presence: true
@@ -39,5 +40,10 @@ class Video < ApplicationRecord
       errors[:film] << "must be attached"
     end
   end
+
+  def get_video_length
+    movie = FFMPEG::Movie.new("")
+  end
+
 
 end
