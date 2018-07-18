@@ -177,3 +177,51 @@ v2.save!
   )
   c2.save!
 end
+
+v2 = Video.new(
+  title: 'Birds of Paradise', description: 'An beautiful bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/bird_of_paradise/bird_of_paradise.jpg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'bird_of_paradise.jpg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/bird_of_paradise/birds_of_paradise.mp4")
+v2.film.attach(io: film_file1, filename: 'birds_of_paradise.mp4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end
+
+v2 = Video.new(
+  title: 'Red winged black bird', description: 'A beautiful bird',
+  video_url: 'dummy', thumbnail_url: 'dummy', views: 783,
+  uploader_id: u1.id
+ )
+thumbnail_image_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/redwing_blackbird/redwing_blackbird.jpeg")
+v2.thumbnail_image.attach(io: thumbnail_image_file1, filename: 'redwing_blackbird.jpeg')
+film_file1 = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/redwing_blackbird/redwing_blackbird.mp4")
+v2.film.attach(io: film_file1, filename: 'redwing_blackbird.mp4')
+v2.save!
+
+3.times do
+  c1 = Comment.new(
+    user_id: u1.id, video_id: v2.id, body: 'top level comment yo'
+  )
+  c1.save!
+
+  c2 = Comment.new(
+    user_id: u1.id, video_id: v2.id, parent_comment_id: c1.id,
+    body: 'nested comment myan'
+  )
+  c2.save!
+end
