@@ -8,6 +8,7 @@
 # User.destroy_all
 User.destroy_all
 
+
 u1 = User.new(username: 'Todd', email: '1@aol.com', image_url: 'dummy', password: 'passwurd')
 file = EzDownload.open("https://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg")
 u1.photo.attach(io: file, filename: 'cassowary.jpeg')
