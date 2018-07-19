@@ -1,0 +1,58 @@
+.main-hamburger-button {
+  cursor: pointer;
+}
+
+.main-hamburger-button-tl-ul {
+  position: relative;
+  margin: 0;
+}
+
+.main-hamburger-dropdown {
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  position: absolute;
+  background-color: rgb(250,250,250);
+  top: 39px;
+  left: -25px;
+  width: 240px;
+  height: 110vh;
+  z-index: 1;
+}
+
+.main-hamburger-dropdown-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-hamburger-dropdown-li-icon {
+  margin-left: 20px;
+}
+
+li.main-hamburger-dropdown-li:first-of-type {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+
+  height: 40px;
+  margin-top: 2px;
+}
+
+.main-hamburger-dropdown-li-content {
+  font-size: 14px;
+  font-weight: 600;
+
+  margin-left: 20px;
+}
+
+.main-hamburger-dropdown-first-ul {
+  padding: 12px 0px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+}
+
+.main-hamburger-dropdown-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}

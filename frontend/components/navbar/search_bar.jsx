@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
               type="input"
               value={this.state.searchQuery}
               onChange={this.update('searchQuery')}
-              placeHolder="Search"/>
+              placeholder="Search"/>
           </div>
           <button className="search-bar-button">
             <img src={window.searchIcon} width="27px"
@@ -47,10 +47,10 @@ class SearchBar extends React.Component {
 
 const msp = (state, ownProps) => {
   return {};
-}
+};
 
 const mdp = (dispatch, ownProps) => {
   return {};
-}
+};
 
 export default connect(msp, mdp)(SearchBar);

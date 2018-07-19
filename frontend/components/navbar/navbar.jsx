@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import SearchBarContainer from './search_bar';
+import MainHambugerDropDownContainer from './main_hamburger_drop_down';
 
 function clearDropDownCb(eve) {
   const dropDown = document.getElementById("hamburger-dropdown");
@@ -26,7 +27,20 @@ const Navbar = ({ currentUser, logout, location, history }) => {
   const sessionLinks = () => (
     <nav className="navbar">
       <div className="navbar-left-nav">
-        <img className="main-hamburger-button" width="24px" height="24px" src={window.hamburgerButton} />
+        <ul className="main-hamburger-button-tl-ul">
+          <li>
+            <img className="main-hamburger-button" width="24px" height="24px" src={window.hamburgerButton}
+              onClick={() => {
+                const mainHamDropdown = document.getElementById("main-hamburger-dropdown");
+                mainHamDropdown.classList.toggle('hidden');
+              }} />
+          </li>
+          <li>
+            <MainHambugerDropDownContainer />
+          </li>
+
+        </ul>
+
         <span>LOGO</span>
       </div>
 
