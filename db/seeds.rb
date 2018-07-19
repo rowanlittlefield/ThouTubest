@@ -14,6 +14,37 @@ file = EzDownload.open("http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg")
 u1.photo.attach(io: file, filename: 'cassowary.jpeg')
 u1.save!
 
+user_options_list = [
+  {username: 'Cassowary', email: '1@aol.com', image_url: 'dummy', password: 'passwurd',
+  image_url: "http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg"},
+
+  {username: 'Penguin', email: '2@aol.com', image_url: 'dummy', password: 'passwurd',
+  image_url: "https://s3.amazonaws.com/thoutubest-dev/users/penguin.jpg"},
+
+  {username: 'Cardinal', email: '3@aol.com', image_url: 'dummy', password: 'passwurd',
+  image_url: "https://s3.amazonaws.com/thoutubest-dev/users/cardinal.jpg"},
+
+  {username: 'Pelican', email: '4@aol.com', image_url: 'dummy', password: 'passwurd',
+  image_url: "https://s3.amazonaws.com/thoutubest-dev/users/pelican.jpg"},
+
+  {username: 'Birdman', email: '5@aol.com', image_url: 'dummy', password: 'passwurd',
+  image_url: "https://s3.amazonaws.com/thoutubest-dev/users/Birdman.jpg"}
+
+]
+
+def create_user(u_opts)
+  user = User.new(username: u_opts[:username], email: u_opts[:email],
+    image_url: u_opts[:image_url], password: u_opts[:password])
+  file = EzDownload.open(u_opts[:image_url])
+  user.photo.attach(io: file, filename: u_opts[:image_url].split('/').last)
+  user.save!
+  user
+end
+
+user_objects = user_options_list.map do |user_options|
+  create_user(user_options)
+end
+
 Video.destroy_all
 Comment.destroy_all
 
@@ -57,10 +88,12 @@ video_options_list = [
   video_url: 'dummy', thumbnail_url: 'dummy',
   image_url: "http://s3.amazonaws.com/thoutubest-dev/redwing_blackbird/redwing_blackbird.jpeg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/redwing_blackbird/redwing_blackbird.mp4"
-  },
+  }
 ]
 
-def create_video_with_comments(v_opts, uploader)
+def create_video_with_comments(v_opts, users)
+  uploader = users.sample
+
   video = Video.new(
     title: v_opts[:title], description: v_opts[:description],
     video_url: v_opts[:video_url], thumbnail_url: v_opts[:thumbnail_url], views: rand(50...1000),
@@ -75,18 +108,18 @@ def create_video_with_comments(v_opts, uploader)
 
   2.times do
     c1 = Comment.new(
-      user_id: uploader.id, video_id: video.id, body: "#{Faker::ChuckNorris.fact}"
+      user_id: users.sample.id, video_id: video.id, body: "#{Faker::ChuckNorris.fact}"
     )
     c1.save!
 
     c2 = Comment.new(
-      user_id: uploader.id, video_id: video.id, parent_comment_id: c1.id,
+      user_id: users.sample.id, video_id: video.id, parent_comment_id: c1.id,
       body: "#{Faker::ChuckNorris.fact}"
     )
     c2.save!
   end
 end
 
-video_options_list.each do |video_option|
-  create_video_with_comments(video_option, u1)
+video_options_list.each do |video_options|
+  create_video_with_comments(video_options, user_objects)
 end
