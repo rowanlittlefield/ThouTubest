@@ -22,6 +22,7 @@ class Api::VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
+      @video.get_video_length
       @user = @video.user
       render "api/videos/show"
     else
