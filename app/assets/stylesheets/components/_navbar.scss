@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 50px;
   // padding: 5px;
 
@@ -14,6 +14,12 @@
   position: sticky;
   top: 0;
   width: 100%;
+}
+
+.navbar-right-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 nav.navbar ul {
@@ -124,4 +130,21 @@ li.navbar-hamburger-dropdown-profile-detail {
   border: none;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.navbar-left-nav {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main-hamburger-button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navbar-logo {
+  margin-left: 20px;
 }

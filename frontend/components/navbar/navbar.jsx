@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import SearchBarContainer from './search_bar';
 
 function clearDropDownCb(eve) {
   const dropDown = document.getElementById("hamburger-dropdown");
@@ -24,44 +25,63 @@ const Navbar = ({ currentUser, logout, location, history }) => {
 
   const sessionLinks = () => (
     <nav className="navbar">
-      <Link to={currentUser ? "/videos/new" : "/login"}>
-        <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
-      </Link>
-      <Link className="navbar-signup-link" to="/login">Sign In</Link>
+      <div className="navbar-left-nav">
+        <img className="main-hamburger-button" width="24px" height="24px" src={window.hamburgerButton} />
+        <span>LOGO</span>
+      </div>
+
+      <SearchBarContainer />
+
+      <div className="navbar-right-nav">
+        <Link to={currentUser ? "/videos/new" : "/login"}>
+          <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
+        </Link>
+        <Link className="navbar-signup-link" to="/login">Sign In</Link>
+      </div>
     </nav>
   );
   const personalGreeting = () => (
     <nav className="navbar">
-      <Link to={currentUser ? "/videos/new" : "/login"}>
-        <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
-      </Link>
-      <ul>
-        <li>
-          <img onClick={toggleDropDown} id="navbar-profile-image-nav" className='navbar-profile-image' width="40" height="40" src={currentUser.image_url} />
-        </li>
-        <li>
-          <ul id="hamburger-dropdown" className={"hamburger-dropdown " + "hidden"}>
-            <li>
-              <ul>
-                <li className="navbar-hamburger-dropdown-profile-detail">
-                  <img id="navbar-profile-image-hamburger" className='navbar-profile-image' width="60" height="60" src={currentUser.image_url} />
+      <div className="navbar-left-nav">
+        <img width="24px" height="24px" src={window.hamburgerButton} />
+          <span className="navbar-logo">LOGO</span>
+      </div>
 
-                  <div className="navbar-profile-detail-info">
-                    <div className="navbar-profile-detail-username">{currentUser.username}</div>
-                    <span>{currentUser.email}</span>
-                  </div>
+      <SearchBarContainer />
 
+      <div className="navbar-right-nav">
+        <Link to={currentUser ? "/videos/new" : "/login"}>
+          <img id="add-video-icon" width="40" heigh="40" src={window.addVideoIcon}/>
+        </Link>
+        <ul>
+          <li>
+            <img onClick={toggleDropDown} id="navbar-profile-image-nav" className='navbar-profile-image' width="40" height="40" src={currentUser.image_url} />
+          </li>
+          <li>
+            <ul id="hamburger-dropdown" className={"hamburger-dropdown " + "hidden"}>
+              <li>
+                <ul>
+                  <li className="navbar-hamburger-dropdown-profile-detail">
+                    <img id="navbar-profile-image-hamburger" className='navbar-profile-image' width="60" height="60" src={currentUser.image_url} />
+
+                    <div className="navbar-profile-detail-info">
+                      <div className="navbar-profile-detail-username">{currentUser.username}</div>
+                      <span>{currentUser.email}</span>
+                    </div>
+
+                  </li>
+                  <li><button id="header-profile-button" className="header-button" onClick={() => {
+                      logout();
+                      history.push('/')
+                    }}>Log Out</button></li>
+                  </ul>
                 </li>
-                <li><button id="header-profile-button" className="header-button" onClick={() => {
-                    logout();
-                    history.push('/')
-                  }}>Log Out</button></li>
               </ul>
+
             </li>
           </ul>
+      </div>
 
-        </li>
-      </ul>
     </nav>
   );
 
