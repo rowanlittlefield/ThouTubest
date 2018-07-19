@@ -209,6 +209,9 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
 }
 
 .video-player-secondary-info {
+  display: flex;
+  flex-direction: column;
+
   padding-top: 16px;
   border-top: 1px solid lightgrey;
   margin-top: 20px;
@@ -219,6 +222,7 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .video-player-image-and-uploader-info {
@@ -289,4 +293,12 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.09);
 
   cursor: pointer;
+}
+
+.video-player-footer-description-row {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  margin-left: 64px;
+  max-width: 615px;
 }

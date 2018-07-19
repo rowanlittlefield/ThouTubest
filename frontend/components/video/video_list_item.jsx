@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { getComments } from '../../actions/comment_actions';
+import { getVideo } from '../../actions/video_actions';
 
-const VideoListItem = ({type, video, user, getComments}) => {
+const VideoListItem = ({type, video, user, getVideo}) => {
   const username = user ? user.username : '';
   const length = video.length;
   let duration;
@@ -18,6 +18,7 @@ const VideoListItem = ({type, video, user, getComments}) => {
   return (
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
+          getVideo(video.id);
         }}>
 
         <img className={`${type}-thumbnail-image`} src={video.thumbnail_image_url} />
@@ -38,18 +39,17 @@ const VideoListItem = ({type, video, user, getComments}) => {
 
 const msp = (state, ownProps) => {
   const video = state.entities.videos[ownProps.videoId];
-
   return {
     video,
     user: state.entities.users[video.uploader_id]
   };
 };
 
-// const mdp = (dispatch, ownProps) => {
-//   debugger
-//   return {
-//     getComments: () => dispatch(getComments(ownProps.match.params.videoId, null))
-//   };
-// }
+const mdp = (dispatch, ownProps) => {
+  // debugger
+  return {
+    getVideo: (id) => dispatch(getVideo(id))
+  };
+}
 
-export default withRouter(connect(msp, null)(VideoListItem));
+export default withRouter(connect(msp, mdp)(VideoListItem));

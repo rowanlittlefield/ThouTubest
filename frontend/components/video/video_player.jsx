@@ -67,6 +67,9 @@ class VideoPlayer extends React.Component {
                   <button className="video-player-delete-button" onClick={this.handleDeleteVideo.bind(this)}>delete video</button>
                 </div>
               </div>
+              <div className="video-player-footer-description-row">
+                {video.description}
+              </div>
             </div>
           </div>
           <div className="comment-show">
