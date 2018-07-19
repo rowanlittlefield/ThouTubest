@@ -41,7 +41,13 @@ class Video < ApplicationRecord
     end
   end
 
-  def get_video_length
+  def get_video_length(alternative_url = nil)
+    if alternative_url
+      movie = FFMPEG::Movie.new(alternative_url)
+      self.length = movie.duration
+      self.save
+    end
+
     aws_url = self.film.blob.service_url
     if ENV["RAILS_ENV"] == 'development'
       bucket = 'dev'
@@ -52,15 +58,12 @@ class Video < ApplicationRecord
     end
 
     if aws_url
-      # debugger
       bucket_url = "http://s3.amazonaws.com/thoutubest-#{bucket}/"
       object_key = self.film.blob.key
       object_access_url = bucket_url + object_key
-      # debugger
       movie = FFMPEG::Movie.new(object_access_url)
       self.length = movie.duration
       self.save
-      # debugger
     end
 
   end
