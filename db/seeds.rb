@@ -54,8 +54,6 @@ Comment.destroy_all
 # end
 
 
-
-
 6.times do
   v1 = Video.new(
     title: 'Test Video', description: 'Test Video description',
