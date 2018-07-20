@@ -62,6 +62,7 @@ class Video < ApplicationRecord
       object_key = self.film.blob.key
       object_access_url = bucket_url + object_key
       movie = FFMPEG::Movie.new(object_access_url)
+      # `ffmpeg -i #{object_access_url} 2>&1`
       self.length = movie.duration
       self.save
     end

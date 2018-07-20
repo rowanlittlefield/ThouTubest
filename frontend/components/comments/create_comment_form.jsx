@@ -70,7 +70,6 @@ redirectUnlessSignedInt() {
 }
 
 pressCancel() {
-  debugger
   if (this.props.type === 'reply') {
     const boolean = !this.props.commentListItem.state.displayReplyForm
     this.props.commentListItem.setState({displayReplyForm: boolean});
@@ -84,7 +83,7 @@ pressCancel() {
   render() {
     const currentUser = this.props.currentUser;
     const type = this.props.type;
-    
+
     return(
       <div className={`${type}-create-comment-form-div`}>
         <img src={currentUser.image_url ? currentUser.image_url : window.batmanPicture} className={`${type}-create-comment-form-image`} width="40px" height="40px"/>
