@@ -57,8 +57,19 @@ const Navbar = ({ currentUser, logout, location, history }) => {
   const personalGreeting = () => (
     <nav className="navbar">
       <div className="navbar-left-nav">
-        <img width="24px" height="24px" src={window.hamburgerButton} />
-          <span className="navbar-logo">LOGO</span>
+        <ul className="main-hamburger-button-tl-ul">
+          <li>
+            <img className="main-hamburger-button" width="24px" height="24px" src={window.hamburgerButton}
+              onClick={() => {
+                const mainHamDropdown = document.getElementById("main-hamburger-dropdown");
+                mainHamDropdown.classList.toggle('hidden');
+              }} />
+          </li>
+          <li>
+            <MainHambugerDropDownContainer />
+          </li>
+
+        </ul>
       </div>
 
       <SearchBarContainer />
