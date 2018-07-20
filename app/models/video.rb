@@ -43,8 +43,14 @@ class Video < ApplicationRecord
 
   def get_video_length(alternative_url = nil)
     if alternative_url
-      movie = FFMPEG::Movie.new(alternative_url)
-      self.length = movie.duration
+      # movie = FFMPEG::Movie.new(alternative_url)
+      # self.length = movie.duration
+
+      output = `ffmpeg -i #{object_access_url} 2>&1`
+      m_data = output.match("Duration: ([0-9]+):([0-9]+):([0-9]+).([0-9]+)")
+      num_seconds = (m_data[1].to_i * 3600) + (m_data[2].to_i * 60) + (m_data[3].to_i)
+      self.length = (num_seconds.is_a?(Integer) ? num_seconds : 0)
+
       self.save
     end
 
@@ -61,9 +67,17 @@ class Video < ApplicationRecord
       bucket_url = "http://s3.amazonaws.com/thoutubest-#{bucket}/"
       object_key = self.film.blob.key
       object_access_url = bucket_url + object_key
-      movie = FFMPEG::Movie.new(object_access_url)
-      # `ffmpeg -i #{object_access_url} 2>&1`
-      self.length = movie.duration
+
+
+      # movie = FFMPEG::Movie.new(object_access_url)
+      # self.length = movie.duration
+
+      output = `ffmpeg -i #{object_access_url} 2>&1`
+      m_data = output.match("Duration: ([0-9]+):([0-9]+):([0-9]+).([0-9]+)")
+      num_seconds = (m_data[1].to_i * 3600) + (m_data[2].to_i * 60) + (m_data[3].to_i)
+      self.length = (num_seconds.is_a?(Integer) ? num_seconds : 0)
+
+      debugger
       self.save
     end
 

@@ -9,11 +9,6 @@
 require 'streamio-ffmpeg'
 User.destroy_all
 
-# u1 = User.new(username: 'Todd', email: '1@aol.com', image_url: 'dummy', password: 'passwurd')
-# file = EzDownload.open("http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg")
-# u1.photo.attach(io: file, filename: 'cassowary.jpeg')
-# u1.save!
-
 user_options_list = [
   {username: 'Cassowary', email: '1@aol.com', password: 'passwurd',
   img_url: "http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg"},
