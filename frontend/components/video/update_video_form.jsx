@@ -14,7 +14,7 @@ class UpdateVideoForm extends React.Component {
         thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
-        thumbnailUrl: video.thumbnail_image_url,
+        thumbnailUrl: null,
         filmUrl: video.film_url
       };
     } else {
@@ -50,7 +50,7 @@ class UpdateVideoForm extends React.Component {
         thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
-        thumbnailUrl: video.thumbnail_image_url,
+        thumbnailUrl: null,
         filmUrl: video.film_url
       });
   }
@@ -63,7 +63,8 @@ class UpdateVideoForm extends React.Component {
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
     formData.append('video[thumbnail_url]', this.state.thumbnail_url);
-    formData.append('video[uploader_id]', this.state.uploader_id)
+    formData.append('video[video_url]', this.state.video_url);
+    formData.append('video[uploader_id]', this.state.uploader_id);
     if (this.state.thumbnailFile) {
       formData.append('video[thumbnail_image]', this.state.thumbnailFile);
     }

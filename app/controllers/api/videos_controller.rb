@@ -19,7 +19,6 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-    debugger
     @video = Video.new(sub_video_params)
 
     if @video.save

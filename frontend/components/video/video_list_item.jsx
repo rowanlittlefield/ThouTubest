@@ -15,8 +15,6 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     duration = '0:00';
   }
 
-  // const
-
   return (
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
