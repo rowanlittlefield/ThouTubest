@@ -17,23 +17,24 @@ require 'streamio-ffmpeg'
 
 class Video < ApplicationRecord
   validates :title, :description, :video_url, :thumbnail_url, :uploader_id, presence: true
-  validate :ensure_thumbnail_image
+  # validate :ensure_thumbnail_image
   validate :ensure_film
 
   belongs_to :user,
     foreign_key: :uploader_id,
     class_name: :User
 
+  has_one_attached :film
+  has_one :custom_thumbnail_image
   has_many :comments, dependent: :destroy
 
-  has_one_attached :film
-  has_one_attached :thumbnail_image
+  # has_one_attached :thumbnail_image
 
-  def ensure_thumbnail_image
-    unless self.thumbnail_image.attached?
-      errors[:thumbnail_image] << "must be attached"
-    end
-  end
+  # def ensure_thumbnail_image
+  #   unless self.thumbnail_image.attached?
+  #     errors[:thumbnail_image] << "must be attached"
+  #   end
+  # end
 
   def ensure_film
     unless self.film.attached?
@@ -47,7 +48,6 @@ class Video < ApplicationRecord
       # self.length = movie.duration
 
       self.length = extract_duration(alternative_url)
-
       self.save
     end
 

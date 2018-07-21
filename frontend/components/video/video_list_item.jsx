@@ -15,6 +15,8 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     duration = '0:00';
   }
 
+  // const
+
   return (
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
@@ -53,4 +55,3 @@ const mdp = (dispatch, ownProps) => {
 }
 
 export default withRouter(connect(msp, mdp)(VideoListItem));
-// <img src={video.preview_image} width="210px" height="118px"/>
