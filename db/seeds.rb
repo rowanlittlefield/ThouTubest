@@ -51,7 +51,7 @@ video_options_list = [
 
   {title: 'Hooded Oriole', description: 'A hodded oriole',
   video_url: 'dummy', thumbnail_url: 'dummy',
-  # image_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg",
+  image_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4"
   },
 
@@ -119,16 +119,16 @@ def create_video_with_comments(v_opts, users)
 
    if !v_opts[:image_url]
      # debugger
-     new_thumbnail_image_path = "seed_thumbnail_image_temp_storage/#{v_opts[:film_url].split('/').last}.png"
-     `ffmpeg -i #{v_opts[:film_url]} -ss 00:00:00.00 -vframes 1 #{new_thumbnail_image_path}`
-     thumbnail_image_file1 = File.open("#{new_thumbnail_image_path}")
-     video.thumbnail_image.attach(io: thumbnail_image_file1, filename: "#{v_opts[:film_url].split('/').last}.png")
-     video.save!
-     video.get_video_length(v_opts[:film_url])
-     thumbnail_image_file1.close
-     debugger
-     File.delete("seed_thumbnail_image_temp_storage/#{v_opts[:film_url].split('/').last}.png")
-     debugger
+     # new_thumbnail_image_path = "seed_thumbnail_image_temp_storage/#{v_opts[:film_url].split('/').last}.png"
+     # `ffmpeg -i #{v_opts[:film_url]} -ss 00:00:00.00 -vframes 1 #{new_thumbnail_image_path}`
+     # thumbnail_image_file1 = File.open("#{new_thumbnail_image_path}")
+     # video.thumbnail_image.attach(io: thumbnail_image_file1, filename: "#{v_opts[:film_url].split('/').last}.png")
+     # video.save!
+     # video.get_video_length(v_opts[:film_url])
+     # thumbnail_image_file1.close
+     # debugger
+     # File.delete("seed_thumbnail_image_temp_storage/#{v_opts[:film_url].split('/').last}.png")
+     # debugger
      return nil
      # debugger
      # output = `ffmpeg -i #{v_opts[:film_url]} -ss 00:00:00.00 -vframes 1 http://s3.amazonaws.com/thoutubest-dev/#{v_opts[:film_url].split('/').last}.png`
