@@ -53,3 +53,4 @@ const mdp = (dispatch, ownProps) => {
 }
 
 export default withRouter(connect(msp, mdp)(VideoListItem));
+// <img src={video.preview_image} width="210px" height="118px"/>

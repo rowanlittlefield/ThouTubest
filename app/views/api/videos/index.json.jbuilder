@@ -6,6 +6,7 @@ json.set! 'videos' do
       json.extract! video, :id, :title, :views, :uploader_id, :comment_ids, :length
       json.thumbnail_image_url url_for(video.thumbnail_image)
       json.film_url url_for(video.film)
+      # json.preview_image url_for(video.film.preview(resize: "210x118"))
     end
   end
 end
