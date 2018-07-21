@@ -19,10 +19,12 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-    @video = Video.new(video_params)
+    debugger
+    @video = Video.new(sub_video_params)
 
     if @video.save
       @video.get_video_length
+      @video.ensure_thumbnail_image(video_params[:thumbnail_image])
       @user = @video.user
       render "api/videos/show"
     else
@@ -31,9 +33,10 @@ class Api::VideosController < ApplicationController
   end
 
   def update
-    @video = Video.update(params[:id], video_params)
+    @video = Video.update(params[:id], sub_video_params)
 
     if @video.save
+      @video.ensure_thumbnail_image(video_params[:thumbnail_image])
       @user = @video.user
       render "api/videos/show"
     else
@@ -54,5 +57,17 @@ class Api::VideosController < ApplicationController
       :title, :description, :video_url, :thumbnail_url, :views,
        :uploader_id, :thumbnail_image, :film
     )
+  end
+
+  def sub_video_params
+    {
+      title: video_params[:title],
+      description: video_params[:description],
+      video_url: video_params[:video_url],
+      thumbnail_url: video_params[:thumbnail_url],
+      views: video_params[:views],
+      uploader_id: video_params[:uploader_id],
+      film: video_params[:film]
+    }
   end
 end

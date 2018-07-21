@@ -76,6 +76,16 @@ class Video < ApplicationRecord
 
   end
 
+  def ensure_thumbnail_image(thumbnail_file)
+    debugger
+    if thumbnail_file
+      custom_thumbnail_image = CustomThumbnailImage.new
+      custom_thumbnail_image.image.attach(io: thumbnail_file, filename: thumbnail_file.original_filename)
+      self.custom_thumbnail_image = custom_thumbnail_image
+      custom_thumbnail_image.save!
+    end
+  end
+
   private
 
   def extract_duration(url)
