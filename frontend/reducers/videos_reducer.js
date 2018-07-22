@@ -15,12 +15,10 @@ const videosReducer = (state = {}, action) => {
     case REMOVE_COMMENT:
       const newState = merge({}, state);
       const newerState = merge(newState, {[action.video.id]: action.video})
-      // debugger
         newerState[action.video.id].comment_ids = action.video.comment_ids.slice();
       return newerState;
     case RECEIVE_VIDEOS:
-      let otherNewState = merge({}, state, action.videos);
-      return otherNewState;
+      return merge({}, state, action.videos);;
     case REMOVE_VIDEO:
       const stateDup = merge({}, state);
       delete stateDup[action.id];

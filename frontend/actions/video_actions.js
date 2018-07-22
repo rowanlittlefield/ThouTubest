@@ -12,10 +12,9 @@ export const receiveVideo = ({video, user}) => ({
   user
 });
 
-export const receiveVideos = ({videos, videoList, users}) => ({
+export const receiveVideos = ({videos, users}) => ({
   type: RECEIVE_VIDEOS,
   videos,
-  videoList,
   users
 });
 
@@ -37,8 +36,8 @@ export const getVideo = id => dispatch => (
   ))
 );
 
-export const getVideos = () => dispatch => (
-  APIUtil.getVideos().then(payload => (
+export const getVideos = (limit, offset) => dispatch => (
+  APIUtil.getVideos(limit, offset).then(payload => (
     dispatch(receiveVideos(payload))
   ), err => (
     dispatch(receiveErrors(err.responseJSON))

@@ -1,8 +1,12 @@
 class Api::VideosController < ApplicationController
 
   def index
-    @videos = Video.all.includes(:user)
-    @users = @videos.map {|video| video.user}
+    @videos = Video
+    .all
+    .limit(video_index_params[:limit])
+    .offset(video_index_params[:offset])
+    .includes(:user)
+
     render "api/videos/index"
   end
 
@@ -56,6 +60,10 @@ class Api::VideosController < ApplicationController
       :title, :description, :video_url, :thumbnail_url, :views,
        :uploader_id, :thumbnail_image, :film
     )
+  end
+
+  def video_index_params
+    params.require(:video_index_params).permit(:limit, :offset)
   end
 
   def sub_video_params

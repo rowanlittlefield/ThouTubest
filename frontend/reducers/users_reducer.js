@@ -17,7 +17,6 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, action.users);
       case RECEIVE_COMMENT:
       case REMOVE_COMMENT:
-      // debugger
       return merge({}, state, { [action.user.id]: action.user});
     default:
       return state;

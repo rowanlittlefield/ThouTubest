@@ -5,10 +5,11 @@ export const getVideo = videoId => (
   })
 );
 
-export const getVideos = () => (
+export const getVideos = (limit, offset) => (
   $.ajax({
     url: 'api/videos',
-    method: 'GET'
+    method: 'GET',
+    data: {video_index_params: {limit, offset}}
   })
 );
 
