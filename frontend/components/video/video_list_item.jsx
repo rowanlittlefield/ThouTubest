@@ -15,6 +15,18 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     duration = '0:00';
   }
 
+  const createdAtString = video.created_at;
+  let whenUploaded
+  if (createdAtString) {
+    const dateString = createdAtString.slice(0,10);
+    const [year, month, day] = dateString.split('-');
+    const today = new Date();
+    const [currentYear, currentMonth, currentDay] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
+    whenUploaded = ((currentYear - year) * 365) + ((currentMonth - month) * 30) + (currentDay - day);
+  } else {
+    whenUploaded = '0';
+  }
+
   return (
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
@@ -29,7 +41,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
           <div className={`${type}-list-item-title`}>{video.title}</div>
           <div className={`${type}-list-item-author`}>{username}</div>
           <div className={`${type}-list-item-views`}>{video.views} views
-            <span className={`${type}-list-item-age`}> <span>&middot;</span> _ days ago</span>
+            <span className={`${type}-list-item-age`}> <span>&middot;</span> {whenUploaded} days ago</span>
           </div>
         </div>
       </Link>
@@ -46,7 +58,6 @@ const msp = (state, ownProps) => {
 };
 
 const mdp = (dispatch, ownProps) => {
-  // debugger
   return {
     getVideo: (id) => dispatch(getVideo(id))
   };

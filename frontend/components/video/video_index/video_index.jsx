@@ -10,9 +10,10 @@ class VideoIndex extends React.Component {
   }
 
   displayVideoIndexItems() {
+    const headerOptions = ['Popular Uploads', 'Recommended', 'Recent Uploads', 'Recommended']
 
     const videoLists = this.props.videoIdsByList.map((group, idx) => {
-      return (<VideoList header="Popular Uploads"
+      return (<VideoList header={headerOptions[idx % headerOptions.length]}
         key={idx}
         type="index"
         videoIds={group} />);

@@ -86,7 +86,7 @@ video_options_list = [
 
   {title: 'Hooded Oriole', description: 'A hodded oriole',
   video_url: 'dummy', thumbnail_url: 'dummy',
-  # image_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg",
+  image_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4"
   },
 
@@ -96,11 +96,11 @@ video_options_list = [
   # film_url: "http://s3.amazonaws.com/thoutubest-dev/buff_breasted_sandpiper/BBSA_20090506AM080900_os_ManyBirds-video-of-buff-breasted-sandpiper.MP4"
   # },
   #
-  {title: 'Spotted Owl', description: 'A really really cool bird',
-  video_url: 'dummy', thumbnail_url: 'dummy',
-  image_url: "http://s3.amazonaws.com/thoutubest-dev/spotted_owl/spotted_owl_07.jpg",
-  film_url: "http://s3.amazonaws.com/thoutubest-dev/spotted_owl/SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4"
-  },
+  # {title: 'Spotted Owl', description: 'A really really cool bird',
+  # video_url: 'dummy', thumbnail_url: 'dummy',
+  # image_url: "http://s3.amazonaws.com/thoutubest-dev/spotted_owl/spotted_owl_07.jpg",
+  # film_url: "http://s3.amazonaws.com/thoutubest-dev/spotted_owl/SPOW_20090729AM101000_os_ManyBirds-video-of-spotted-owl.MP4"
+  # },
   #
   # {title: 'Shoebill Stork', description: 'A beautiful bird',
   # video_url: 'dummy', thumbnail_url: 'dummy',
@@ -108,11 +108,11 @@ video_options_list = [
   # film_url: "http://s3.amazonaws.com/thoutubest-dev/shoebill/Shoebill.mp4"
   # },
   #
-  # {title: 'Magnificent Riflebird', description: 'A really beautiful bird',
-  # video_url: 'dummy', thumbnail_url: 'dummy',
+  {title: 'Magnificent Riflebird', description: 'A really beautiful bird',
+  video_url: 'dummy', thumbnail_url: 'dummy',
   # image_url: "http://s3.amazonaws.com/thoutubest-dev/magnificent_rifle_bird/bird_of_paradise.jpg",
-  # film_url: "http://s3.amazonaws.com/thoutubest-dev/magnificent_rifle_bird/magnificent_riflebird.mp4"
-  # },
+  film_url: "http://s3.amazonaws.com/thoutubest-dev/magnificent_rifle_bird/magnificent_riflebird.mp4"
+  },
   #
   # {title: 'Red winged black bird', description: 'A beautiful bird',
   # video_url: 'dummy', thumbnail_url: 'dummy',
