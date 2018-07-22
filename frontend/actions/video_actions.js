@@ -6,10 +6,11 @@ export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const REMOVE_VIDEO = 'REMOVE_VIDEO';
 
 
-export const receiveVideo = ({video, user}) => ({
+export const receiveVideo = ({ videos, users, comments }) => ({
   type: RECEIVE_VIDEO,
-  video,
-  user
+  videos,
+  users,
+  comments
 });
 
 export const receiveVideos = ({videos, users}) => ({
@@ -28,13 +29,14 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const getVideo = id => dispatch => (
-  APIUtil.getVideo(id).then(payload => (
+export const getVideo = (id, limit, offset) => dispatch => {
+  // debugger
+  return APIUtil.getVideo(id, limit, offset).then(payload => (
     dispatch(receiveVideo(payload))
   ), err => (
     dispatch(receiveErrors(err.responseJSON))
-  ))
-);
+  ));
+};
 
 export const getVideos = (limit, offset) => dispatch => (
   APIUtil.getVideos(limit, offset).then(payload => (

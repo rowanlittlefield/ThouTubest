@@ -12,8 +12,7 @@ json.set! 'users' do
   @videos.each do |video|
     user = video.user
     json.set! user.id do
-      json.extract! user, :id, :username
-      json.image_url url_for(user.photo)
+      json.partial! "api/users/non-signed-in_user", user: user
     end
   end
 end

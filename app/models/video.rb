@@ -12,8 +12,6 @@
 #  uploader_id   :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#
-require 'streamio-ffmpeg'
 
 class Video < ApplicationRecord
   validates :title, :description, :video_url, :thumbnail_url, :uploader_id, presence: true

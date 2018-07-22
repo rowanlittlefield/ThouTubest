@@ -9,7 +9,7 @@ class CommentShow extends React.Component {
   }
 
   componentWillMount() {
-    this.props.getComments(this.props.currentVideoId, null);
+    // this.props.getComments(this.props.currentVideoId, null);
   }
 
   render() {

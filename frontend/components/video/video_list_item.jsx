@@ -29,9 +29,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
 
   return (
     <div className={`${type}-list-item`}>
-      <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`} onClick={() => {
-          getVideo(video.id);
-        }}>
+      <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`}>
 
         <img className={`${type}-thumbnail-image`} src={video.thumbnail_image_url} />
         <span className={`${type}-thumbnail-duration`}>

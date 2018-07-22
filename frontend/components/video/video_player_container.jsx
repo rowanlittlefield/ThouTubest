@@ -3,21 +3,21 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { getVideo, getVideos, deleteVideo } from '../../actions/video_actions';
 import VideoPlayer from './video_player';
+import { getVideoIds } from '../../reducers/selectors/video_selectors';
 
-const mapStateToProps = (state, ownProps) => {
-  const video = state.entities.videos[ownProps.match.params.videoId];
+const mapStateToProps = ({ entities, session }, ownProps) => {
+  const video = entities.videos[ownProps.match.params.videoId];
 
   return {
-  video: video,
-  user: video ? state.entities.users[video.uploader_id] : {},
-  videoIds: Object.values(state.entities.videos).map(video => video.id),
-  currentUserId: state.session.id
+  video,
+  user: video ? entities.users[video.uploader_id] : {},
+  videoIds: getVideoIds(entities.videos),
+  currentUserId: session.id
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getVideo: id => dispatch(getVideo(id)),
-  getVideos: () => dispatch(getVideos()),
+  getVideo: (id, limit, offset) => dispatch(getVideo(id, limit, offset)),
   deleteVideo: id => dispatch(deleteVideo(id))
 });
 

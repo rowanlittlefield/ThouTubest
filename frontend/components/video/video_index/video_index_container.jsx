@@ -2,12 +2,11 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { getVideos } from '../../../actions/video_actions';
 import VideoIndex from './video_index';
-import { groupVideoKeysIntoFives } from '../../../reducers/selectors/video_selectors';
+import { groupVideoKeysIntoLists } from '../../../reducers/selectors/video_selectors';
 
 const mapStateToProps = ({ entities }, ownProps) => {
   return {
-  // videoIds: Object.values(entities.videos).map(video => video.id)
-  videoIdsByList: groupVideoKeysIntoFives(entities.videos)
+  videoIdsByList: groupVideoKeysIntoLists(entities.videos)
   }
 };
 

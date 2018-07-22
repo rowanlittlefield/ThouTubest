@@ -6,8 +6,8 @@ import CommentShowContainer from '../comments/comment_show_container'
 
 class VideoPlayer extends React.Component {
 
-  componentDidMount() {
-    this.props.getVideos();
+  componentWillMount() {
+    this.props.getVideo(this.props.match.params.videoId, 10, 0);
   }
 
   displayVideoList() {

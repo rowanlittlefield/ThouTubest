@@ -1,9 +1,11 @@
-export const getVideo = videoId => (
-  $.ajax({
+export const getVideo = (videoId, limit, offset) => {
+  // debugger
+  return $.ajax({
     url: `api/videos/${videoId}`,
-    method: 'GET'
-  })
-);
+    method: 'GET',
+    data: {video_index_params: {limit, offset}}
+  });
+};
 
 export const getVideos = (limit, offset) => (
   $.ajax({

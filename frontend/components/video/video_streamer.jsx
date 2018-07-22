@@ -8,19 +8,8 @@ class VideoStreamer extends React.Component {
     this.updated = false;
   }
 
-  // componentWillReceiveProps() {
-  // }
-
-  componentWillMount() {
-    const videoId = this.props.match.params.videoId;
-    this.props.getVideo(videoId);
-  }
-
-  componentDidUpdate() {
-    if (!this.updated) {
-      this.updated = true;
-      this.videoPlayerControlsScript();
-    }
+  componentDidMount() {
+    this.videoPlayerControlsScript();
   }
 
   videoPlayerControlsScript() {

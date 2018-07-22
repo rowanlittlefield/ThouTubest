@@ -1,21 +1,26 @@
 class Api::VideosController < ApplicationController
 
   def index
-    @videos = Video
-    .all
-    .limit(video_index_params[:limit])
-    .offset(video_index_params[:offset])
-    .includes(:user)
+    @videos = get_videos_list(
+      video_index_params[:limit],
+      video_index_params[:offset]
+    )
 
     render "api/videos/index"
   end
 
   def show
+    # debugger
     @video = Video.find(params[:id])
     @user = @video.user
+    @videos = get_videos_list(
+      video_index_params[:limit],
+      video_index_params[:offset]
+    )
+
+    @comments = @video.comments.includes(:user)
 
     if @video
-      @user = @video.user
       render "api/videos/show"
     else
       render json: ['Cannot find video'], status: 422
@@ -76,5 +81,9 @@ class Api::VideosController < ApplicationController
       uploader_id: video_params[:uploader_id],
       film: video_params[:film]
     }
+  end
+
+  def get_videos_list(limit, offset)
+    Video.all.limit(limit).offset(offset).includes(:user)
   end
 end
