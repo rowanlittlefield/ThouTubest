@@ -134,7 +134,7 @@ video_options_list = [
 
   {title: 'Rooster', description: 'a cooooooooool bird',
   video_url: 'dummy', thumbnail_url: 'dummy',
-  # image_url: "http://s3.amazonaws.com/thoutubest-dev/rooster/rooster.jpg",
+  image_url: "http://s3.amazonaws.com/thoutubest-dev/rooster/rooster.jpg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/rooster/Pexels+Videos+4644.mp4"
   }
 
