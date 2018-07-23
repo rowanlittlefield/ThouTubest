@@ -25,11 +25,11 @@ class VideoShow extends React.Component {
           <VideoShowFooter video={this.props.video} user={this.props.user} />
           <CommentShowContainer />
         </div>
-      <div className="video-show-right-col">
-        <VideoList header="Up next" type="show"
-          videoIds={this.props.videoIds}
-          users={this.props.users} />
-      </div>
+        <div className="video-show-right-col">
+          <VideoList header="Up next" type="show"
+            videoIds={this.props.videoIds}
+            users={this.props.users} />
+        </div>
       </div>
     );
   }
