@@ -104,7 +104,7 @@ video_options_list = [
 
   {title: 'Shoebill Stork', description: 'A beautiful bird',
   video_url: 'dummy', thumbnail_url: 'dummy',
-  # image_url: "http://s3.amazonaws.com/thoutubest-dev/shoebill/shoebill_meme.jpg",
+  image_url: "http://s3.amazonaws.com/thoutubest-dev/shoebill/shoebill_meme.jpg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/shoebill/Shoebill.mp4"
   },
 
