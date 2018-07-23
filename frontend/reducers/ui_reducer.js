@@ -9,7 +9,6 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_VIDEO:
-    // debugger
     //   const newState = merge({}, state, {currentVideo: action.video.id});
     //   return newState;
     return state;

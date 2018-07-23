@@ -1,5 +1,4 @@
 export const getVideo = (videoId, limit, offset) => {
-  // debugger
   return $.ajax({
     url: `api/videos/${videoId}`,
     method: 'GET',

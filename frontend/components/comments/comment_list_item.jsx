@@ -78,9 +78,7 @@ class CommentListItem extends React.Component {
   }
 
   showChildrenText() {
-    // return `${this.props.comment.child_comment_ids.length}`;
     const boolean = this.state.displayChildren;
-    // debugger
     const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
     return text;
   }
