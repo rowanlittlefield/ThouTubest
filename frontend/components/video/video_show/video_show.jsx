@@ -7,12 +7,29 @@ import CommentShowContainer from '../../comments/comment_show_container'
 
 class VideoShow extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentVideoId: this.props.match.params.videoId
+    };
+  }
+
   componentWillMount() {
     this.props.getVideo(this.props.match.params.videoId, 10, 0);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.video) nextProps.history.push('/');
+    if (nextProps.match.params.videoId &&
+      nextProps.match.params.videoId != this.state.currentVideoId) {
+      this.setState(
+        { currentVideoId: nextProps.match.params.videoId},
+      );
+      this.props.getVideo(nextProps.match.params.videoId, 10, 0);
+
+    }
+    if (!nextProps.video) {
+      nextProps.history.push('/');
+    }
   }
 
   render() {
