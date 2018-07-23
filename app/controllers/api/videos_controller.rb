@@ -10,7 +10,6 @@ class Api::VideosController < ApplicationController
   end
 
   def show
-    # debugger
     @video = Video.find(params[:id])
     @user = @video.user
     @videos = get_videos_list(

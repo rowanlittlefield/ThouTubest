@@ -97,11 +97,14 @@ class VideoStreamer extends React.Component {
     if (!this.props.video) return null;
 
     return(
-      <div className="video-streamer-div">
-        <video src={this.props.video.film_url}
+      <div className="video-show-player">
+        <div className="video-streamer-div">
+          <video src={this.props.video.film_url}
             width="850px" height="480px" id="video" autoPlay/>
-        {this.displayVideoControls()}
+          {this.displayVideoControls()}
+        </div>
       </div>
+
     );
   }
 }

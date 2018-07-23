@@ -30,7 +30,6 @@ export const receiveErrors = errors => ({
 });
 
 export const getVideo = (id, limit, offset) => dispatch => {
-  // debugger
   return APIUtil.getVideo(id, limit, offset).then(payload => (
     dispatch(receiveVideo(payload))
   ), err => (

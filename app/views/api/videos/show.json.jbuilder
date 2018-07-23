@@ -1,5 +1,3 @@
-# json.partial! "api/users/user", user: @user
-
 json.set! 'videos' do
   json.set! @video.id do
       json.extract! @video, :id, :title, :description, :views, :comment_ids, :uploader_id, :created_at

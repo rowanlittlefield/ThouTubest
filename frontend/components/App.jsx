@@ -11,7 +11,7 @@ import SignupFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import VideoIndexContainer from './video/video_index/video_index_container';
-import VideoPlayerContainer from './video/video_player_container';
+import VideoShowContainer from './video/video_show/video_show_container';
 import CreateVideoFormContainer from './video/create_video_form_container';
 import UpdateVideoFormContainer from './video/update_video_form_container';
 
@@ -27,7 +27,7 @@ const App = () => {
     <Switch>
       <Route exact path="/videos/new" component={CreateVideoFormContainer} />
       <Route exact path="/videos/:videoId/edit" component={UpdateVideoFormContainer} />
-      <Route exact path="/videos/:videoId" component={VideoPlayerContainer} />
+      <Route exact path="/videos/:videoId" component={VideoShowContainer} />
       <Route exact path="/" component={VideoIndexContainer} />
     </Switch>
 

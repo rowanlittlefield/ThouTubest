@@ -16,17 +16,18 @@ class CommentShow extends React.Component {
     const commentIds = this.props.commentIds
 
     return (
-      <div>
+      <div className="comment-show">
         <div className="comment-show-header">
           <h2 className="comment-show-number">{commentIds.length} Comments</h2>
           <CreateCommentFormContainer type={'tl'} parentCommentId={null} />
         </div>
 
         <CommentList
-           commentIds={this.props.commentIds}
-           parentCommentId={null}
-           type={'tl'}/>
+          commentIds={this.props.commentIds}
+          parentCommentId={null}
+          type={'tl'}/>
       </div>
+
     );
   }
 }
