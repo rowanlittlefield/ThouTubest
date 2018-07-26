@@ -1,6 +1,5 @@
 import {
   RECEIVE_VIDEO,
-   // LEAVE_CURRENT_VIDEO,
   RECEIVE_VIDEOS
 } from '../actions/video_actions';
 import { merge } from 'lodash';

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import VideoListItem from './video_list_item';
 import { connect } from 'react-redux';
 
 const VideoList = ({videoIds, type, currentVideoId, header}) => {
   const siftedIds = [];
-  
+
   for(let i = 0; i < videoIds.length; i++) {
     if(videoIds[i] != currentVideoId) {
       siftedIds.push(videoIds[i]);

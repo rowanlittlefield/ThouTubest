@@ -4,13 +4,6 @@ import CommentList from './comment_list';
 import CreateCommentFormContainer from './create_comment_form_container'
 
 class CommentShow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
-    // this.props.getComments(this.props.currentVideoId, null);
-  }
 
   render() {
     const commentIds = this.props.commentIds

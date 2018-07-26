@@ -23,7 +23,6 @@ componentDidMount() {
     comment.video_id = this.props.currentVideoId;
     comment.parent_comment_id = this.props.parentCommentId;
     this.props.processForm({comment}).then(this.pressCancel.bind(this));
-    // this.pressCancel();
   }
 
   update(field) {

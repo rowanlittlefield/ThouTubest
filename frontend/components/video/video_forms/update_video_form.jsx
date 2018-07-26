@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import VideoFormPreviewStreamer from './video_forms/video_form_preview_streamer';
+import VideoFormPreviewStreamer from './video_form_preview_streamer';
 
 
 class UpdateVideoForm extends React.Component {

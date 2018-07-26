@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import { createVideo, clearErrors, dispatchErrors } from '../../../actions/video_actions';
 import CreateVideoForm from './create_video_form';
 

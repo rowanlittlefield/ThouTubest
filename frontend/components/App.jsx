@@ -13,7 +13,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import VideoIndexContainer from './video/video_index/video_index_container';
 import VideoShowContainer from './video/video_show/video_show_container';
 import CreateVideoFormContainer from './video/video_forms/create_video_form_container';
-import UpdateVideoFormContainer from './video/update_video_form_container';
+import UpdateVideoFormContainer from './video/video_forms/update_video_form_container';
 
 
 const App = () => {

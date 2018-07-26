@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-// import { Link } from 'react-router-dom';
-import { getVideo, updateVideo, clearErrors, dispatchErrors } from '../../actions/video_actions';
+import { getVideo, updateVideo, clearErrors, dispatchErrors } from '../../../actions/video_actions';
 import UpdateVideoForm from './update_video_form';
 
 const mapStateToProps = (state, ownProps) => ({
