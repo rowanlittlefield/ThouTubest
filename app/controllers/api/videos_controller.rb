@@ -11,13 +11,9 @@ class Api::VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @user = @video.user
-    @videos = get_videos_list(
-      video_index_params[:limit],
-      video_index_params[:offset]
+    get_video_show_videos_and_comments(
+      @video, video_index_params[:offset], video_index_params[:limit]
     )
-
-    @comments = @video.comments.includes(:user)
 
     if @video
       render "api/videos/show"
@@ -32,10 +28,7 @@ class Api::VideosController < ApplicationController
     if @video.save
       @video.get_video_length
       @video.ensure_thumbnail_image(video_params[:thumbnail_image])
-      @user = @video.user
-      @videos = get_videos_list(10,0)
-
-      @comments = @video.comments.includes(:user)
+      get_video_show_videos_and_comments(@video, 0, 10)
       render "api/videos/create"
     else
       render json: @video.errors.full_messages, status: 422
@@ -87,5 +80,11 @@ class Api::VideosController < ApplicationController
 
   def get_videos_list(limit, offset)
     Video.all.limit(limit).offset(offset).includes(:user)
+  end
+
+  def get_video_show_videos_and_comments(video, offset, limit)
+    @user = video.user
+    @videos = get_videos_list(limit, offset)
+    @comments = video.comments.includes(:user)
   end
 end
