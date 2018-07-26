@@ -18,7 +18,7 @@ export const createVideo = video => (
   $.ajax({
     url: 'api/videos',
     method: 'POST',
-    data: video
+    data: {video, video_index_params: {offset: 0, limit: 10}}
   })
 );
 

@@ -33,7 +33,10 @@ class Api::VideosController < ApplicationController
       @video.get_video_length
       @video.ensure_thumbnail_image(video_params[:thumbnail_image])
       @user = @video.user
-      render "api/videos/show"
+      @videos = get_videos_list(10,0)
+
+      @comments = @video.comments.includes(:user)
+      render "api/videos/create"
     else
       render json: @video.errors.full_messages, status: 422
     end

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class CreateVideoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      // check if props include currentUserId
       title: '',
       description: '',
       video_url: 'dummy',
@@ -39,8 +37,6 @@ class CreateVideoForm extends React.Component {
       formData.append('video[film]', this.state.filmFile);
     }
 
-    // const email = this.state.email;
-    // const password = this.state.password;
     const that = this;
     $.ajax({
       url: '/api/videos',
@@ -50,10 +46,7 @@ class CreateVideoForm extends React.Component {
       processData: false
     }).then(
         response => {
-          that;
-          that.props.history.push(`/videos/${response.video.id}`)
-          // const user = {email: email, password: password};
-          // formProcessor(user);
+          that.props.history.push(`/videos/${response.id}`)
         },
         response => errorDispatcher(response.responseJSON)
       );
@@ -163,7 +156,6 @@ class CreateVideoForm extends React.Component {
 
   render() {
 
-
     return (
       <div>
         <form className="create-video-form" onClick={this.clearErrors.bind(this)} onSubmit={this.handleSubmit}>
@@ -213,10 +205,6 @@ class CreateVideoForm extends React.Component {
               {this.renderErrors()}
             </div>
           </div>
-
-
-
-
         </form>
       </div>
     );
