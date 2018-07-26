@@ -10,7 +10,7 @@
 
 def create_user(u_opts)
   user = User.new(username: u_opts[:username], email: u_opts[:email],
-    image_url: 'dummy', password: u_opts[:password])
+    password: u_opts[:password])
   file = EzDownload.open(u_opts[:img_url])
   user.photo.attach(io: file, filename: u_opts[:img_url].split('/').last)
   user.save!
@@ -89,7 +89,7 @@ video_options_list = [
   image_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/hooded_oriole.jpg",
   film_url: "http://s3.amazonaws.com/thoutubest-dev/hooded_oriole/HOOR_20090731PM011200_os_ManyBirds-video-of-hooded-oriole.MP4"
   },
-  #
+
   # {title: 'Buff Breasted Sandpiper', description: 'A really cool bird',
   # video_url: 'dummy', thumbnail_url: 'dummy',
   # image_url: "http://s3.amazonaws.com/thoutubest-dev/buff_breasted_sandpiper/Buff-breasted_Sandpiper_c27-6-108_l_1.jpg",

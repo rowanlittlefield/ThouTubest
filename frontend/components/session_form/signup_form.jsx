@@ -8,7 +8,6 @@ class SignupForm extends React.Component {
       email: '',
       username: '',
       password: '',
-      image_url: 'dummy',
       photoFile: null,
       photoUrl: null
     };
@@ -39,12 +38,10 @@ class SignupForm extends React.Component {
     const formProcessor = this.props.processForm;
     const errorDispatcher = this.props.dispatchErrors
     const user = Object.assign({}, this.state);
-    // this.props.processForm(user)//.then( () => {this.props.history.push('/');});
     const formData = new FormData();
     formData.append('user[email]', this.state.email);
     formData.append('user[username]', this.state.username);
     formData.append('user[password]', this.state.password);
-    formData.append('user[image_url]', this.state.image_url);
     if (this.state.photoFile) {
       formData.append('user[photo]', this.state.photoFile);
     }
@@ -85,7 +82,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const preview = this.state.photoUrl ? <img width='60px' height="60px" src={this.state.photoUrl} /> : null;
 
     return (
