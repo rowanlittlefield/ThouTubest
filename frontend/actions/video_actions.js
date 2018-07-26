@@ -5,7 +5,6 @@ export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
 export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const REMOVE_VIDEO = 'REMOVE_VIDEO';
 
-
 export const receiveVideo = ({ videos, users, comments }) => ({
   type: RECEIVE_VIDEO,
   videos,
@@ -60,7 +59,6 @@ export const updateVideo = video => dispatch => (
     dispatch(receiveErrors(err.responseJSON))
   ))
 );
-
 
 export const clearErrors = () => dispatch => {
   return dispatch(receiveErrors([]));

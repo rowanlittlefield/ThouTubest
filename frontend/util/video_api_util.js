@@ -14,11 +14,13 @@ export const getVideos = (limit, offset) => (
   })
 );
 
-export const createVideo = video => (
+export const createVideo = formData => (
   $.ajax({
-    url: 'api/videos',
+    url: '/api/videos',
     method: 'POST',
-    data: {video, video_index_params: {offset: 0, limit: 10}}
+    data: formData,
+    contentType: false,
+    processData: false
   })
 );
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { createVideo } from '../../util/video_api_util';
 
 class CreateVideoForm extends React.Component {
   constructor(props) {
@@ -22,8 +23,6 @@ class CreateVideoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formProcessor = this.props.processForm;
-    const errorDispatcher = this.props.dispatchErrors
     const formData = new FormData();
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
@@ -38,19 +37,10 @@ class CreateVideoForm extends React.Component {
     }
 
     const that = this;
-    $.ajax({
-      url: '/api/videos',
-      method: 'POST',
-      data: formData,
-      contentType: false,
-      processData: false
-    }).then(
-        response => {
-          that.props.history.push(`/videos/${response.id}`)
-        },
-        response => errorDispatcher(response.responseJSON)
+    createVideo(formData).then(
+        response => that.props.history.push(`/videos/${response.id}`),
+        response => that.props.dispatchErrors(response.responseJSON)
       );
-
   }
 
   handleFile(field) {

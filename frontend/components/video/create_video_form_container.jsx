@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  processForm: video => dispatch(createVideo(video)),
   clearErrors: () => dispatch(clearErrors()),
   dispatchErrors: errors => dispatch(dispatchErrors(errors))
 })
