@@ -12,7 +12,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import VideoIndexContainer from './video/video_index/video_index_container';
 import VideoShowContainer from './video/video_show/video_show_container';
-import CreateVideoFormContainer from './video/create_video_form_container';
+import CreateVideoFormContainer from './video/video_forms/create_video_form_container';
 import UpdateVideoFormContainer from './video/update_video_form_container';
 
 

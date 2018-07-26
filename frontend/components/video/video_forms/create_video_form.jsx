@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { createVideo } from '../../util/video_api_util';
+import { createVideo } from '../../../util/video_api_util';
+import VideoFormPreviewStreamer from './video_form_preview_streamer';
 
 class CreateVideoForm extends React.Component {
   constructor(props) {
@@ -117,26 +118,7 @@ class CreateVideoForm extends React.Component {
       </div>);
     }
     if (this.state.filmUrl) {
-
-      return (
-        <div className="create-video-film-preview-div">
-          <video id="video" width='340px' height="300px" src={this.state.filmUrl}
-             onTimeUpdate={(eve) => {
-               const video = eve.target
-               let value = 0;
-               if (video.currentTime >= 8) {
-                 video.currentTime = 0;
-                 video.pause();
-                    }
-                  }
-                }/>
-          <div className={"create-video-film-preview-play-icon"} onClick={() => {
-              const video = document.getElementById("video");
-              (video.paused || video.ended) ? video.play() : video.pause();
-              }
-            }></div>
-        </div>
-      );
+      return (<VideoFormPreviewStreamer filmUrl={this.state.filmUrl}/>);
     } else {
       return (<div className="create-video-film-preview" width='200px' height="200px">
       <span>Video</span> <span>Preview</span>
