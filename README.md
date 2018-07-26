@@ -4,7 +4,6 @@ Eutewbz is a clone of the popular video sharing web app YouTube. The backend of 
 
 The live version of Eutewbz can be found here [here](https://thoutubest.herokuapp.com/).
 
-
 ### Future Steps
 
 * Implement user channel page that displays all of the videos associated with a given user. 
