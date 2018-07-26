@@ -57,16 +57,23 @@ class UpdateVideoForm extends React.Component {
       });
   }
 
+  appendAttributeToFormData(formData, attribute) {
+    if(this.state[attribute]) formData.append(`video[${attribute}]`, this.state[attribute])
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const formProcessor = this.props.processForm;
     const errorDispatcher = this.props.dispatchErrors
     const formData = new FormData();
+
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
     formData.append('video[thumbnail_url]', this.state.thumbnail_url);
     formData.append('video[video_url]', this.state.video_url);
     formData.append('video[uploader_id]', this.state.uploader_id);
+
+
     if (this.state.thumbnailFile) {
       formData.append('video[thumbnail_image]', this.state.thumbnailFile);
     }
@@ -81,7 +88,7 @@ class UpdateVideoForm extends React.Component {
     }).then(
         response => {
           that;
-          that.props.history.push(`/videos/${response.video.id}`)
+          that.props.history.push(`/videos/${response.id}`)
         },
         response => errorDispatcher(response.responseJSON)
       );
@@ -148,33 +155,9 @@ class UpdateVideoForm extends React.Component {
       <span>Video</span> <span>Preview</span>
       </div>);
     }
-    // if (this.state.filmUrl) {
-    //   return (<div className="create-video-film-preview-div">
-    //     <video id="video" width='340px' height="300px" src={this.state.filmUrl}
-    //        onTimeUpdate={(eve) => {
-    //          const video = eve.target
-    //          let value = 0;
-    //          if (video.currentTime >= 8) {
-    //            video.currentTime = 0;
-    //            video.pause();
-    //               }
-    //             }
-    //           }/>
-    //     <div className={"create-video-film-preview-play-icon"} onClick={() => {
-    //         const video = document.getElementById("video");
-    //         (video.paused || video.ended) ? video.play() : video.pause();
-    //         }
-    //       }></div>
-    //   </div>);
-    // } else {
-    //   return (<div className="create-video-film-preview" width='200px' height="200px">
-    //   <span>Video</span> <span>Preview</span>
-    //   </div>);
-    // }
   }
 
   render() {
-    console.log(this.state);
 
     return (
       <div>

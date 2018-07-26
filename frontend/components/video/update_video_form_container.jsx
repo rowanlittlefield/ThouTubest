@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   processForm: video => dispatch(updateVideo(video)),
-  getVideo: () => dispatch(getVideo(ownProps.match.params.videoId)),
+  getVideo: () => dispatch(getVideo(ownProps.match.params.videoId, 0, 0)),
   clearErrors: () => dispatch(clearErrors()),
   dispatchErrors: errors => dispatch(dispatchErrors(errors))
 })

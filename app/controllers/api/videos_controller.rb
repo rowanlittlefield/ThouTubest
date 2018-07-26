@@ -36,12 +36,13 @@ class Api::VideosController < ApplicationController
   end
 
   def update
-    @video = Video.update(params[:id], sub_video_params)
+    debugger
+    @video = Video.update(params[:id], update_params)
 
     if @video.save
       @video.ensure_thumbnail_image(video_params[:thumbnail_image])
-      @user = @video.user
-      render "api/videos/show"
+      get_video_show_videos_and_comments(@video, 0, 10)
+      render "api/videos/create"
     else
       render json: @video.errors.full_messages, status: 422
     end
@@ -72,10 +73,13 @@ class Api::VideosController < ApplicationController
       description: video_params[:description],
       video_url: video_params[:video_url],
       thumbnail_url: video_params[:thumbnail_url],
-      views: video_params[:views],
       uploader_id: video_params[:uploader_id],
       film: video_params[:film]
     }
+  end
+
+  def update_params
+    {title: video_params[:title], description: video_params[:description]}
   end
 
   def get_videos_list(limit, offset)

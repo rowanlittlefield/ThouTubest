@@ -80,7 +80,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 275px;
+  width: 300px;
   height: auto;
 
   padding: 20px;
@@ -92,18 +92,23 @@
   flex-direction: column;
 }
 
+.create-video-thumbnail-label-subtitle {
+  font-size: 10px;
+}
+
 .create-video-thumbnail-icon {
   position: absolute;
   top: 60px;
-  left: 25px;
+  left: 80px;
 }
 
 .create-video-thumbnail-input {
-  width: 60px;
-  height: 60px;
+  width: 75px;
+  height: 50px;
   background-color: green;
 
   margin-top: 30px;
+  margin-left: 50px;
   opacity: 0;
   z-index: 1;
   cursor: pointer;

@@ -150,7 +150,8 @@ class CreateVideoForm extends React.Component {
             </div>
 
             <div className="create-video-thumbnail-upload">
-              <label className="create-video-thumbnail-label">Thumbnail Upload
+              <label className="create-video-thumbnail-label">Custom Thumbnail Upload <br/>
+              <span className="create-video-thumbnail-label-subtitle">(optional)</span>
                 <input type="file"
                   onChange={this.handleFile('thumbnail')}
                   className="create-video-thumbnail-input"/>
