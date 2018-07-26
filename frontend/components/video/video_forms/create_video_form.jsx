@@ -157,6 +157,7 @@ class CreateVideoForm extends React.Component {
                   className="create-video-thumbnail-input"/>
               </label>
               <img className="create-video-thumbnail-icon" src={window.uploadFileIcon} width="60px" height="60px"/>
+
               {this.thumbnailPreview()}
             </div>
             <br/>

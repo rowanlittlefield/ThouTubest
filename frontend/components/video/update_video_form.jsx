@@ -7,7 +7,7 @@ class UpdateVideoForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const video = this.props.video
+    const video = this.props.video;
     if (video) {
       this.state = {
         title: video.title,
@@ -16,7 +16,7 @@ class UpdateVideoForm extends React.Component {
         thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
-        thumbnailUrl: null,
+        thumbnailUrl: video.thumbnail_url ? video.thumbnail_url : null,
         filmUrl: video.film_url
       };
     } else {
@@ -52,7 +52,7 @@ class UpdateVideoForm extends React.Component {
         thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
-        thumbnailUrl: null,
+        thumbnailUrl: video.thumbnail_image_url ? video.thumbnail_image_url : null,
         filmUrl: video.film_url
       });
   }
@@ -157,6 +157,22 @@ class UpdateVideoForm extends React.Component {
     }
   }
 
+  removeCustomThumbnailButton() {
+    if (this.state.thumbnailUrl) {
+      const that = this;
+      return (
+        <button className="edit-video-thumbnail-remove" onClick={eve => {
+            eve.preventDefault();
+            that.setState({thumbnailFile: null,thumbnailUrl: null});
+          }
+        }>Remove</button>
+      );
+
+    } else {
+      return null;
+    }
+  }
+
   render() {
 
     return (
@@ -182,11 +198,16 @@ class UpdateVideoForm extends React.Component {
 
             <div className="create-video-thumbnail-upload">
               <label className="create-video-thumbnail-label">Thumbnail Upload
-                <input type="file"
-                  onChange={this.handleFile('thumbnail')}
-                  className="create-video-thumbnail-input"/>
+                <span className="create-video-thumbnail-label-subtitle">(optional)</span>
+                <div className="edit-video-thumbnail-input-div">
+                  <input type="file"
+                    onChange={this.handleFile('thumbnail')}
+                    className="edit-video-thumbnail-input"/>
+
+                  {this.removeCustomThumbnailButton()}
+                </div>
               </label>
-              <img className="create-video-thumbnail-icon" src={window.uploadFileIcon} width="60px" height="60px"/>
+              <img className="edit-video-thumbnail-icon" src={window.uploadFileIcon} width="60px" height="60px"/>
               {this.thumbnailPreview()}
             </div>
             <br/>
@@ -209,10 +230,3 @@ class UpdateVideoForm extends React.Component {
 }
 
 export default withRouter(UpdateVideoForm);
-
-// <div className="create-video-film-input-adjust">
-//   <input type="file"
-//     className="create-video-film-input"
-//     onChange={this.handleFile('film')}/>
-// </div>
-// <img className="create-video-film-icon" src={window.uploadFileIcon} width="60px" height="60px"/>

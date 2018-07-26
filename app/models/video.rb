@@ -40,6 +40,11 @@ class Video < ApplicationRecord
     end
   end
 
+  def add_view
+    self.views += 1
+    self.save
+  end
+
   def get_video_length(alternative_url = nil)
     if alternative_url
       # movie = FFMPEG::Movie.new(alternative_url)
@@ -70,6 +75,14 @@ class Video < ApplicationRecord
       self.save
     end
 
+  end
+
+  def update_thumbnail(thumbnail_file)
+    image = self.custom_thumbnail_image
+    image.destroy if image
+    if thumbnail_file
+      ensure_thumbnail_image(thumbnail_file)
+    end
   end
 
   def ensure_thumbnail_image(thumbnail_file)

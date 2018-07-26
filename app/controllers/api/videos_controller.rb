@@ -16,6 +16,7 @@ class Api::VideosController < ApplicationController
     )
 
     if @video
+      @video.add_view
       render "api/videos/show"
     else
       render json: ['Cannot find video'], status: 422
@@ -40,7 +41,7 @@ class Api::VideosController < ApplicationController
     @video = Video.update(params[:id], update_params)
 
     if @video.save
-      @video.ensure_thumbnail_image(video_params[:thumbnail_image])
+      @video.update_thumbnail(video_params[:thumbnail_image])
       get_video_show_videos_and_comments(@video, 0, 10)
       render "api/videos/create"
     else
