@@ -34,22 +34,32 @@ class VideoStreamer extends React.Component {
   displayVideoControls() {
     return (
       <div className="video-player-controls">
-        <button id="playpause" className="video-player-playpause-button">
-          <div className="video-player-arrow-right"></div>
-        </button>
 
         <div id="progressBar" className="video-player-progress-bar">
           <span id="progress" height="100%" opacity="1" className="video-player-progress"></span>
         </div>
 
-        <div className="video-player-digital-clock" id="digitalClock"></div>
-        <img className="video-player-mute-button" id="mute-button"
-           width="45px"
-           height="45px"
-           src={window.volumeIcon}/>
-        <input id="volume"
-           min="0" max="1" step="0.1" id="volume-slider"
-           className={"video-layer-volume-slider" + " hidden"} type="range" />
+        <div className="video-player-controls-icons">
+          <div className="video-player-controls-icons-left">
+            <button id="playpause" className="video-player-playpause-button">
+              <div className="video-player-arrow-right"></div>
+            </button>
+
+            <img className="video-player-mute-button" id="mute-button"
+              width="45px"
+              height="45px"
+              src={window.volumeIcon}/>
+            <input id="volume"
+              min="0" max="1" step="0.1" id="volume-slider"
+              className={"video-layer-volume-slider" + " hidden"} type="range" />
+
+            <div className="video-player-digital-clock" id="digitalClock"></div>
+          </div>
+
+          <div className="video-player-controls-icons-right">
+          </div>
+        </div>
+
       </div>
     );
   }
