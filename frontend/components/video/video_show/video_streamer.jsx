@@ -25,6 +25,7 @@ class VideoStreamer extends React.Component {
     progressBar.addEventListener('click', this.changeProgress.bind(this, video));
     volumeControls.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
     volumeControls.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
+    volumeSlider.addEventListener('input', this.setVolume.bind(this, video, volumeSlider));
   }
 
   displayVideoControls() {
@@ -46,8 +47,8 @@ class VideoStreamer extends React.Component {
                 width="45px"
                 height="45px"
                 src={window.volumeIcon}/>
-              <input id="volume"
-                min="0" max="1" step="0.1" id="volume-slider"
+              <input id="volume-slider"
+                min="0" max="1" step="0.01" id="volume-slider"
                 className={"video-layer-volume-slider" + " hidden"} type="range" />
             </div>
 
@@ -98,6 +99,10 @@ class VideoStreamer extends React.Component {
     const durationSec =  Math.floor(video.duration % 60);
     digitalClock.innerHTML = (video.duration ?
        `${minutes}:${seconds}` + ' / ' +`${durationMin}:${durationSec}` : '');
+  }
+
+  setVolume(video, volume) {
+    video.volume = volume.value;
   }
 
   render() {
