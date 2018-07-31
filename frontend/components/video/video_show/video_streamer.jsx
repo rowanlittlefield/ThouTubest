@@ -3,11 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 class VideoStreamer extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.updated = false;
-  }
-
   componentDidMount() {
     this.videoPlayerControlsScript();
   }
@@ -19,6 +14,7 @@ class VideoStreamer extends React.Component {
     const progressBar = document.getElementById("progressBar");
     const digitalClock = document.getElementById("digitalClock");
     const muteButton = document.getElementById("mute-button");
+    const volumeControls = document.getElementById("video-player-volume-controls");
     const volumeSlider = document.getElementById("volume-slider");
     this.updateProgressDigitalClock(video, digitalClock);
 
@@ -27,13 +23,13 @@ class VideoStreamer extends React.Component {
     video.addEventListener("timeupdate", this.updateProgress.bind(this, video, progress), false);
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
     progressBar.addEventListener('click', this.changeProgress.bind(this, video));
-    muteButton.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
-    muteButton.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
+    volumeControls.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
+    volumeControls.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
   }
 
   displayVideoControls() {
     return (
-      <div className="video-player-controls">
+      <div id="video-player-controls" className="video-player-controls">
 
         <div id="progressBar" className="video-player-progress-bar">
           <span id="progress" height="100%" opacity="1" className="video-player-progress"></span>
@@ -45,13 +41,15 @@ class VideoStreamer extends React.Component {
               <div className="video-player-arrow-right"></div>
             </button>
 
-            <img className="video-player-mute-button" id="mute-button"
-              width="45px"
-              height="45px"
-              src={window.volumeIcon}/>
-            <input id="volume"
-              min="0" max="1" step="0.1" id="volume-slider"
-              className={"video-layer-volume-slider" + " hidden"} type="range" />
+            <div id="video-player-volume-controls" className="video-player-volume-controls">
+              <img className="video-player-mute-button" id="mute-button"
+                width="45px"
+                height="45px"
+                src={window.volumeIcon}/>
+              <input id="volume"
+                min="0" max="1" step="0.1" id="volume-slider"
+                className={"video-layer-volume-slider" + " hidden"} type="range" />
+            </div>
 
             <div className="video-player-digital-clock" id="digitalClock"></div>
           </div>
@@ -87,7 +85,6 @@ class VideoStreamer extends React.Component {
     if (video && eve.layerX / 810 <= 1) {
       video.currentTime = (eve.layerX / 810) * video.duration;
     }
-    console.log(eve.layerX / 810);
   }
 
   toggleVolumeControls(volumeSlider) {

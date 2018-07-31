@@ -15,6 +15,7 @@
   left: 20px;
   display: flex;
   flex-direction: column;
+  // opacity: 1;
 }
 
 .video-player-controls-icons {
@@ -31,7 +32,7 @@
 
 .video-player-controls-icons-left > * {
   margin: 0 3px;
-  margin-left: 12px;
+  margin-left: 10px;
 }
 
 .video-player-playpause-button {
@@ -83,12 +84,22 @@ span#progress {
    font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
 
    background-color: transparent;
+   margin-left: 5px;
+ }
+
+ .video-player-volume-controls {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-left: 5px;
  }
 
  .video-player-mute-button {
+   margin-right: 5px;
  }
 
 .video-layer-volume-slider {
+  // margin-right: -10px;
 }
 
 .video-layer-volume-slider:focus {
