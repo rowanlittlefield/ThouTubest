@@ -26,6 +26,7 @@ class VideoStreamer extends React.Component {
     volumeControls.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
     volumeControls.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
     volumeSlider.addEventListener('input', this.setVolume.bind(this, video, volumeSlider));
+    muteButton.addEventListener('click', this.toggleMute.bind(this, video));
   }
 
   displayVideoControls() {
@@ -103,6 +104,10 @@ class VideoStreamer extends React.Component {
 
   setVolume(video, volume) {
     video.volume = volume.value;
+  }
+
+  toggleMute(video) {
+    video.muted = !video.muted;
   }
 
   render() {
