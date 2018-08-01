@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 class VideoStreamer extends React.Component {
   constructor(props) {
     super(props);
-    this.videoControlsOpacity = 0;
+    this.hoverFlag = false;
   }
 
   componentDidMount() {
@@ -36,7 +36,11 @@ class VideoStreamer extends React.Component {
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
     const that = this;
-    setTimeout(that.decreaseControlsOpacity.bind(that, videoPlayer, videoControls), 3000);
+    setTimeout(() => {
+      if (!that.hoverFlag) {
+        that.decreaseControlsOpacity.bind(that, videoPlayer, videoControls)();
+      }
+    }, 3000);
   }
 
   displayVideoControls() {
@@ -121,6 +125,7 @@ class VideoStreamer extends React.Component {
   }
 
   increaseControlsOpacity(video, videoControls) {
+    this.hoverFlag = true;
     if (Number(videoControls.style.opacity) < 1) {
       for(let i = 1; i <= 5; i++) {
         setTimeout(() => {
@@ -133,9 +138,7 @@ class VideoStreamer extends React.Component {
   decreaseControlsOpacity(video, videoControls, eve) {
     console.log('you did it');
     const videoPlayer = document.getElementById("video-show-player");
-    // !videoControls.contains(eve.target))
     if (!eve || (!videoControls.contains(eve.relatedTarget) && !videoPlayer.contains(eve.relatedTarget))) {
-      // debugger
       for(let i = 4; i >= 0; i--) {
         setTimeout(() => {
           videoControls.style.opacity = 0.2 * i;
