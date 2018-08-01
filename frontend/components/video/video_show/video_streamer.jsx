@@ -130,17 +130,18 @@ class VideoStreamer extends React.Component {
     }
   }
 
-  decreaseControlsOpacity(video, videoControls) {
+  decreaseControlsOpacity(video, videoControls, eve) {
     console.log('you did it');
-    // debugger
-    // if (Number(videoControls.style.opacity) > 0) {
+    const videoPlayer = document.getElementById("video-show-player");
+    // !videoControls.contains(eve.target))
+    if (!eve || (!videoControls.contains(eve.relatedTarget) && !videoPlayer.contains(eve.relatedTarget))) {
+      // debugger
       for(let i = 4; i >= 0; i--) {
-        //   // debugger
-          setTimeout(() => {
-            videoControls.style.opacity = 0.2 * i;
-          }, 30*(4 - i));
+        setTimeout(() => {
+          videoControls.style.opacity = 0.2 * i;
+        }, 30*(4 - i));
       }
-    // }
+    }
   }
 
   render() {
