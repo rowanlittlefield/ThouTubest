@@ -11,6 +11,22 @@ class VideoStreamer extends React.Component {
     this.videoPlayerControlsScript();
   }
 
+  componentWillReceiveProps(nextProps) {
+    // debugger
+    if (nextProps.match.params.videoId && nextProps.match.params.videoId != this.props.video.id) {
+      const videoControls = document.getElementById("video-player-controls");
+      const videoPlayer = document.getElementById("video-show-player");
+      this.increaseControlsOpacity(videoPlayer, videoControls);
+      const that = this;
+      this.hoverFlag = false;
+      setTimeout(() => {
+        if (!that.hoverFlag) {
+          that.decreaseControlsOpacity.bind(that, videoPlayer, videoControls)();
+        }
+      }, 3000);
+    }
+  }
+
   videoPlayerControlsScript() {
     const video = document.getElementById("video");
     const playpause = document.getElementById("playpause");
