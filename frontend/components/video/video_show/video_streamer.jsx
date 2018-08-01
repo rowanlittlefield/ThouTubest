@@ -2,6 +2,10 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 class VideoStreamer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.videoControlsOpacity = 0;
+  }
 
   componentDidMount() {
     this.videoPlayerControlsScript();
@@ -16,6 +20,8 @@ class VideoStreamer extends React.Component {
     const muteButton = document.getElementById("mute-button");
     const volumeControls = document.getElementById("video-player-volume-controls");
     const volumeSlider = document.getElementById("volume-slider");
+    const videoControls = document.getElementById("video-player-controls");
+    const videoPlayer = document.getElementById("video-show-player");
     this.updateProgressDigitalClock(video, digitalClock);
 
     video.controls = false;
@@ -27,6 +33,10 @@ class VideoStreamer extends React.Component {
     volumeControls.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
     volumeSlider.addEventListener('input', this.setVolume.bind(this, video, volumeSlider));
     muteButton.addEventListener('click', this.toggleMute.bind(this, video));
+    videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
+    videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
+    const that = this;
+    setTimeout(that.decreaseControlsOpacity.bind(that, videoPlayer, videoControls), 3000);
   }
 
   displayVideoControls() {
@@ -110,11 +120,34 @@ class VideoStreamer extends React.Component {
     video.muted = !video.muted;
   }
 
+  increaseControlsOpacity(video, videoControls) {
+    if (Number(videoControls.style.opacity) < 1) {
+      for(let i = 1; i <= 5; i++) {
+        setTimeout(() => {
+          videoControls.style.opacity = 0.2 * i;
+        }, 30 * i);
+      }
+    }
+  }
+
+  decreaseControlsOpacity(video, videoControls) {
+    console.log('you did it');
+    // debugger
+    // if (Number(videoControls.style.opacity) > 0) {
+      for(let i = 4; i >= 0; i--) {
+        //   // debugger
+          setTimeout(() => {
+            videoControls.style.opacity = 0.2 * i;
+          }, 30*(4 - i));
+      }
+    // }
+  }
+
   render() {
     if (!this.props.video) return null;
 
     return(
-      <div className="video-show-player">
+      <div id="video-show-player" className="video-show-player">
         <div className="video-streamer-div">
           <video src={this.props.video.film_url}
             width="850px" height="480px" id="video" autoPlay/>
