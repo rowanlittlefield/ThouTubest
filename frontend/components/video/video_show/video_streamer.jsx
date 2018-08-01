@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import VolumeControls from './video_controls/volume_controls';
 import ProgressBar from './video_controls/progress_bar';
+import PlayPauseButton from './video_controls/play_pause_button';
 
 class VideoStreamer extends React.Component {
   constructor(props) {
@@ -31,14 +32,12 @@ class VideoStreamer extends React.Component {
 
   videoPlayerControlsScript() {
     const video = document.getElementById("video");
-    const playpause = document.getElementById("playpause");
     const digitalClock = document.getElementById("digitalClock");
     const videoControls = document.getElementById("video-player-controls");
     const videoPlayer = document.getElementById("video-show-player");
     this.updateProgressDigitalClock(video, digitalClock);
 
     video.controls = false;
-    playpause.addEventListener('click', this.togglePlayPause.bind(this, video, playpause));
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
@@ -58,9 +57,7 @@ class VideoStreamer extends React.Component {
         <ProgressBar />
         <div className="video-player-controls-icons">
           <div className="video-player-controls-icons-left">
-            <button id="playpause" className="video-player-playpause-button">
-              <div className="video-player-arrow-right"></div>
-            </button>
+            <PlayPauseButton />
             <VolumeControls />
             <div className="video-player-digital-clock" id="digitalClock"></div>
           </div>
@@ -71,17 +68,6 @@ class VideoStreamer extends React.Component {
 
       </div>
     );
-  }
-
-  togglePlayPause(video, playpause) {
-    if (video.paused || video.ended) {
-      playpause.title = "pause";
-      video.play();
-    }
-    else {
-      playpause.title = "play";
-      video.pause();
-    }
   }
 
   updateProgressDigitalClock(video, digitalClock) {
