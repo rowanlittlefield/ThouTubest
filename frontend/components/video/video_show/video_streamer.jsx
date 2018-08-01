@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import VolumeControls from './video_controls/volume_controls';
 
 class VideoStreamer extends React.Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class VideoStreamer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
     if (nextProps.match.params.videoId && nextProps.match.params.videoId != this.props.video.id) {
       const videoControls = document.getElementById("video-player-controls");
       const videoPlayer = document.getElementById("video-show-player");
@@ -34,9 +34,6 @@ class VideoStreamer extends React.Component {
     const progess = document.getElementById("progress");
     const progressBar = document.getElementById("progressBar");
     const digitalClock = document.getElementById("digitalClock");
-    const muteButton = document.getElementById("mute-button");
-    const volumeControls = document.getElementById("video-player-volume-controls");
-    const volumeSlider = document.getElementById("volume-slider");
     const videoControls = document.getElementById("video-player-controls");
     const videoPlayer = document.getElementById("video-show-player");
     this.updateProgressDigitalClock(video, digitalClock);
@@ -46,10 +43,6 @@ class VideoStreamer extends React.Component {
     video.addEventListener("timeupdate", this.updateProgress.bind(this, video, progress), false);
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
     progressBar.addEventListener('click', this.changeProgress.bind(this, video));
-    volumeControls.addEventListener('mouseover', this.toggleVolumeControls.bind(this, volumeSlider));
-    volumeControls.addEventListener('mouseout', this.toggleVolumeControls.bind(this, volumeSlider));
-    volumeSlider.addEventListener('input', this.setVolume.bind(this, video, volumeSlider));
-    muteButton.addEventListener('click', this.toggleMute.bind(this, video));
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
     // videoPlayer.addEventListener('mousemove', this.toggleControlsOpacity.bind(this, ));
@@ -74,17 +67,7 @@ class VideoStreamer extends React.Component {
             <button id="playpause" className="video-player-playpause-button">
               <div className="video-player-arrow-right"></div>
             </button>
-
-            <div id="video-player-volume-controls" className="video-player-volume-controls">
-              <img className="video-player-mute-button" id="mute-button"
-                width="45px"
-                height="45px"
-                src={window.volumeIcon}/>
-              <input id="volume-slider"
-                min="0" max="1" step="0.01" id="volume-slider"
-                className={"video-layer-volume-slider" + " hidden"} type="range" />
-            </div>
-
+            <VolumeControls />
             <div className="video-player-digital-clock" id="digitalClock"></div>
           </div>
 
@@ -121,10 +104,6 @@ class VideoStreamer extends React.Component {
     }
   }
 
-  toggleVolumeControls(volumeSlider) {
-    volumeSlider.classList.toggle('hidden');
-  }
-
   updateProgressDigitalClock(video, digitalClock) {
     const minutes = Math.floor(video.currentTime / 60);
     const seconds = Math.floor(video.currentTime % 60);
@@ -132,14 +111,6 @@ class VideoStreamer extends React.Component {
     const durationSec =  Math.floor(video.duration % 60);
     digitalClock.innerHTML = (video.duration ?
        `${minutes}:${seconds}` + ' / ' +`${durationMin}:${durationSec}` : '');
-  }
-
-  setVolume(video, volume) {
-    video.volume = volume.value;
-  }
-
-  toggleMute(video) {
-    video.muted = !video.muted;
   }
 
   increaseControlsOpacity(video, videoControls) {
@@ -163,12 +134,6 @@ class VideoStreamer extends React.Component {
           videoControls.style.opacity = 0.2 * i;
         }, 30*(4 - i));
       }
-    }
-  }
-
-  conditionalDecreaseControlsOpacity() {
-    if (true) {
-
     }
   }
 
