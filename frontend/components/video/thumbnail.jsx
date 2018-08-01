@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 // import { withRouter } from 'react-router-dom';
 
 class Thumbnail extends React.Component {
@@ -82,5 +84,18 @@ class Thumbnail extends React.Component {
     );
   }
 }
+
+const msp = (state, ownProps) => ({
+  // errors: state.errors.videos,
+  // formType: 'createVideo',
+  // currentUserId: state.session.id
+});
+
+const mdp = dispatch => ({
+  // clearErrors: () => dispatch(clearErrors()),
+  // dispatchErrors: errors => dispatch(dispatchErrors(errors))
+})
+
+// export default connect(msp, mdp)(Thumbnail);
 
 export default Thumbnail;
