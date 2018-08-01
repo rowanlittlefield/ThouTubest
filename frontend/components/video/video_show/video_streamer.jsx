@@ -5,6 +5,7 @@ class VideoStreamer extends React.Component {
   constructor(props) {
     super(props);
     this.hoverFlag = false;
+    this.controlsOpacity = true;
   }
 
   componentDidMount() {
@@ -51,6 +52,7 @@ class VideoStreamer extends React.Component {
     muteButton.addEventListener('click', this.toggleMute.bind(this, video));
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
+    // videoPlayer.addEventListener('mousemove', this.toggleControlsOpacity.bind(this, ));
     const that = this;
     setTimeout(() => {
       if (!that.hoverFlag) {
@@ -154,12 +156,19 @@ class VideoStreamer extends React.Component {
   decreaseControlsOpacity(video, videoControls, eve) {
     console.log('you did it');
     const videoPlayer = document.getElementById("video-show-player");
-    if (!eve || (!videoControls.contains(eve.relatedTarget) && !videoPlayer.contains(eve.relatedTarget))) {
+    if (!eve || (!videoControls.contains(eve.relatedTarget) &&
+     !videoPlayer.contains(eve.relatedTarget))) {
       for(let i = 4; i >= 0; i--) {
         setTimeout(() => {
           videoControls.style.opacity = 0.2 * i;
         }, 30*(4 - i));
       }
+    }
+  }
+
+  conditionalDecreaseControlsOpacity() {
+    if (true) {
+
     }
   }
 
