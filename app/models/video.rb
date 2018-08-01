@@ -24,6 +24,7 @@ class Video < ApplicationRecord
   has_one_attached :film
   has_one :custom_thumbnail_image
   has_many :comments, dependent: :destroy
+  has_many :likes, as: :likeable
 
 
   def ensure_film
