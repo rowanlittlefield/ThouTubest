@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import VolumeControls from './video_controls/volume_controls';
+import ProgressBar from './video_controls/progress_bar';
 
 class VideoStreamer extends React.Component {
   constructor(props) {
@@ -31,8 +32,6 @@ class VideoStreamer extends React.Component {
   videoPlayerControlsScript() {
     const video = document.getElementById("video");
     const playpause = document.getElementById("playpause");
-    const progess = document.getElementById("progress");
-    const progressBar = document.getElementById("progressBar");
     const digitalClock = document.getElementById("digitalClock");
     const videoControls = document.getElementById("video-player-controls");
     const videoPlayer = document.getElementById("video-show-player");
@@ -40,9 +39,7 @@ class VideoStreamer extends React.Component {
 
     video.controls = false;
     playpause.addEventListener('click', this.togglePlayPause.bind(this, video, playpause));
-    video.addEventListener("timeupdate", this.updateProgress.bind(this, video, progress), false);
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
-    progressBar.addEventListener('click', this.changeProgress.bind(this, video));
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
     // videoPlayer.addEventListener('mousemove', this.toggleControlsOpacity.bind(this, ));
@@ -55,13 +52,10 @@ class VideoStreamer extends React.Component {
   }
 
   displayVideoControls() {
+
     return (
       <div id="video-player-controls" className="video-player-controls">
-
-        <div id="progressBar" className="video-player-progress-bar">
-          <span id="progress" height="100%" opacity="1" className="video-player-progress"></span>
-        </div>
-
+        <ProgressBar />
         <div className="video-player-controls-icons">
           <div className="video-player-controls-icons-left">
             <button id="playpause" className="video-player-playpause-button">
@@ -87,20 +81,6 @@ class VideoStreamer extends React.Component {
     else {
       playpause.title = "play";
       video.pause();
-    }
-  }
-
-  updateProgress(video, progress) {
-    let value = 0;
-    if (video.currentTime > 0) {
-      value = (100 / video.duration) * video.currentTime;
-    }
-    progress.style.width = value + "%";
-  }
-
-  changeProgress(video, eve) {
-    if (video && eve.layerX / 810 <= 1) {
-      video.currentTime = (eve.layerX / 810) * video.duration;
     }
   }
 
