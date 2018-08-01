@@ -33,7 +33,33 @@ div.show-list-item:first-of-type {
 .show-thumbnail-image {
   width: 170px;
   height: 95px;
+  z-index: 1;
 }
+
+.show-thumbnail-video {
+  width: 170px;
+  height: 95px;
+  z-index: 1;
+}
+
+.show-thumbnail-image:hover {
+  filter: grayscale(20%);
+  transition-duration: 0.5s;
+}
+
+.show-thumbnail-video {
+  width: 170px;
+  height: 95px;
+  z-index: 0;
+  opacity: 0;
+  // background-color: black;
+}
+
+.show-thumbnail-video:hover {
+opacity: 1;
+transition-duration: 3s;
+}
+
 
 .show-thumbnail-duration {
   color: white;

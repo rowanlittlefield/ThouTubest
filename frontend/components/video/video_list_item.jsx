@@ -2,18 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getVideo } from '../../actions/video_actions';
+import Thumbnail from './thumbnail';
 
-const VideoListItem = ({type, video, user, getVideo}) => {
+const VideoListItem = ({type, video, user, getVideo, videoId}) => {
   const username = user ? user.username : '';
-  const length = video.length;
-  let duration;
-  if (length) {
-    const minutes = `${Math.floor(length / 60)}`;
-    const seconds = length % 60 > 9 ? `${length % 60}` : "0" + `${length % 60}`;
-    duration = minutes + ':' + seconds;
-  } else {
-    duration = '0:00';
-  }
 
   const createdAtString = video.created_at;
   let whenUploaded
@@ -31,10 +23,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     <div className={`${type}-list-item`}>
       <Link className={`${type}-list-item-link`} to={`/videos/${video.id}`}>
 
-        <img className={`${type}-thumbnail-image`} src={video.thumbnail_image_url} />
-        <span className={`${type}-thumbnail-duration`}>
-          {duration}
-        </span>
+        <Thumbnail video={video} type={type} videoId={videoId} />
         <div className={`${type}-thumbnail-content`}>
           <div className={`${type}-list-item-title`}>{video.title}</div>
           <div className={`${type}-list-item-author`}>{username}</div>
