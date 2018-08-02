@@ -28,7 +28,8 @@ def create_video_with_comments(v_opts, users)
    attach_custom_image(video, v_opts[:image_url]) if v_opts[:image_url]
    video.save!
    video.get_video_length(v_opts[:film_url])
-   create_comments(video, users.sample)
+   create_comments(video, users)
+   create_video_likes(video, users)
 end
 
 def attach_custom_image(video, image_url)
@@ -38,20 +39,30 @@ def attach_custom_image(video, image_url)
   custom_thumbnail_image.image.attach(io: thumbnail_image_file, filename: image_url.split('/').last)
 end
 
-def create_comments(video, user)
+def create_comments(video, users)
   2.times do
     c1 = Comment.new(
-      user_id: user.id, video_id: video.id, body: "#{Faker::ChuckNorris.fact}"
+      user_id: users.sample.id, video_id: video.id, body: "#{Faker::ChuckNorris.fact}"
     )
     c1.save!
 
     c2 = Comment.new(
-      user_id: user.id, video_id: video.id, parent_comment_id: c1.id,
+      user_id: users.sample.id, video_id: video.id, parent_comment_id: c1.id,
       body: "#{Faker::ChuckNorris.fact}"
     )
     c2.save!
   end
+end
 
+def create_video_likes(video, users)
+  users.each do |user|
+    num = rand(1..2)
+    like = Like.new
+    like.user = user
+    like.likeable = video
+    like.is_dislike = (num == 1 ? false : true)
+    like.save!
+  end
 end
 
 User.destroy_all
@@ -62,9 +73,9 @@ user_options_list = [
   {username: 'Cassowary', email: '1@aol.com', password: 'passwurd',
   img_url: "http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg"},
 
-  # {username: 'Penguin', email: '2@aol.com', password: 'passwurd',
-  # img_url: "https://s3.amazonaws.com/thoutubest-dev/users/penguin.jpg"},
-  #
+  {username: 'Penguin', email: '2@aol.com', password: 'passwurd',
+  img_url: "https://s3.amazonaws.com/thoutubest-dev/users/penguin.jpg"},
+
   # {username: 'Cardinal', email: '3@aol.com', password: 'passwurd',
   # img_url: "https://s3.amazonaws.com/thoutubest-dev/users/cardinal.jpg"},
   #

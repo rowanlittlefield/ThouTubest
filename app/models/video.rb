@@ -33,6 +33,14 @@ class Video < ApplicationRecord
     end
   end
 
+  def num_likes
+    self.likes.where(is_dislike: false).count
+  end
+
+  def num_dislikes
+    self.likes.where(is_dislike: true).count
+  end
+
   def thumbnail_image
     if self.custom_thumbnail_image
       self.custom_thumbnail_image.image

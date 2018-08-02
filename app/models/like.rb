@@ -12,7 +12,8 @@
 #
 
 class Like < ApplicationRecord
-  # validates :likeable_type, inclusion: {in: ['Comment', 'Video']}
+  validates :likeable_type, inclusion: {in: ['Comment', 'Video']}
 
+  belongs_to :user
   belongs_to :likeable, polymorphic: true
 end

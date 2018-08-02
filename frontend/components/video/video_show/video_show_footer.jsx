@@ -23,11 +23,11 @@ class VideoShowFooter extends React.Component {
           <span className="video-player-footer-interactive-menu">
             <button className="video-player-like-button">
               <img className="video-player-like-icon"
-                src={window.likeIcon}/> <span>20k</span>
+                src={window.likeIcon}/> <span>{video.num_likes}</span>
             </button>
             <button className="video-player-like-button">
               <img className="video-player-like-icon"
-                src={window.likeIcon}/> <span>10k</span>
+                src={window.likeIcon}/> <span>{video.num_dislikes}</span>
             </button>
           </span>
           <div className="video-player-like-bar"></div>
