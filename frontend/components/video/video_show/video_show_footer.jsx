@@ -20,6 +20,18 @@ class VideoShowFooter extends React.Component {
         <h1 className="video-player-title">{video.title}</h1>
         <div className="video-player-footer-info">
           <span className="video-player-footer-views">{video.views} views</span>
+          <span className="video-player-footer-interactive-menu">
+            <button className="video-player-like-button">
+              <img className="video-player-like-icon"
+                src={window.likeIcon}/> <span>20k</span>
+            </button>
+            <button className="video-player-like-button">
+              <img className="video-player-like-icon"
+                src={window.likeIcon}/> <span>10k</span>
+            </button>
+          </span>
+          <div className="video-player-like-bar"></div>
+          <div className="video-player-like-bar-ratio"></div>
         </div>
         <div className="video-player-secondary-info">
           <div className="video-player-secondary-info-top-row">
