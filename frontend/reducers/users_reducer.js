@@ -20,7 +20,6 @@ const usersReducer = (state = {}, action) => {
       case REMOVE_COMMENT:
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_LIKE:
-      debugger
       const newState = merge({}, state);
       if (action.like.likeable_type === 'Video' &&
         state[action.like.user_id].liked_video_ids) {
