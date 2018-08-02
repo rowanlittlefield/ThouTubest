@@ -1,7 +1,22 @@
-class Api::Likescontroller < ApplicationController
+class Api::LikesController < ApplicationController
 
   def create
+    debugger
+    @like = Like.new(
+      user_id: like_params[:user_id], is_dislike: like_params[:is_dislike]
+    )
 
+    if like_params[:likeable_type] == 'Video'
+      @like.video = Video.find(like_params[:likeable_id])
+    else
+      @like.comment = Comment.find(like_params[:likeable_id])
+    end
+
+    if @like.save
+      render 'api/likes/show'
+    else
+      render json:  @like.errors.full_messages, status: 422
+    end
   end
 
   def destroy

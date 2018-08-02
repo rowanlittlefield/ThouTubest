@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { deleteVideo } from '../../../actions/video_actions';
+import VideoInteractiveMenu from './video_interactive_menu';
 
 class VideoShowFooter extends React.Component {
 
@@ -20,16 +21,7 @@ class VideoShowFooter extends React.Component {
         <h1 className="video-player-title">{video.title}</h1>
         <div className="video-player-footer-info">
           <span className="video-player-footer-views">{video.views} views</span>
-          <span className="video-player-footer-interactive-menu">
-            <button className="video-player-like-button">
-              <img className="video-player-like-icon"
-                src={window.likeIcon}/> <span>{video.num_likes}</span>
-            </button>
-            <button className="video-player-like-button">
-              <img className="video-player-like-icon"
-                src={window.likeIcon}/> <span>{video.num_dislikes}</span>
-            </button>
-          </span>
+          <VideoInteractiveMenu />
           <div className="video-player-like-bar"></div>
           <div className="video-player-like-bar-ratio"></div>
         </div>

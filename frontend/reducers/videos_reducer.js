@@ -4,6 +4,7 @@ import {
   REMOVE_VIDEO
 } from '../actions/video_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_LIKE } from '../actions/like_actions';
 import { merge } from 'lodash';
 
 const videosReducer = (state = {}, action) => {
@@ -19,11 +20,19 @@ const videosReducer = (state = {}, action) => {
         newerState[action.video.id].comment_ids = action.video.comment_ids.slice();
       return newerState;
     case RECEIVE_VIDEOS:
-      return merge({}, state, action.videos);;
+      return merge({}, state, action.videos);
     case REMOVE_VIDEO:
       const stateDup = merge({}, state);
       delete stateDup[action.id];
       return stateDup
+    case RECEIVE_LIKE:
+    const theStateDup = merge({}, state);
+      if (action.like && action.like.is_dislike) {
+        theStateDup[like.likeable_id].num_dislikes++;
+      } else {
+        theStateDup[like.likeable_id].num_likes++;
+      }
+      return theStateDup;
     default:
       return state;
 
