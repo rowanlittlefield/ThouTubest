@@ -1,7 +1,6 @@
 class Api::LikesController < ApplicationController
 
   def create
-    debugger
     @like = Like.new(
       user_id: like_params[:user_id], is_dislike: like_params[:is_dislike]
     )

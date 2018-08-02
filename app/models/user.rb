@@ -25,7 +25,7 @@ class User < ApplicationRecord
     class_name: :Video
 
   has_many :comments
-
+  has_many :likes
   has_one_attached :photo
 
   def ensure_photo
@@ -52,6 +52,10 @@ class User < ApplicationRecord
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save!
     self.session_token
+  end
+
+  def liked_video_ids
+    self.likes.select {|like| like.likeable_type == 'Video'}.map {|like| like.likeable_id}
   end
 
   private

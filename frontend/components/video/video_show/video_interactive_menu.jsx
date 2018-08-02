@@ -7,8 +7,11 @@ class VideoInteractiveMenu extends React.Component {
 
   likeVideo(isDislike, eve) {
     eve.preventDefault();
+    debugger
     if (!this.props.currentUserId) {
       this.props.history.push('/login');
+    } else if (this.props.currentUser.liked_video_ids.includes(this.props.video.id)) {
+      console.log('doing nothing');
     } else {
       this.props.createLike(
         this.props.currentUserId,
@@ -42,7 +45,8 @@ const msp = ({ entities, session }, ownProps) => {
   return {
   video,
   user: video ? entities.users[video.uploader_id] : {},
-  currentUserId: session.id
+  currentUserId: session.id,
+  currentUser: session.id ? entities.users[session.id] : {}
   };
 };
 
