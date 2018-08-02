@@ -5,7 +5,7 @@ export const createVideoLike = (currentUserId, videoId, isDislike) => (
     data: {
       like: {
         user_id: currentUserId,
-        video_id: videoId,
+        likeable_id: videoId,
         is_dislike: isDislike,
         likeable_type: 'Video'
       }

@@ -7,11 +7,15 @@ class VideoInteractiveMenu extends React.Component {
 
   likeVideo(isDislike, eve) {
     eve.preventDefault();
-    this.props.createLike(
-      this.props.currentUserId,
-      this.props.video.id,
-      isDislike
-    );
+    if (!this.props.currentUserId) {
+      this.props.history.push('/login');
+    } else {
+      this.props.createLike(
+        this.props.currentUserId,
+        this.props.video.id,
+        isDislike
+      );
+    }
   }
 
   render() {

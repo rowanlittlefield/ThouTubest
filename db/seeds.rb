@@ -55,7 +55,7 @@ def create_comments(video, users)
 end
 
 def create_video_likes(video, users)
-  users.each do |user|
+  users[1..-1].each do |user|
     num = rand(1..2)
     like = Like.new
     like.user = user
