@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions'
-import { RECEIVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 
 const likesReducer = (state = {}, action) => {
 
@@ -10,14 +10,16 @@ const likesReducer = (state = {}, action) => {
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-    debugger
       return merge({}, state, action.likes)
     case RECEIVE_LIKE:
-    debugger
       return merge({}, state, {[action.like.id]: action.like})
     case RECEIVE_VIDEO:
-    debugger
       return merge({}, state, (action.likes ? action.likes : {}));
+    case REMOVE_LIKE:
+    debugger
+      const newState = merge({}, state);
+      delete newState[action.like.id];
+      return newState;
     default:
       return state;
   }

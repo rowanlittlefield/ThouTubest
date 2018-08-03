@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createVideoLike, updateLike } from '../../../actions/like_actions';
+import { createVideoLike, updateLike, deleteLike } from '../../../actions/like_actions';
 
 class VideoInteractiveMenu extends React.Component {
 
@@ -26,8 +26,9 @@ class VideoInteractiveMenu extends React.Component {
     } else if (this.props.currentUserLike &&
       this.props.currentUserLike.is_dislike != isDislike) {
         this.props.updateLike(this.props.currentUserLike.id, isDislike);
+    } else {
+      this.props.deleteLike(this.props.currentUserLike.id);
     }
-
     // this.props.currentUser.liked_video_ids.includes(this.props.video.id)
   }
 
@@ -54,7 +55,7 @@ const msp = ({ entities, session }, ownProps) => {
   const video = entities.videos[ownProps.match.params.videoId];
   const currentUser = session.id ? entities.users[session.id] : {};
   const likes = entities.likes
-  // const currentUserLikeId = currentUser.like_ids ? currentUser.like_ids : null
+
   let currentUserLike = null;
   if (currentUser.like_ids) {
     for(let i = 0; i < currentUser.like_ids.length; i++) {
@@ -67,7 +68,7 @@ const msp = ({ entities, session }, ownProps) => {
       }
     }
   }
-
+debugger
   return {
   video,
   user: video ? entities.users[video.uploader_id] : {},
@@ -78,7 +79,6 @@ const msp = ({ entities, session }, ownProps) => {
 };
 
 const mdp = dispatch => ({
-  // deleteVideo: id => dispatch(deleteVideo(id))
   createLike: (currentUserId, videoId, isDislike) => dispatch(createVideoLike(currentUserId, videoId, isDislike)),
   updateLike: (id, is_dislike) => dispatch(updateLike(id, is_dislike)),
   deleteLike: id => dispatch(deleteLike(id))

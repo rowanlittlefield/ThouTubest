@@ -3,7 +3,7 @@ import merge from 'lodash/merge';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
-import { RECEIVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 
 const usersReducer = (state = {}, action) => {
 
@@ -20,6 +20,7 @@ const usersReducer = (state = {}, action) => {
       case REMOVE_COMMENT:
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_LIKE:
+    case REMOVE_LIKE:
       // const newState = merge({}, state);
       // if (action.like.likeable_type === 'Video' &&
       //   state[action.like.user_id].liked_video_ids) {
@@ -27,8 +28,10 @@ const usersReducer = (state = {}, action) => {
       // } else {
       //
       // }
-      const newState = merge({}, state, {[action.user.id]: action.user});
-
+      debugger
+      const newState = merge({}, state);
+      const newerState = merge (newState, {[action.user.id]: action.user});
+        newState[action.user.id].like_ids = action.user.like_ids.slice();
 
       return newState
     default:

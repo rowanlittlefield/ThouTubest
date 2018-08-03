@@ -34,7 +34,11 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
-
+    @like = Like.find(params[:id])
+    @user = @like.user
+    @video = @like.likeable
+    @like.destroy
+    render 'api/likes/show'
   end
 
   private
