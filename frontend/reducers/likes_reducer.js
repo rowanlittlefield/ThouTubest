@@ -16,7 +16,6 @@ const likesReducer = (state = {}, action) => {
     case RECEIVE_VIDEO:
       return merge({}, state, (action.likes ? action.likes : {}));
     case REMOVE_LIKE:
-    debugger
       const newState = merge({}, state);
       delete newState[action.like.id];
       return newState;

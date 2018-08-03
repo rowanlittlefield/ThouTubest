@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import { createVideoLike, updateLike, deleteLike } from '../../../actions/like_actions';
 
 class VideoInteractiveMenu extends React.Component {
+  componentDidMount() {
+    this.setLikeBarRatio();
+  }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     numLikes:
-  //   };
-  // }
+  componentDidUpdate() {
+    this.setLikeBarRatio();
+  }
 
   likeVideo(isDislike, eve) {
     eve.preventDefault();
-    debugger
     if (!this.props.currentUserId) {
       this.props.history.push('/login');
     } else if (!this.props.currentUserLike) {
@@ -29,7 +28,29 @@ class VideoInteractiveMenu extends React.Component {
     } else {
       this.props.deleteLike(this.props.currentUserLike.id);
     }
-    // this.props.currentUser.liked_video_ids.includes(this.props.video.id)
+  }
+
+  setLikeBarRatio() {
+    const num_likes = this.props.video.num_likes;
+    const total_likes = this.props.video.num_dislikes + num_likes;
+    const likesButton = document.getElementById("video-player-like-button-likes");
+    const dislikesButton = document.getElementById("video-player-like-button-dislikes")
+
+    const likeBarRatio = document.getElementById("video-player-like-bar-ratio");
+    likeBarRatio.style.width = `${141*(num_likes/total_likes)}px`
+
+    if (!this.props.currentUserLike) {
+      likeBarRatio.style.background = '#9b9b9b';
+      likesButton.style.color = '#9b9b9b';
+      dislikesButton.style.color = '#9b9b9b';
+
+    } else if (!this.props.currentUserLike.is_dislike) {
+      likeBarRatio.style.background = 'rgb(6, 95, 212)';
+      likesButton.style.color = 'rgb(6, 95, 212)';
+    } else {
+      likeBarRatio.style.background = 'rgb(6, 95, 212)';
+      dislikesButton.style.color = 'rgb(6, 95, 212)';
+    }
   }
 
   render() {
@@ -37,14 +58,21 @@ class VideoInteractiveMenu extends React.Component {
     if(!video) return null;
     return (
       <span className="video-player-footer-interactive-menu">
-        <button className="video-player-like-button" onClick={this.likeVideo.bind(this, false)}>
+        <button className="video-player-like-button"
+          id="video-player-like-button-likes"
+           onClick={this.likeVideo.bind(this, false)}>
           <img className="video-player-like-icon"
             src={window.likeIcon}/> <span>{video.num_likes}</span>
         </button>
-        <button className="video-player-like-button" onClick={this.likeVideo.bind(this, true)}>
+        <button className="video-player-like-button"
+           id="video-player-like-button-dislikes"
+           onClick={this.likeVideo.bind(this, true)}>
           <img className="video-player-like-icon"
             src={window.likeIcon}/> <span>{video.num_dislikes}</span>
         </button>
+        <div className="video-player-like-bar"></div>
+        <div id="video-player-like-bar-ratio"
+          className="video-player-like-bar-ratio"></div>
       </span>
     );
   }
@@ -68,7 +96,6 @@ const msp = ({ entities, session }, ownProps) => {
       }
     }
   }
-debugger
   return {
   video,
   user: video ? entities.users[video.uploader_id] : {},

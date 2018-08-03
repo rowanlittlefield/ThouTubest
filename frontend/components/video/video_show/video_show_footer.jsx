@@ -22,8 +22,6 @@ class VideoShowFooter extends React.Component {
         <div className="video-player-footer-info">
           <span className="video-player-footer-views">{video.views} views</span>
           <VideoInteractiveMenu />
-          <div className="video-player-like-bar"></div>
-          <div className="video-player-like-bar-ratio"></div>
         </div>
         <div className="video-player-secondary-info">
           <div className="video-player-secondary-info-top-row">

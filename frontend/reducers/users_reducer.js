@@ -21,14 +21,6 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_LIKE:
     case REMOVE_LIKE:
-      // const newState = merge({}, state);
-      // if (action.like.likeable_type === 'Video' &&
-      //   state[action.like.user_id].liked_video_ids) {
-      //   newState[action.like.user_id].liked_video_ids.push(action.like.likeable_id);
-      // } else {
-      //
-      // }
-      debugger
       const newState = merge({}, state);
       const newerState = merge (newState, {[action.user.id]: action.user});
         newState[action.user.id].like_ids = action.user.like_ids.slice();

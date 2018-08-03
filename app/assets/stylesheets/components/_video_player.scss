@@ -262,12 +262,17 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   cursor: pointer;
 }
 
+.video-player-like-button:focus {
+  outline: 0;
+}
+
 .video-player-like-bar {
   background-color: #eee;
 
   position: absolute;
-  top: 660px;
-  left: 500px;
+  top: 48px;
+  left: 0px;
+
   width: 141px;
   height: 2px;
 }
@@ -276,9 +281,9 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background-color: #9b9b9b;
 
   position: absolute;
-  top: 660px;
-  left: 500px;
-  width: 100px;
+  top: 48px;
+  left: 0px;
+  // width: 100px;
   height: 2px;
 }
 
