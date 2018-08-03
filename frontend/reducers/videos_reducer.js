@@ -26,12 +26,13 @@ const videosReducer = (state = {}, action) => {
       delete stateDup[action.id];
       return stateDup
     case RECEIVE_LIKE:
-    const theStateDup = merge({}, state);
-      if (action.like && action.like.is_dislike) {
-        theStateDup[action.like.likeable_id].num_dislikes++;
-      } else {
-        theStateDup[action.like.likeable_id].num_likes++;
-      }
+    debugger
+    const theStateDup = merge({}, state, {[action.video.id]: action.video});
+      // if (action.like && action.like.is_dislike) {
+      //   theStateDup[action.like.likeable_id].num_dislikes++;
+      // } else {
+      //   theStateDup[action.like.likeable_id].num_likes++;
+      // }
       return theStateDup;
     default:
       return state;

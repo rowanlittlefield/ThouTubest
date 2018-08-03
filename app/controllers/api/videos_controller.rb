@@ -15,6 +15,7 @@ class Api::VideosController < ApplicationController
       @video, video_index_params[:offset], video_index_params[:limit]
     )
 
+    get_current_user_video_likes(@video)
     if @video
       @video.add_view
       render "api/videos/show"
@@ -37,7 +38,6 @@ class Api::VideosController < ApplicationController
   end
 
   def update
-    debugger
     @video = Video.update(params[:id], update_params)
 
     if @video.save
@@ -91,5 +91,13 @@ class Api::VideosController < ApplicationController
     @user = video.user
     @videos = get_videos_list(limit, offset)
     @comments = video.comments.includes(:user)
+  end
+
+  def get_current_user_video_likes(video)
+    if current_user
+      @likes = current_user.likes.select do |like|
+        like.likeable_type == 'Video' && like.likeable_id == video.id
+      end
+    end
   end
 end

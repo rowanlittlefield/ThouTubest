@@ -5,11 +5,12 @@ export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
 export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const REMOVE_VIDEO = 'REMOVE_VIDEO';
 
-export const receiveVideo = ({ videos, users, comments }) => ({
+export const receiveVideo = ({ videos, users, comments, likes }) => ({
   type: RECEIVE_VIDEO,
   videos,
   users,
-  comments
+  comments,
+  likes
 });
 
 export const receiveVideos = ({videos, users}) => ({

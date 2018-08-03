@@ -20,13 +20,16 @@ const usersReducer = (state = {}, action) => {
       case REMOVE_COMMENT:
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_LIKE:
-      const newState = merge({}, state);
-      if (action.like.likeable_type === 'Video' &&
-        state[action.like.user_id].liked_video_ids) {
-        newState[action.like.user_id].liked_video_ids.push(action.like.likeable_id);
-      } else {
+      // const newState = merge({}, state);
+      // if (action.like.likeable_type === 'Video' &&
+      //   state[action.like.user_id].liked_video_ids) {
+      //   newState[action.like.user_id].liked_video_ids.push(action.like.likeable_id);
+      // } else {
+      //
+      // }
+      const newState = merge({}, state, {[action.user.id]: action.user});
 
-      }
+
       return newState
     default:
       return state;
