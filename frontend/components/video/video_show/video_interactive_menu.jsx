@@ -80,7 +80,8 @@ const msp = ({ entities, session }, ownProps) => {
 const mdp = dispatch => ({
   // deleteVideo: id => dispatch(deleteVideo(id))
   createLike: (currentUserId, videoId, isDislike) => dispatch(createVideoLike(currentUserId, videoId, isDislike)),
-  updateLike: (id, is_dislike) => dispatch(updateLike(id, is_dislike))
+  updateLike: (id, is_dislike) => dispatch(updateLike(id, is_dislike)),
+  deleteLike: id => dispatch(deleteLike(id))
 });
 
 export default withRouter(connect(msp, mdp)(VideoInteractiveMenu));

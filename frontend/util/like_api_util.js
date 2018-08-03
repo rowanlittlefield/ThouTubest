@@ -15,13 +15,23 @@ export const createVideoLike = (currentUserId, videoId, isDislike) => (
 
 export const updateLike = (id, is_dislike) => (
   $.ajax({
-    url: 'api/likes',
+    url: `api/likes/${id}`,
     method: 'PATCH',
     data: {
       like: {
         id,
         is_dislike
       }
+    }
+  })
+);
+
+export const deleteLike = id => (
+  $.ajax({
+    url: `api/likes/${id}`,
+    method: 'DELETE',
+    data: {
+      like: {id}
     }
   })
 );

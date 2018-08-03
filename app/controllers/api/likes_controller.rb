@@ -21,10 +21,12 @@ class Api::LikesController < ApplicationController
   end
 
   def update
-    @like = Like.update(like_update_params[:id], like_update_params[:is_dislike])
+
+    @like = Like.update(like_update_params[:id], like_update_params)
 
     if @like.save
       @video = @like.likeable
+      @user = @like.user
       render 'api/likes/show'
     else
       render json:  @like.errors.full_messages, status: 422
