@@ -245,8 +245,6 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
 .video-player-like-icon {
   width: 22px;
   height: 22px;
-  // // position: absolute;
-  // clip: rect(0, 512px, 512px, 0);
 }
 
 .video-player-like-button {
@@ -262,14 +260,6 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background: transparent;
   border: none;
   cursor: pointer;
-}
-
-#video-player-like-button-likes {
-
-}
-
-#video-player-like-icon {
-
 }
 
 .video-player-like-button:focus {

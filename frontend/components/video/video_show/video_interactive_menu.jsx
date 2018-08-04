@@ -42,25 +42,22 @@ class VideoInteractiveMenu extends React.Component {
 
     if (!this.props.currentUserLike) {
       likeBarRatio.style.background = '#9b9b9b';
-      likesButton.style.color = '#9b9b9b';
-      dislikesButton.style.color = '#9b9b9b';
-      likesImage.src = window.likeIconSheet;
-      dislikesImage.src = window.dislikeIconSheet;
+      this._colorLikes(dislikesButton, dislikesImage, '#9b9b9b', 'dis', 'Sheet');
+      this._colorLikes(likesButton, likesImage, '#9b9b9b', '', 'Sheet');
     } else if (!this.props.currentUserLike.is_dislike) {
       likeBarRatio.style.background = 'rgb(6, 95, 212)';
-      likesButton.style.color = 'rgb(6, 95, 212)';
-      likesImage.src = window.likeIconHighlight;
-
-      dislikesButton.style.color = '#9b9b9b';
-      dislikesImage.src = window.dislikeIconSheet;
+      this._colorLikes(likesButton, likesImage, 'rgb(6, 95, 212)', '', 'Highlight');
+      this._colorLikes(dislikesButton, dislikesImage, '#9b9b9b', 'dis', 'Sheet');
     } else {
       likeBarRatio.style.background = 'rgb(6, 95, 212)';
-      dislikesButton.style.color = 'rgb(6, 95, 212)';
-      dislikesImage.src = window.dislikeIconHighlight;
-
-      likesImage.src = window.likeIconSheet;
-      likesButton.style.color = '#9b9b9b';
+      this._colorLikes(dislikesButton, dislikesImage, 'rgb(6, 95, 212)', 'dis', 'Highlight');
+      this._colorLikes(likesButton, likesImage, '#9b9b9b', '', 'Sheet');
     }
+  }
+
+  _colorLikes(button, image, color, prefix, suffix) {
+    button.style.color = color;
+    image.src = window[`${prefix}likeIcon${suffix}`];
   }
 
   render() {
@@ -124,4 +121,3 @@ const mdp = dispatch => ({
 });
 
 export default withRouter(connect(msp, mdp)(VideoInteractiveMenu));
-// export default VideoInteractiveMenu;
