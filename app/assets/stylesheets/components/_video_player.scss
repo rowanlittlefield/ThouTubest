@@ -233,18 +233,21 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   font-size: 16px;
   font-weight: 400;
   color: rgba(17, 17, 17, 0.6);
-  padding-bottom: 15px;
+  // padding-bottom: 15px;
 }
 
 .video-player-footer-interactive-menu {
   position: relative;
   display: flex;
   flex-direction: row;
+  padding-right: 25px;
+  // padding-top: 5px;
 }
 
 .video-player-like-icon {
   width: 22px;
   height: 22px;
+  padding: 8px;
 }
 
 .video-player-like-button {
@@ -253,6 +256,7 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 13px;
+  padding: 0 8px 0 0;
 
   display: flex;
   flex-direction: row;
@@ -260,6 +264,10 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+#video-player-dislike-icon {
+  margin-left: 8px;
 }
 
 .video-player-like-button:focus {
@@ -270,7 +278,7 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background-color: #eee;
 
   position: absolute;
-  top: 48px;
+  top: 52px;
   left: 0px;
 
   width: 141px;
@@ -281,7 +289,7 @@ input[type=range].video-layer-volume-slider:focus::-ms-fill-upper {
   background-color: #9b9b9b;
 
   position: absolute;
-  top: 48px;
+  top: 52px;
   left: 0px;
   // width: 100px;
   height: 2px;

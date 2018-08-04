@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createVideoLike, updateLike, deleteLike } from '../../../actions/like_actions';
+import { currentUserVideoLike } from '../../../reducers/selectors/like_selectors';
 
 class VideoInteractiveMenu extends React.Component {
   componentDidMount() {
@@ -38,7 +39,7 @@ class VideoInteractiveMenu extends React.Component {
     const dislikesButton = document.getElementById("video-player-like-button-dislikes")
     const dislikesImage = document.getElementById("video-player-dislike-icon");
     const likeBarRatio = document.getElementById("video-player-like-bar-ratio");
-    likeBarRatio.style.width = `${141*(num_likes/total_likes)}px`
+    likeBarRatio.style.width = total_likes === 0 ? '0' : `${141*(num_likes/total_likes)}px`;
 
     if (!this.props.currentUserLike) {
       likeBarRatio.style.background = '#9b9b9b';
@@ -93,24 +94,12 @@ const msp = ({ entities, session }, ownProps) => {
   const currentUser = session.id ? entities.users[session.id] : {};
   const likes = entities.likes
 
-  let currentUserLike = null;
-  if (currentUser.like_ids) {
-    for(let i = 0; i < currentUser.like_ids.length; i++) {
-      let like = likes[currentUser.like_ids[i]];
-      if (like && like.likeable_type === 'Video' && like.user_id === currentUser.id &&
-        like.likeable_id === video.id) {
-        currentUserLike = like;
-        console.log('found it');
-        i = currentUser.like_ids.length;
-      }
-    }
-  }
   return {
   video,
   user: video ? entities.users[video.uploader_id] : {},
   currentUserId: session.id,
   currentUser: session.id ? entities.users[session.id] : {},
-  currentUserLike: currentUserLike
+  currentUserLike: currentUserVideoLike(video, currentUser, likes)
   };
 };
 
