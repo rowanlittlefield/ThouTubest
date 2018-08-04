@@ -73,6 +73,7 @@ class VideoInteractiveMenu extends React.Component {
             className="video-player-like-icon"
             src={window.likeIconSheet}/> <span>{video.num_likes}</span>
         </button>
+
         <button className="video-player-like-button"
            id="video-player-like-button-dislikes"
            onClick={this.likeVideo.bind(this, true)}>
@@ -80,6 +81,7 @@ class VideoInteractiveMenu extends React.Component {
             className="video-player-like-icon"
             src={window.likeIcon}/> <span>{video.num_dislikes}</span>
         </button>
+
         <div className="video-player-like-bar"></div>
         <div id="video-player-like-bar-ratio"
           className="video-player-like-bar-ratio"></div>
