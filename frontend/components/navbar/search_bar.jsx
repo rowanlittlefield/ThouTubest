@@ -14,8 +14,6 @@ class SearchBar extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    console.log('search submitted');
   }
 
   update(field) {

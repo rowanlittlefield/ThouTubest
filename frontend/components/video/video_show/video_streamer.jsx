@@ -91,7 +91,6 @@ class VideoStreamer extends React.Component {
   }
 
   decreaseControlsOpacity(video, videoControls, eve) {
-    console.log('you did it');
     const videoPlayer = document.getElementById("video-show-player");
     if (!eve || (!videoControls.contains(eve.relatedTarget) &&
      !videoPlayer.contains(eve.relatedTarget))) {

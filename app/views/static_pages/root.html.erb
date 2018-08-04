@@ -1,8 +1,4 @@
 <% if signed_in? %>
-  <script type="text/javascript">
-    console.log('someone is signed in ');
-  </script>
-
   <script id="bootstrap-current-user" type="text/javascript">
     window.currentUser = <%= render("api/users/user.json.jbuilder",
     user: current_user).html_safe %>
@@ -10,7 +6,3 @@
 <% end %>
 
 <div id="root"></div>
-
-<script type="text/javascript">
-  console.log('other one');
-</script>

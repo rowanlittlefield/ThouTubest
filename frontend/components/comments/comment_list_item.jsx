@@ -124,7 +124,6 @@ class CommentListItem extends React.Component {
           <div id={`comment-${comment.id}-reply-button-div`}>
             <span id={`comment-${comment.id}-reply-button`}
               className={`${type}-comment-show-listitem-child-comments-button`} onClick={() => {
-                console.log("Hello");
                 const boolean = !this.state.displayChildren;
                 const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
 
@@ -155,7 +154,6 @@ class CommentListItem extends React.Component {
                   <ul>
                     <li onClick={() => {
                         this.setState({displayEditForm: true});
-                        console.log('hello');
                       }}><span>Edit</span></li>
                     <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
                   </ul>
