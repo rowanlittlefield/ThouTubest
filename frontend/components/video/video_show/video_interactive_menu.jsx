@@ -54,20 +54,22 @@ class VideoInteractiveMenu extends React.Component {
   }
 
   render() {
-    const video = this.props.video
+    const video = this.props.video;
     if(!video) return null;
     return (
       <span className="video-player-footer-interactive-menu">
         <button className="video-player-like-button"
           id="video-player-like-button-likes"
            onClick={this.likeVideo.bind(this, false)}>
-          <img className="video-player-like-icon"
-            src={window.likeIcon}/> <span>{video.num_likes}</span>
+          <img id="video-player-like-icon"
+            className="video-player-like-icon"
+            src={window.likeIconSheet}/> <span>{video.num_likes}</span>
         </button>
         <button className="video-player-like-button"
            id="video-player-like-button-dislikes"
            onClick={this.likeVideo.bind(this, true)}>
-          <img className="video-player-like-icon"
+          <img id="video-player-like-icon"
+            className="video-player-like-icon"
             src={window.likeIcon}/> <span>{video.num_dislikes}</span>
         </button>
         <div className="video-player-like-bar"></div>
