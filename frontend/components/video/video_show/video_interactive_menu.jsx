@@ -34,8 +34,9 @@ class VideoInteractiveMenu extends React.Component {
     const num_likes = this.props.video.num_likes;
     const total_likes = this.props.video.num_dislikes + num_likes;
     const likesButton = document.getElementById("video-player-like-button-likes");
+    const likesImage = document.getElementById("video-player-like-icon");
     const dislikesButton = document.getElementById("video-player-like-button-dislikes")
-
+    const dislikesImage = document.getElementById("video-player-dislike-icon");
     const likeBarRatio = document.getElementById("video-player-like-bar-ratio");
     likeBarRatio.style.width = `${141*(num_likes/total_likes)}px`
 
@@ -43,13 +44,22 @@ class VideoInteractiveMenu extends React.Component {
       likeBarRatio.style.background = '#9b9b9b';
       likesButton.style.color = '#9b9b9b';
       dislikesButton.style.color = '#9b9b9b';
-
+      likesImage.src = window.likeIconSheet;
+      dislikesImage.src = window.dislikeIconSheet;
     } else if (!this.props.currentUserLike.is_dislike) {
       likeBarRatio.style.background = 'rgb(6, 95, 212)';
       likesButton.style.color = 'rgb(6, 95, 212)';
+      likesImage.src = window.likeIconHighlight;
+
+      dislikesButton.style.color = '#9b9b9b';
+      dislikesImage.src = window.dislikeIconSheet;
     } else {
       likeBarRatio.style.background = 'rgb(6, 95, 212)';
       dislikesButton.style.color = 'rgb(6, 95, 212)';
+      dislikesImage.src = window.dislikeIconHighlight;
+
+      likesImage.src = window.likeIconSheet;
+      likesButton.style.color = '#9b9b9b';
     }
   }
 
@@ -68,7 +78,7 @@ class VideoInteractiveMenu extends React.Component {
         <button className="video-player-like-button"
            id="video-player-like-button-dislikes"
            onClick={this.likeVideo.bind(this, true)}>
-          <img id="video-player-like-icon"
+          <img id="video-player-dislike-icon"
             className="video-player-like-icon"
             src={window.likeIcon}/> <span>{video.num_dislikes}</span>
         </button>
