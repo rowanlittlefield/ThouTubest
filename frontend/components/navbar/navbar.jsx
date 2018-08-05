@@ -33,7 +33,6 @@ class Navbar extends React.Component {
             </li>
 
           </ul>
-
           <img src={window.logoWithText} width="135px" height="45px" />
         </div>
 
