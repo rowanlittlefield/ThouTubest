@@ -12,8 +12,6 @@ class UpdateVideoForm extends React.Component {
       this.state = {
         title: video.title,
         description: video.description,
-        video_url: 'dummy',
-        thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
         thumbnailUrl: video.thumbnail_url ? video.thumbnail_url : null,
@@ -23,8 +21,6 @@ class UpdateVideoForm extends React.Component {
       this.state = {
         title: '',
         description: '',
-        video_url: 'dummy',
-        thumbnail_url: 'dummy',
         uploader_id: null,
         thumbnailFile: null,
         thumbnailUrl: null,
@@ -48,8 +44,6 @@ class UpdateVideoForm extends React.Component {
       this.setState({
         title: video.title,
         description: video.description,
-        video_url: 'dummy',
-        thumbnail_url: 'dummy',
         uploader_id: video.uploader_id,
         thumbnailFile: null,
         thumbnailUrl: video.thumbnail_image_url ? video.thumbnail_image_url : null,
@@ -69,8 +63,6 @@ class UpdateVideoForm extends React.Component {
 
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
-    formData.append('video[thumbnail_url]', this.state.thumbnail_url);
-    formData.append('video[video_url]', this.state.video_url);
     formData.append('video[uploader_id]', this.state.uploader_id);
 
 
