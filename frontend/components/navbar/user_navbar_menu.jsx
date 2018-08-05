@@ -28,29 +28,40 @@ class UserNavbarMenu extends React.Component {
     return (
       <ul>
         <li>
-          <img onClick={this.toggleDropDown} id="navbar-profile-image-nav" className='navbar-profile-image' width="40" height="40" src={currentUser.image_url} />
+          <img onClick={this.toggleDropDown}
+            id="navbar-profile-image-nav"
+            className='navbar-profile-image'
+            width="40" height="40" src={currentUser.image_url} />
         </li>
         <li>
-          <ul id="hamburger-dropdown" className={"hamburger-dropdown " + "hidden"}>
+          <ul id="hamburger-dropdown"
+            className={"hamburger-dropdown " + "hidden"}>
             <li>
               <ul>
                 <li className="navbar-hamburger-dropdown-profile-detail">
-                  <img id="navbar-profile-image-hamburger" className='navbar-profile-image' width="60" height="60" src={currentUser.image_url} />
+                  <img id="navbar-profile-image-hamburger"
+                    className='navbar-profile-image'
+                    width="60" height="60" src={currentUser.image_url} />
 
                   <div className="navbar-profile-detail-info">
-                    <div className="navbar-profile-detail-username">{currentUser.username}</div>
+                    <div className="navbar-profile-detail-username">
+                      {currentUser.username}
+                    </div>
                     <span>{currentUser.email}</span>
                   </div>
 
                 </li>
-                <li><button id="header-profile-button" className="header-button" onClick={() => {
-                    this.props.logout();
-                    this.props.history.push('/')
-                  }}>Log Out</button></li>
+                <li>
+                  <button id="header-profile-button"
+                    className="header-button" onClick={() => {
+                      this.props.logout();
+                      this.props.history.push('/')
+                    }}>Log Out
+                  </button>
+                  </li>
                 </ul>
               </li>
             </ul>
-
           </li>
         </ul>
     );
