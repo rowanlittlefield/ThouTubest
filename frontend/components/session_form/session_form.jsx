@@ -47,7 +47,7 @@ class SessionForm extends React.Component {
         <div className="login-form-container">
           <h2 className="login-form-container-logo">Logo Place Holder</h2>
           <h3 className="login-form-container-header">Sign in</h3>
-          <p className="login-form-container-subheader">to continue to Eutewbz</p>
+          <p className="login-form-container-subheader">to continue to ThouTubest</p>
           <form onSubmit={this.handleSubmit} className="login-form-box">
             <br/>
 
