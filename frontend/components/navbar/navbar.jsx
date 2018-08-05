@@ -34,7 +34,7 @@ class Navbar extends React.Component {
 
           </ul>
 
-          <span>LOGO</span>
+          <img src={window.logoWithText} width="135px" height="45px" />
         </div>
 
         <SearchBarContainer />
@@ -52,3 +52,4 @@ class Navbar extends React.Component {
 
 
 export default Navbar;
+// <span>LOGO</span>
