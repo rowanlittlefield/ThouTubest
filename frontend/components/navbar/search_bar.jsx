@@ -23,7 +23,6 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    return null;
     return (
       <div className="search-bar-div">
         <form className="search-bar-form" onSubmit={this.handleSubmit}>

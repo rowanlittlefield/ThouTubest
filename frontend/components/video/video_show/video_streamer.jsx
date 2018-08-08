@@ -72,9 +72,13 @@ class VideoStreamer extends React.Component {
 
   updateProgressDigitalClock(video, digitalClock) {
     const minutes = Math.floor(video.currentTime / 60);
-    const seconds = Math.floor(video.currentTime % 60);
+    let seconds = Math.floor(video.currentTime % 60);
+    if(seconds < 10) seconds = `0${seconds}`;
+
     const durationMin = Math.floor(video.duration / 60);
-    const durationSec =  Math.floor(video.duration % 60);
+    let durationSec =  Math.floor(video.duration % 60);
+    if(durationSec < 10) durationSec = `0${durationSec}`;
+
     digitalClock.innerHTML = (video.duration ?
        `${minutes}:${seconds}` + ' / ' +`${durationMin}:${durationSec}` : '');
   }
