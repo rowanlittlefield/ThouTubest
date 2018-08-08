@@ -104,6 +104,18 @@ class CommentListItem extends React.Component {
       );
     }
 
+    let whenUploaded
+    if (comment) {
+      const createdAtString = comment.created_at;
+      const dateString = createdAtString.slice(0,10);
+      const [year, month, day] = dateString.split('-');
+      const today = new Date();
+      const [currentYear, currentMonth, currentDay] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
+      whenUploaded = ((currentYear - year) * 365) + ((currentMonth - month) * 30) + (currentDay - day);
+    } else {
+      whenUploaded = '0';
+    }
+
     return (<li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
       onMouseEnter={this.showActionMenu.bind(this)}
       onMouseLeave={this.hideActionMenu.bind(this)}>
@@ -112,7 +124,7 @@ class CommentListItem extends React.Component {
         <div className={`${type}-comment-show-listitem-content`}>
           <div className={`${type}-comment-show-listitem-content-toprow`}>
             <span className={`${type}-comment-show-listitem-content-username`}>{user.username} &nbsp;&nbsp;</span>
-            <span className={`${type}-comment-show-listitem-content-timestamp`}>_ days ago</span>
+            <span className={`${type}-comment-show-listitem-content-timestamp`}>{whenUploaded} days ago</span>
           </div>
           <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
           <span onClick={() => {

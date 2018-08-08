@@ -40,7 +40,7 @@ end
 json.set! 'comments' do
   displayed_video.comments.each do |comment|
     json.set! comment.id do
-      json.extract! comment, :id, :body, :video_id, :parent_comment_id, :user_id, :child_comment_ids
+      json.extract! comment, :id, :body, :video_id, :parent_comment_id, :user_id, :child_comment_ids, :created_at
     end
   end
 end
