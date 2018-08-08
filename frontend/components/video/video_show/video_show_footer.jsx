@@ -15,6 +15,35 @@ class VideoShowFooter extends React.Component {
     const user = this.props.user;
     if(!video || !user) return null;
     const isCurrentUser = (this.props.currentUserId && user && this.props.currentUserId === user.id ? '' : ' hidden');
+    let date;
+    if (video) {
+      const createdAtString = video.created_at;
+      const dateString = createdAtString.slice(0,10);
+      let [year, month, day] = dateString.split('-');
+
+      if (parseInt(day) <= 9) {
+        day = day[1];
+      }
+
+      const monthStrings = {
+        '01': 'Jan',
+        '02': 'Feb',
+        '03': 'Mar',
+        '04': 'Apr',
+        '05': 'May',
+        '06': 'Jun',
+        '07': 'Jul',
+        '08': 'Aug',
+        '09': 'Sep',
+        '10': 'Oct',
+        '11': 'Nov',
+        '12': 'Dec'
+      };
+
+      date = `${monthStrings[month]} ${day}, ${year}`;
+    } else {
+      date = '';
+    }
 
     return (
       <div className="video-show-footer">
@@ -29,7 +58,7 @@ class VideoShowFooter extends React.Component {
               <img className="video-player-secondary-info-image" width="48px" height="48px" src={user.image_url}/>
               <div className="video-player-uploader-info">
                 <span className="video-player-footer-username">{user.username}</span>
-                <span className="video-player-footer-date">Published on _</span>
+                <span className="video-player-footer-date">Published on {date}</span>
               </div>
             </div>
             <div className={"video-player-edit-and-delete" + isCurrentUser}>
