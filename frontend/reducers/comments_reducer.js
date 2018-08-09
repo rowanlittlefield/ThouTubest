@@ -29,7 +29,6 @@ const commentReducer = (state = {}, action) => {
         if (action.parentComment) {
           stateDup[action.parentComment.id].child_comment_ids = action.parentComment.child_comment_ids.slice();
         }
-        // newerState[action.video.id].comment_ids = action.video.comment_ids.slice();
 
       return stateDup;
     default:

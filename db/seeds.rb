@@ -88,10 +88,10 @@ user_options_list = [
 ]
 
 video_options_list = [
-  # {title: 'Test Video', description: 'Test video description',
-  # video_url: 'dummy', thumbnail_url: 'dummy',
-  # image_url: "http://s3.amazonaws.com/thoutubest-dev/cassowary.jpeg",
-  # film_url: "http://s3.amazonaws.com/thoutubest-dev/test_video.mov"},
+  {title: 'Phainopepla', description: 'Test video description',
+  video_url: 'dummy', thumbnail_url: 'dummy',
+  image_url: "https://s3.amazonaws.com/thoutubest-dev/phainopepla/220px-Phainopepla_nitens_F.jpg",
+  film_url: "https://s3.amazonaws.com/thoutubest-dev/phainopepla/PHAI_20090801AM104300_os_ManyBirds-video-of-phainopepla.MP4"},
 
   {title: 'Hooded Oriole', description: 'A hodded oriole',
   video_url: 'dummy', thumbnail_url: 'dummy',
