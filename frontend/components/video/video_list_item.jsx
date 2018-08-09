@@ -23,6 +23,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     const today = new Date();
     const [currentYear, currentMonth, currentDay] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
     whenUploaded = ((currentYear - year) * 365) + ((currentMonth - month) * 30) + (currentDay - day);
+    if(whenUploaded < 0) whenUploaded = 0;
   } else {
     whenUploaded = '0';
   }
