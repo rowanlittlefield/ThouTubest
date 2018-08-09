@@ -26,6 +26,11 @@ const commentReducer = (state = {}, action) => {
     case REMOVE_COMMENT:
       const stateDup = merge({}, state);
       delete stateDup[action.comment.id];
+        if (action.parentComment) {
+          stateDup[action.parentComment.id].child_comment_ids = action.parentComment.child_comment_ids.slice();
+        }
+        // newerState[action.video.id].comment_ids = action.video.comment_ids.slice();
+
       return stateDup;
     default:
       return state;

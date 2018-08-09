@@ -18,11 +18,12 @@ export const receiveComments = comments => ({
   comments
 });
 
-export const removeComment = ({comment, user, video}) => ({
+export const removeComment = ({comment, user, video, parentComment}) => ({
   type: REMOVE_COMMENT,
   comment,
   user,
-  video
+  video,
+  parentComment
 });
 
 export const receiveErrors = errors => ({

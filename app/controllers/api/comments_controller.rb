@@ -31,6 +31,7 @@ class Api::CommentsController < ApplicationController
     @comment.destroy
     @video = @comment.video
     @user = @comment.user
+    @parent_comment = @comment.parent_comment
     render "api/comments/destroy"
   end
 
