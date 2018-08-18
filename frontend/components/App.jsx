@@ -2,9 +2,9 @@ import React from 'react';
 import NavbarContainer from './navbar/navbar_container';
 import {
   Route,
-  Redirect,
+  // Redirect,
   Switch,
-  Link,
+  // Link,
   HashRouter
 } from 'react-router-dom';
 import SignupFormContainer from './session_form/signup_form_container';
@@ -14,6 +14,7 @@ import VideoIndexContainer from './video/video_index/video_index_container';
 import VideoShowContainer from './video/video_show/video_show_container';
 import CreateVideoFormContainer from './video/video_forms/create_video_form_container';
 import UpdateVideoFormContainer from './video/video_forms/update_video_form_container';
+import SearchResultsContainer from './search/search_results_container';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
       <Route exact path="/videos/new" component={CreateVideoFormContainer} />
       <Route exact path="/videos/:videoId/edit" component={UpdateVideoFormContainer} />
       <Route exact path="/videos/:videoId" component={VideoShowContainer} />
+      <Route path="/results" component={SearchResultsContainer} />
       <Route exact path="/" component={VideoIndexContainer} />
     </Switch>
 

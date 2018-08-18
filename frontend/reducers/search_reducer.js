@@ -7,8 +7,7 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SEARCH_RESULTS:
-    return merge({}, state, { results: action.type.results });
-      return state;
+      return (action.results ? action.results : state);
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { sendSearchQuery } from '../../actions/search_actions';
+import { sendSearchQuery, clearSearchResults } from '../../actions/search_actions';
 import { connect } from 'react-redux';
 
 class SearchBar extends React.Component {
@@ -16,13 +16,16 @@ class SearchBar extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    this.props.sendSearchQuery(this.state.searchQuery);
+    this.props.history.push(`results?search_query=${this.state.searchQuery}`);
   }
 
-  update(field) {
-    return e => {
-      return this.setState({[field]: e.currentTarget.value});
-    } ;
-  }
+  // update(field) {
+  //   return e => {
+  //     return this.setState({[field]: e.currentTarget.value});
+  //   } ;
+  // }
 
   updateSearchResults() {
     const that = this;
@@ -32,8 +35,8 @@ class SearchBar extends React.Component {
       return this.setState(
         {searchQuery: e.currentTarget.value}, () => {
           setTimeout(() => {
-            if (that.state.searchQuery === query) {
-              console.log('stopped changing w/in one second');
+            if (that.state && that.state.searchQuery && that.state.searchQuery === query) {
+              // console.log('stopped changing w/in one second');
               that.props.sendSearchQuery(that.state.searchQuery);
             }
           }, 1000)
@@ -67,14 +70,15 @@ const msp = (state, ownProps) => {
   debugger
   const results = state.search.results ? state.search.results : {}
   return {
-    results: {}
+    results
   };
 };
 
 const mdp = (dispatch, ownProps) => {
   return {
-    sendSearchQuery: query => dispatch(sendSearchQuery(query))
+    sendSearchQuery: query => dispatch(sendSearchQuery(query)),
+    clearSearchResults: () => dispatch(clearSearchResults())
   };
 };
 
-export default connect(msp, mdp)(SearchBar);
+export default withRouter(connect(msp, mdp)(SearchBar));
