@@ -7,7 +7,14 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SEARCH_RESULTS:
-      return (action.results ? action.results : state);
+    let results;
+    if (action.results) {
+      debugger
+      results = Object.values(action.results.results).map((el, idx) => el.id)
+    } else {
+      results = [];
+    }
+      return ({results});
     default:
       return state;
   }

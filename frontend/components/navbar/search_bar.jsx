@@ -21,12 +21,6 @@ class SearchBar extends React.Component {
     this.props.history.push(`results?search_query=${this.state.searchQuery}`);
   }
 
-  // update(field) {
-  //   return e => {
-  //     return this.setState({[field]: e.currentTarget.value});
-  //   } ;
-  // }
-
   updateSearchResults() {
     const that = this;
 
@@ -36,7 +30,6 @@ class SearchBar extends React.Component {
         {searchQuery: e.currentTarget.value}, () => {
           setTimeout(() => {
             if (that.state && that.state.searchQuery && that.state.searchQuery === query) {
-              // console.log('stopped changing w/in one second');
               that.props.sendSearchQuery(that.state.searchQuery);
             }
           }, 1000)
@@ -68,7 +61,7 @@ class SearchBar extends React.Component {
 
 const msp = (state, ownProps) => {
   debugger
-  const results = state.search.results ? state.search.results : {}
+  const results = state.search.results ? state.search.results : []
   return {
     results
   };

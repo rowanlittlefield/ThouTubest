@@ -5,6 +5,7 @@ import {
 } from '../actions/video_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_SEARCH_RESULTS } from '../actions/search_actions';
 import { merge } from 'lodash';
 
 const videosReducer = (state = {}, action) => {
@@ -29,6 +30,9 @@ const videosReducer = (state = {}, action) => {
     case REMOVE_LIKE:
     const theStateDup = merge({}, state, {[action.video.id]: action.video});
       return theStateDup;
+    case RECEIVE_SEARCH_RESULTS:
+    debugger
+      return merge({}, state, action.results.results);
     default:
       return state;
 

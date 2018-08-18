@@ -1,7 +1,6 @@
 class Api::SearchController < ApplicationController
 
   def index
-    debugger
     if search_params['searchQuery'].present?
       @results = Video.search(search_params['searchQuery'])
     else
