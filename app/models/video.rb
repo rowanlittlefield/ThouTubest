@@ -26,6 +26,9 @@ class Video < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable
 
+  include PgSearch
+
+  pg_search_scope :search, against: [:title]
 
   def ensure_film
     unless self.film.attached?
