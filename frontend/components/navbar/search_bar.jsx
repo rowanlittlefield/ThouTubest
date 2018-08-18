@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { sendSearchQuery } from '../../actions/search_actions';
 import { connect } from 'react-redux';
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: ""
+      searchQuery: "",
+      results: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +24,24 @@ class SearchBar extends React.Component {
     } ;
   }
 
+  updateSearchResults() {
+    const that = this;
+
+    return e => {
+      const query = e.currentTarget.value
+      return this.setState(
+        {searchQuery: e.currentTarget.value}, () => {
+          setTimeout(() => {
+            if (that.state.searchQuery === query) {
+              console.log('stopped changing w/in one second');
+              that.props.sendSearchQuery(that.state.searchQuery);
+            }
+          }, 1000)
+        }
+      );
+    }
+  }
+
   render() {
     return (
       <div className="search-bar-div">
@@ -30,7 +50,7 @@ class SearchBar extends React.Component {
             <input className="search-bar-input"
               type="input"
               value={this.state.searchQuery}
-              onChange={this.update('searchQuery')}
+              onChange={this.updateSearchResults()}
               placeholder="Search"/>
           </div>
           <button className="search-bar-button">
@@ -44,11 +64,17 @@ class SearchBar extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  return {};
+  debugger
+  const results = state.search.results ? state.search.results : {}
+  return {
+    results: {}
+  };
 };
 
 const mdp = (dispatch, ownProps) => {
-  return {};
+  return {
+    sendSearchQuery: query => dispatch(sendSearchQuery(query))
+  };
 };
 
 export default connect(msp, mdp)(SearchBar);
