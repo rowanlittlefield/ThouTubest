@@ -33,7 +33,6 @@ class VideoShow extends React.Component {
   }
 
   render() {
-    debugger
     if(!this.props.video) return null;
 
     return(

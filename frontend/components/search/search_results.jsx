@@ -3,7 +3,6 @@ import VideoList from '../video/video_list';
 
 class SearchResults extends React.Component {
   componentDidMount() {
-    debugger
     const searchQuery = this.props.history.location.search.slice(14);
     this.props.sendSearchQuery(searchQuery);
   }
