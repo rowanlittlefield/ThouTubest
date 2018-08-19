@@ -1,20 +1,21 @@
 import SearchResults from './search_results';
-import { clearSearchResults } from '../../actions/search_actions';
+import { clearSearchResults, sendSearchQuery } from '../../actions/search_actions';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
-  const results = state.search.results ? Object.values(state.search.results) : []; 
+  const results = state.search.results ? Object.values(state.search.results) : [];
   return {
     results
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  clearSearchResults: () => dispatch(clearSearchResults())
+  clearSearchResults: () => dispatch(clearSearchResults()),
+  sendSearchQuery: query => dispatch(sendSearchQuery(query))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchResults);
+)(SearchResults));

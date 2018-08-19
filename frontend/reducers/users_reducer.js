@@ -4,6 +4,7 @@ import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_VIDEOS, RECEIVE_VIDEO } from '../actions/video_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_SEARCH_RESULTS } from '../actions/search_actions';
 
 const usersReducer = (state = {}, action) => {
 
@@ -26,6 +27,8 @@ const usersReducer = (state = {}, action) => {
         newState[action.user.id].like_ids = action.user.like_ids.slice();
 
       return newState
+    case RECEIVE_SEARCH_RESULTS:
+      return merge({}, state, action.users);
     default:
       return state;
   }

@@ -2,7 +2,7 @@ class Api::SearchController < ApplicationController
 
   def index
     if search_params['searchQuery'].present?
-      @results = Video.search(search_params['searchQuery'])
+      @results = Video.search(search_params['searchQuery']).includes(:user)
     else
       @results = []
     end

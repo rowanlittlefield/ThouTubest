@@ -9,7 +9,6 @@ export default (state = {}, action) => {
     case RECEIVE_SEARCH_RESULTS:
     let results;
     if (action.results) {
-      debugger
       results = Object.values(action.results.results).map((el, idx) => el.id)
     } else {
       results = [];

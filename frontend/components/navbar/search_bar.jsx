@@ -60,7 +60,6 @@ class SearchBar extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  debugger
   const results = state.search.results ? state.search.results : []
   return {
     results

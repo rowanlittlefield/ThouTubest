@@ -3,22 +3,17 @@ import VideoList from '../video/video_list';
 
 class SearchResults extends React.Component {
   componentDidMount() {
-    // this.props.fetchSearchResults();
+    debugger
+    const searchQuery = this.props.history.location.search.slice(14);
+    this.props.sendSearchQuery(searchQuery);
   }
 
   render() {
-    debugger
-    // let results;
-    // if (this.props.results) {
-    //   results = this.props.results.map((el, idx) => el.title);
-    // } else {
-    //   results = [];
-    // }
     if(this.props.results.length === 0) return null;
     return (
       <VideoList
         videoIds={this.props.results}
-        type='show' 
+        type='show'
         header='filter'/>
     );
   }
