@@ -67,14 +67,23 @@ div.search-list-item-author {
   font-weight: 700;
 }
 
-.search-list-item-age {
-  // display: none;
-}
-
 .search-list-item-description {
   font-size: 13px;
   color: rgb(136, 136, 136);
 
   padding-top: 8px;
   margin-bottom: 8px;
+}
+
+.empty-search {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 16px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  text-align: center;
 }

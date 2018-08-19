@@ -8,7 +8,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_SEARCH_RESULTS:
     let results;
-    if (action.results) {
+    if (action.results && Object.values(action.results).length > 0) {
       results = Object.values(action.results.results).map((el, idx) => el.id)
     } else {
       results = [];

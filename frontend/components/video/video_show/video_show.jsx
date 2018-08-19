@@ -22,7 +22,7 @@ class VideoShow extends React.Component {
     if (nextProps.match.params.videoId &&
       nextProps.match.params.videoId != this.state.currentVideoId) {
       this.setState(
-        { currentVideoId: nextProps.match.params.videoId},
+        { currentVideoId: nextProps.match.params.videoId },
       );
       this.props.getVideo(nextProps.match.params.videoId, 10, 0);
 
@@ -33,6 +33,7 @@ class VideoShow extends React.Component {
   }
 
   render() {
+    debugger
     if(!this.props.video) return null;
 
     return(

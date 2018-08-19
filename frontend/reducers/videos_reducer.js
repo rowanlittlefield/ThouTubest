@@ -31,7 +31,6 @@ const videosReducer = (state = {}, action) => {
     const theStateDup = merge({}, state, {[action.video.id]: action.video});
       return theStateDup;
     case RECEIVE_SEARCH_RESULTS:
-    debugger
       return merge({}, state, action.results.results);
     default:
       return state;

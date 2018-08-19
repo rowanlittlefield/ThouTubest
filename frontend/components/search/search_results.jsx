@@ -9,7 +9,7 @@ class SearchResults extends React.Component {
   }
 
   render() {
-    if(this.props.results.length === 0) return null;
+    if(this.props.results.length === 0) return (<span className="empty-search"><span>No results found</span></span>);
     return (
       <VideoList
         videoIds={this.props.results}
