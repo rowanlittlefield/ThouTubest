@@ -6,11 +6,12 @@ json.set! 'results' do
     end
   end
 
-  json.set! 'users' do
-    @results.each do |result|
-        json.set! result.user.id do
-          json.partial! "api/users/non-signed-in_user", user: result.user
-        end
-      end
+end
+
+json.set! 'users' do
+  @results.each do |result|
+    json.set! result.user.id do
+      json.partial! "api/users/non-signed-in_user", user: result.user
     end
+  end
 end

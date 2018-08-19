@@ -7,7 +7,7 @@ export const RECEIVE_SEARCH_ERRORS = 'RECEIVE_SEARCH_ERRORS';
 export const receiveSearchResults = results => ({
   type: RECEIVE_SEARCH_RESULTS,
   results,
-  users: results.results.users
+  users: results.users
 });
 
 export const clearSearchResults = () => ({

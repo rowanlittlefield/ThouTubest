@@ -28,7 +28,6 @@ const VideoListItem = ({type, video, user, getVideo}) => {
   } else {
     whenUploaded = '0';
   }
-  debugger
 
   return (
     <div className={`${type}-list-item`}>

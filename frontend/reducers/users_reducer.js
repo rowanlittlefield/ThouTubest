@@ -28,6 +28,7 @@ const usersReducer = (state = {}, action) => {
 
       return newState
     case RECEIVE_SEARCH_RESULTS:
+    debugger
       return merge({}, state, action.users);
     default:
       return state;
