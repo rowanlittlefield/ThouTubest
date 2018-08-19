@@ -1,0 +1,80 @@
+div.search-list {
+  padding-left: 24px;
+}
+
+.search-list-header {
+  display: block;
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.search-list-item {
+  position: relative;
+}
+
+.search-list-item-link {
+  font-family: 'Noto Sans', Roboto, Arial, Helvetica, sans-serif;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.search-thumbnail-image {
+  width: 246px;
+  height: 138px;
+  margin-right: 16px;
+}
+
+.search-thumbnail-duration {
+  color: white;
+  font-size: 12px;
+
+  position: absolute;
+  top: 112px;
+  left: 210px;
+  z-index: 2;
+
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+}
+
+.search-thumbnail-content {
+  color: rgba(17, 17, 17, 0.6);
+  font-weight: 400;
+  font-size: 12px;
+
+  width: 600px;
+  height: 138px;
+}
+
+.search-list-item-title {
+  color: rgb(17, 17, 17);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+div.search-list-item-author {
+  float: left;
+  // display: inline;
+}
+
+.search-list-item-extra-dot {
+  float: left;
+  font-weight: 700;
+}
+
+.search-list-item-age {
+  // display: none;
+}
+
+.search-list-item-description {
+  font-size: 13px;
+  color: rgb(136, 136, 136);
+
+  padding-top: 8px;
+  margin-bottom: 8px;
+}

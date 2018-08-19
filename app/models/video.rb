@@ -44,11 +44,15 @@ class Video < ApplicationRecord
     self.likes.where(is_dislike: true).count
   end
 
-  def thumbnail_image
+  def thumbnail_image(context = nil)
     if self.custom_thumbnail_image
       self.custom_thumbnail_image.image
     else
-      self.film.preview(resize: "210x118")
+      if context == 'search'
+        self.film.preview(resize: "246x138")
+      else
+        self.film.preview(resize: "210x118")
+      end
     end
   end
 

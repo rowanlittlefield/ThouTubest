@@ -13,7 +13,7 @@ class SearchResults extends React.Component {
     return (
       <VideoList
         videoIds={this.props.results}
-        type='show'
+        type='search'
         header='filter'/>
     );
   }

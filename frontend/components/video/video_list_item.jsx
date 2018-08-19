@@ -6,6 +6,7 @@ import { getVideo } from '../../actions/video_actions';
 const VideoListItem = ({type, video, user, getVideo}) => {
   const username = user ? user.username : '';
   const length = video.length;
+  const description = <div className="search-list-item-description">{video.description}</div>;
   let duration;
   if (length) {
     const minutes = `${Math.floor(length / 60)}`;
@@ -27,6 +28,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
   } else {
     whenUploaded = '0';
   }
+  debugger
 
   return (
     <div className={`${type}-list-item`}>
@@ -39,9 +41,11 @@ const VideoListItem = ({type, video, user, getVideo}) => {
         <div className={`${type}-thumbnail-content`}>
           <div className={`${type}-list-item-title`}>{video.title}</div>
           <div className={`${type}-list-item-author`}>{username}</div>
+          {type === 'search' ? <span className="search-list-item-extra-dot">&nbsp; &middot; &nbsp;</span> : ''}
           <div className={`${type}-list-item-views`}>{video.views} views
             <span className={`${type}-list-item-age`}> <span>&middot;</span> {whenUploaded} days ago</span>
           </div>
+          {type === 'search' ? description : null}
         </div>
       </Link>
     </div>

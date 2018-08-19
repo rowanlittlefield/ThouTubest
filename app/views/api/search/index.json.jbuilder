@@ -1,10 +1,8 @@
 json.set! 'results' do
   @results.each do |result|
     json.set! result.id do
-      json.extract! result, :title, :id, :description, :views, :uploader_id, :created_at
-      if result.custom_thumbnail_image
-        json.thumbnail_image_url url_for(result.thumbnail_image)
-      end
+      json.extract! result, :title, :id, :description, :views, :uploader_id, :created_at, :length, :views
+      json.thumbnail_image_url url_for(result.thumbnail_image('search'))
     end
   end
 
