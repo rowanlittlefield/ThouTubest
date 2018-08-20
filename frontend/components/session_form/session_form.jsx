@@ -78,8 +78,8 @@ class SessionForm extends React.Component {
               </div>
             </div>
           </form>
+          <button className="demo-login-button" onClick={this.props.demoLogin.bind(this)}>Demo login</button>
         </div>
-        <button className="demo-login-button" onClick={this.props.demoLogin.bind(this)}>Demo login</button>
       </div>
 
     );
