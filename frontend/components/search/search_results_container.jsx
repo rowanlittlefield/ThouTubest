@@ -1,5 +1,5 @@
 import SearchResults from './search_results';
-import { clearSearchResults, sendSearchQuery } from '../../actions/search_actions';
+import { clearSearchResults, sendSearchQuery, fetchAutocompleteResults } from '../../actions/search_actions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   clearSearchResults: () => dispatch(clearSearchResults()),
-  sendSearchQuery: query => dispatch(sendSearchQuery(query))
+  sendSearchQuery: query => dispatch(sendSearchQuery(query)),
+  fetchAutocompleteResults: query => dispatch(fetchAutocompleteResults(query))
 });
 
 export default withRouter(connect(

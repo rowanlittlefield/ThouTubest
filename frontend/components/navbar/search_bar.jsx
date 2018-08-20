@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { sendSearchQuery, clearSearchResults } from '../../actions/search_actions';
+import { sendSearchQuery, clearSearchResults, fetchAutocompleteResults } from '../../actions/search_actions';
 import { connect } from 'react-redux';
 
 class SearchBar extends React.Component {
@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
         {searchQuery: e.currentTarget.value}, () => {
           setTimeout(() => {
             if (that.state && that.state.searchQuery && that.state.searchQuery === query) {
-              that.props.sendSearchQuery(that.state.searchQuery);
+              that.props.fetchAutocompleteResults(that.state.searchQuery);
             }
           }, 1000)
         }
@@ -68,6 +68,7 @@ const msp = (state, ownProps) => {
 const mdp = (dispatch, ownProps) => {
   return {
     sendSearchQuery: query => dispatch(sendSearchQuery(query)),
+    fetchAutocompleteResults: query => dispatch(fetchAutocompleteResults(query)),
     clearSearchResults: () => dispatch(clearSearchResults())
   };
 };
