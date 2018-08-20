@@ -171,7 +171,8 @@ class CreateVideoForm extends React.Component {
                 <div className="edit-video-thumbnail-input-div">
                   <input type="file"
                     onChange={this.handleFile('thumbnail')}
-                    className="edit-video-thumbnail-input"/>
+                    className="edit-video-thumbnail-input"
+                    accept="image/*"/>
 
                   {this.removeCustomThumbnailButton()}
                 </div>
@@ -190,7 +191,8 @@ class CreateVideoForm extends React.Component {
                 <div className="create-video-film-input-adjust">
                   <input type="file"
                     className="create-video-film-input"
-                    onChange={this.handleFile('film')}/>
+                    onChange={this.handleFile('film')}
+                    accept="video/*"/>
                 </div>
               </label>
               <img className="create-video-film-icon" src={window.uploadFileIcon} width="60px" height="60px"/>

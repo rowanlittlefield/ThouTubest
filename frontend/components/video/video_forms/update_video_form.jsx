@@ -194,7 +194,8 @@ class UpdateVideoForm extends React.Component {
                 <div className="edit-video-thumbnail-input-div">
                   <input type="file"
                     onChange={this.handleFile('thumbnail')}
-                    className="edit-video-thumbnail-input"/>
+                    className="edit-video-thumbnail-input"
+                    accept="image/*"/>
 
                   {this.removeCustomThumbnailButton()}
                 </div>

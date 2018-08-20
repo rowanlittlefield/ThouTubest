@@ -128,7 +128,8 @@ class SignupForm extends React.Component {
                 <br/>
                 <input type="file"
                   className="login-form-photo-upload-button"
-                  onChange={this.handleFile.bind(this)} />
+                  onChange={this.handleFile.bind(this)}
+                  accept="image/*" />
               </label>
               <div className="login-form-image-preview">
 
