@@ -16,7 +16,8 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if(e) e.preventDefault();
+
     this.props.sendSearchQuery(this.state.searchQuery);
     this.props.history.push(`/results?search_query=${this.state.searchQuery}`);
   }
@@ -54,7 +55,12 @@ class SearchBar extends React.Component {
               height="20px" />
           </button>
         </form>
-        <AutocompleteDropdown />
+        <AutocompleteDropdown send={autocompleteOption => {
+            this.setState({searchQuery: autocompleteOption}, () => {
+              this.handleSubmit();
+            });
+
+        }} />
       </div>
     );
   }

@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AutocompleteDropdownListItem from './autocomplete_dropdown_list_item';
 
 class AutocompleteDropdown extends React.Component {
   render() {
     const autocompleteItems = this.props.autocomplete.map((title, idx) =>
-    <li key={idx} className="autocomplete-dropdown-list-item">{title}</li>
+    <AutocompleteDropdownListItem key={idx}
+      title={title}
+      send={this.props.send.bind(this, title)} />
   );
   if(autocompleteItems.length === 0 ) return null;
 
