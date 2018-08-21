@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { sendSearchQuery, clearSearchResults, fetchAutocompleteResults } from '../../actions/search_actions';
 import { connect } from 'react-redux';
+import AutocompleteDropdown from './autocomplete_dropdown';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -53,6 +54,7 @@ class SearchBar extends React.Component {
               height="20px" />
           </button>
         </form>
+        <AutocompleteDropdown />
       </div>
     );
   }
