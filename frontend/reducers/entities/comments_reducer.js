@@ -10,6 +10,7 @@ const commentReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_VIDEO:
+    case RECEIVE_COMMENTS:
       return merge({}, state, action.comments);
     case RECEIVE_COMMENT:
       let newState = merge({}, state, {[action.comment.id]: action.comment})
@@ -20,20 +21,15 @@ const commentReducer = (state = {}, action) => {
         return newerState
       }
       return newState;
-    case RECEIVE_COMMENTS:
-      let otherNewState = merge({}, state, action.comments);
-      return otherNewState;
     case REMOVE_COMMENT:
       const stateDup = merge({}, state);
       delete stateDup[action.comment.id];
         if (action.parentComment) {
           stateDup[action.parentComment.id].child_comment_ids = action.parentComment.child_comment_ids.slice();
         }
-
       return stateDup;
     default:
       return state;
-
   }
 };
 

@@ -28,7 +28,3 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, root);
 });
-
-window.createVideo = VideoApiUtil.createVideo;
-window.getComments = CommentActions.getComments;
-window.updateVideo = VideoActions.updateVideo;

@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from './create_comment_form_container';
 import EditCommentFormContainer from './edit_comment_form_container';
-import { getComments, deleteComment } from '../../actions/comment_actions';
+import { deleteComment } from '../../actions/comment_actions';
 
 class CommentListItem extends React.Component {
   constructor(props) {
