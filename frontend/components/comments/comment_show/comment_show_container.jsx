@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { getComments } from '../../actions/comment_actions';
+import { getComments } from '../../../actions/comment_actions';
 import CommentShow from './comment_show';
 
 const mapStateToProps = (state, ownProps) => {

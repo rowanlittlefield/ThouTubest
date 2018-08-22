@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import VideoStreamer from './video_streamer_container';
 import VideoShowFooter from './video_show_footer';
 import VideoList from '../video_list';
-import CommentShowContainer from '../../comments/comment_show_container'
+import CommentShowContainer from '../../comments/comment_show/comment_show_container'
 
 class VideoShow extends React.Component {
 

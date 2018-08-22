@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { updateComment } from '../../actions/comment_actions';
+import { updateComment } from '../../../actions/comment_actions';
 import EditCommentForm from './edit_comment_form';
 
 const mapStateToProps = (state, ownProps) => {
   const currentUserId = state.session.id;
-  
+
   return {
   errors: state.errors.comments,
   currentVideoId: ownProps.match.params.videoId,

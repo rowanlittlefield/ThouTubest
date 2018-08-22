@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
-import CreateCommentFormContainer from './create_comment_form_container';
-import EditCommentFormContainer from './edit_comment_form_container';
-import { deleteComment } from '../../actions/comment_actions';
+import CreateCommentFormContainer from '../comment_form/create_comment_form_container';
+import EditCommentFormContainer from '../comment_form/edit_comment_form_container';
+import { deleteComment } from '../../../actions/comment_actions';
 
 class CommentListItem extends React.Component {
   constructor(props) {

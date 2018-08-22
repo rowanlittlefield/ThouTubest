@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { createComment, clearErrors } from '../../actions/comment_actions';
+import { createComment, clearErrors } from '../../../actions/comment_actions';
 import CreateCommentForm from './create_comment_form';
 
 const mapStateToProps = (state, ownProps) => {
