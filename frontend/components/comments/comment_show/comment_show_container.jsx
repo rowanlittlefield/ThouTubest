@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { getComments } from '../../../actions/comment_actions';
 import CommentShow from './comment_show';
 
-const mapStateToProps = (state, ownProps) => {
-  const currentVideoId = ownProps.match.params.videoId;
-  const currentVideo = state.entities.videos[currentVideoId];
+const mapStateToProps = ({ entities }, { match }) => {
+  const currentVideoId = match.params.videoId;
+  const currentVideo = entities.videos[currentVideoId];
 
   return {
     currentVideoId: currentVideoId,
@@ -16,6 +16,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   getComments: (videoId, parentCommentId) => dispatch(getComments(videoId, parentCommentId))
-})
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentShow));

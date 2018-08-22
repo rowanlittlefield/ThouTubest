@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import CommentListItem from './comment_list_item';
 
 const CommentList = ({currentLevelCommentIds, currentVideoId, type}) => {
@@ -35,7 +35,7 @@ export const msp = (state, ownProps) => {
       filteredCommentIds.push(commentIds[i]);
     }
   }
-  
+
   return {
     currentVideoId: ownProps.match.params.videoId,
     currentLevelCommentIds: filteredCommentIds

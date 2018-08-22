@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import CommentList from '../comment_list/comment_list';
 import CreateCommentFormContainer from '../comment_form/create_comment_form_container'
 
