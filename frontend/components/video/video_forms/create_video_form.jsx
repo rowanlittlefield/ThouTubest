@@ -208,8 +208,3 @@ class CreateVideoForm extends React.Component {
 }
 
 export default withRouter(CreateVideoForm);
-
-// <input type="file"
-//   onChange={this.handleFile('thumbnail')}
-//   className="create-video-thumbnail-input"/>
-// </label>

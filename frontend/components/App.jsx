@@ -2,9 +2,7 @@ import React from 'react';
 import NavbarContainer from './navbar/navbar_container';
 import {
   Route,
-  // Redirect,
   Switch,
-  // Link,
   HashRouter
 } from 'react-router-dom';
 import SignupFormContainer from './session_form/signup_form_container';

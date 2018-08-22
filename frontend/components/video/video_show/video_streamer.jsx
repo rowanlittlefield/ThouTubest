@@ -41,7 +41,6 @@ class VideoStreamer extends React.Component {
     video.addEventListener("timeupdate", this.updateProgressDigitalClock.bind(this, video, digitalClock), false);
     videoPlayer.addEventListener('mouseover', this.increaseControlsOpacity.bind(this, videoPlayer, videoControls));
     videoPlayer.addEventListener('mouseout', this.decreaseControlsOpacity.bind(this, videoPlayer, videoControls));
-    // videoPlayer.addEventListener('mousemove', this.toggleControlsOpacity.bind(this, ));
     const that = this;
     setTimeout(() => {
       if (!that.hoverFlag) {
