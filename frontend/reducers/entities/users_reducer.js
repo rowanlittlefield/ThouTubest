@@ -14,8 +14,8 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
       return merge({}, state, { [action.currentUser.id]: action.currentUser });
     case RECEIVE_VIDEOS:
-      return merge({}, state, action.users);
     case RECEIVE_VIDEO:
+    case RECEIVE_SEARCH_RESULTS:
       return merge({}, state, action.users);
       case RECEIVE_COMMENT:
       case REMOVE_COMMENT:
@@ -24,11 +24,8 @@ const usersReducer = (state = {}, action) => {
     case REMOVE_LIKE:
       const newState = merge({}, state);
       const newerState = merge (newState, {[action.user.id]: action.user});
-        newState[action.user.id].like_ids = action.user.like_ids.slice();
-
-      return newState
-    case RECEIVE_SEARCH_RESULTS:
-      return merge({}, state, action.users);
+      newerState[action.user.id].like_ids = action.user.like_ids.slice();
+      return newerState
     default:
       return state;
   }
