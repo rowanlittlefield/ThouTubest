@@ -13,6 +13,7 @@ const videosReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_VIDEO:
+    case RECEIVE_VIDEOS:
     return merge({}, state, action.videos);
     case RECEIVE_COMMENT:
     case REMOVE_COMMENT:
@@ -20,8 +21,6 @@ const videosReducer = (state = {}, action) => {
       const newerState = merge(newState, {[action.video.id]: action.video})
         newerState[action.video.id].comment_ids = action.video.comment_ids.slice();
       return newerState;
-    case RECEIVE_VIDEOS:
-      return merge({}, state, action.videos);
     case REMOVE_VIDEO:
       const stateDup = merge({}, state);
       delete stateDup[action.id];
