@@ -1,13 +1,13 @@
 import {
-  RECEIVE_COMMENT_ERRORS,
-  CLEAR_COMMENT_ERRORS
-} from '../actions/comment_actions';
+  RECEIVE_VIDEO_ERRORS,
+  CLEAR_VIDEO_ERRORS
+} from '../../actions/video_actions';
 
 export default (state = [], action) => {
   switch (action.type) {
-    case RECEIVE_COMMENT_ERRORS:
+    case RECEIVE_VIDEO_ERRORS:
       return action.errors;
-    case CLEAR_COMMENT_ERRORS:
+    case CLEAR_VIDEO_ERRORS:
       return [];
     default:
       return state;
