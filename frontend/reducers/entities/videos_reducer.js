@@ -2,10 +2,10 @@ import {
   RECEIVE_VIDEO,
   RECEIVE_VIDEOS,
   REMOVE_VIDEO
-} from '../actions/video_actions';
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
-import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
-import { RECEIVE_SEARCH_RESULTS, RECEIVE_AUTOCOMPLETE_RESULTS } from '../actions/search_actions';
+} from '../../actions/video_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../../actions/comment_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../../actions/like_actions';
+import { RECEIVE_SEARCH_RESULTS, RECEIVE_AUTOCOMPLETE_RESULTS } from '../../actions/search_actions';
 import { merge } from 'lodash';
 
 const videosReducer = (state = {}, action) => {

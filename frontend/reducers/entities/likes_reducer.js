@@ -1,8 +1,8 @@
 import merge from 'lodash/merge';
 
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_VIDEO } from '../actions/video_actions'
-import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_CURRENT_USER } from '../../actions/session_actions';
+import { RECEIVE_VIDEO } from '../../actions/video_actions'
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../../actions/like_actions';
 
 const likesReducer = (state = {}, action) => {
 

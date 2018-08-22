@@ -2,8 +2,8 @@ import {
   RECEIVE_COMMENT,
   RECEIVE_COMMENTS,
   REMOVE_COMMENT
-} from '../actions/comment_actions';
-import { RECEIVE_VIDEO } from '../actions/video_actions';
+} from '../../actions/comment_actions';
+import { RECEIVE_VIDEO } from '../../actions/video_actions';
 import { merge } from 'lodash';
 
 const commentReducer = (state = {}, action) => {
