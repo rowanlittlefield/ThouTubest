@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getVideo } from '../../actions/video_actions';
+import { resourceAge } from '../../util/resource_age_util';
 
 const VideoListItem = ({type, video, user, getVideo}) => {
   const username = user ? user.username : '';
@@ -16,18 +17,7 @@ const VideoListItem = ({type, video, user, getVideo}) => {
     duration = '0:00';
   }
 
-  const createdAtString = video.created_at;
-  let whenUploaded
-  if (createdAtString) {
-    const dateString = createdAtString.slice(0,10);
-    const [year, month, day] = dateString.split('-');
-    const today = new Date();
-    const [currentYear, currentMonth, currentDay] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
-    whenUploaded = ((currentYear - year) * 365) + ((currentMonth - month) * 30) + (currentDay - day);
-    if(whenUploaded < 0) whenUploaded = 0;
-  } else {
-    whenUploaded = '0';
-  }
+  const whenUploaded = (video ? resourceAge(video.created_at) : 0);
 
   return (
     <div className={`${type}-list-item`}>

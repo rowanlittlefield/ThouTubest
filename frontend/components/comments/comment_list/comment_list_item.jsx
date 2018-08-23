@@ -6,6 +6,7 @@ import CommentList from './comment_list';
 import CreateCommentFormContainer from '../comment_form/create_comment_form_container';
 import EditCommentFormContainer from '../comment_form/edit_comment_form_container';
 import { deleteComment } from '../../../actions/comment_actions';
+import { resourceAge } from '../../../util/resource_age_util';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -18,33 +19,27 @@ class CommentListItem extends React.Component {
     };
   }
 
-  renderChildren() {
-    if (this.state.displayChildren) {
+  optionalComponentRender(flag, component) {
+    return (flag ? component : null);
+  }
 
-      return (<CommentList
-         commentIds={this.props.comment.child_comment_ids}
-         parentCommentId={this.props.comment.id}
-         type={'nested'}/>);
-    } else {
-      return null;
-    }
+  renderChildren() {
+    const children = <CommentList commentIds={this.props.comment.child_comment_ids}
+       parentCommentId={this.props.comment.id} type={'nested'}/>
+     return this.optionalComponentRender(this.state.displayChildren, children);
   }
 
   renderReplyForm() {
-    if (this.state.displayReplyForm) {
-      return (
-        <CreateCommentFormContainer commentListItem={this} type={'reply'} parentCommentId={this.props.comment.id}/>
-      );
-    } else {
-      return null;
-    }
+    const form = <CreateCommentFormContainer commentListItem={this}
+      type={'reply'} parentCommentId={this.props.comment.id}/>
+    return this.optionalComponentRender(this.state.displayReplyForm, form);
   }
 
-  toggleActionMenu() {
+  toggleActionMenu(cb) {
     if (!this.state.displayEditForm) {
       const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
       const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
-      actionMenu.classList.toggle('hidden');
+      cb(actionMenu);
       if (!Array.from(dropDown.classList).includes('hidden')) {
         dropDown.classList.toggle('hidden');
       }
@@ -52,25 +47,13 @@ class CommentListItem extends React.Component {
   }
 
   showActionMenu() {
-    if (!this.state.displayEditForm) {
-      const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
-      const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
-      actionMenu.setAttribute('style', 'display: block');
-      if (!Array.from(dropDown.classList).includes('hidden')) {
-        dropDown.classList.toggle('hidden');
-      }
-    }
+    const cb = actionMenu => actionMenu.setAttribute('style', 'display: block');
+    this.toggleActionMenu(cb);
   }
 
   hideActionMenu() {
-    if (!this.state.displayEditForm) {
-      const actionMenu = document.getElementById(`${this.props.comment.id}-comment-action-menu`);
-      const dropDown = document.getElementById(`${this.props.comment.id}-action-menu-dropdown`);
-      actionMenu.setAttribute('style', 'display: none');
-      if (!Array.from(dropDown.classList).includes('hidden')) {
-        dropDown.classList.toggle('hidden');
-      }
-    }
+    const cb = actionMenu => actionMenu.setAttribute('style', 'display: none');
+    this.toggleActionMenu(cb);
   }
 
   renderEditForm() {
@@ -79,14 +62,13 @@ class CommentListItem extends React.Component {
 
   showChildrenText() {
     const boolean = this.state.displayChildren;
-    const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
+    const text = (boolean ? 'Hide comments' :
+     `View all ${this.props.comment.child_comment_ids.length} replies`);
     return text;
   }
 
   redirectUnlessSignedIn() {
-    if (!this.props.currentUserId) {
-      this.props.history.push('/login');
-    }
+    if (!this.props.currentUserId) this.props.history.push('/login');
   }
 
   render() {
@@ -96,7 +78,8 @@ class CommentListItem extends React.Component {
 
     if (this.state.displayEditForm) {
       return (
-        <li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
+        <li id={`${comment.id}-comment-list-el`}
+          className={`${type}-comment-listitem`}
           onMouseEnter={this.showActionMenu.bind(this)}
           onMouseOut={this.hideActionMenu.bind(this)}>
           {this.renderEditForm()}
@@ -104,18 +87,7 @@ class CommentListItem extends React.Component {
       );
     }
 
-    let whenUploaded
-    if (comment) {
-      const createdAtString = comment.created_at;
-      const dateString = createdAtString.slice(0,10);
-      const [year, month, day] = dateString.split('-');
-      const today = new Date();
-      const [currentYear, currentMonth, currentDay] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
-      whenUploaded = ((currentYear - year) * 365) + ((currentMonth - month) * 30) + (currentDay - day);
-      if(whenUploaded < 0) whenUploaded = 0;
-    } else {
-      whenUploaded = '0';
-    }
+    const whenUploaded = comment ? resourceAge(comment.created_at) : 0;
 
     return (<li id={`${comment.id}-comment-list-el`} className={`${type}-comment-listitem`}
       onMouseEnter={this.showActionMenu.bind(this)}
@@ -193,7 +165,6 @@ const msp = (state, ownProps) => {
 };
 
 const mdp = (dispatch, ownProps) => {
-
   return {
     deleteComment: id => dispatch(deleteComment(id))
   };
