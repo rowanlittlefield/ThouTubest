@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from '../comment_form/create_comment_form_container';
 import EditCommentFormContainer from '../comment_form/edit_comment_form_container';
 import CommentActionMenu from './comment_action_menu';
-import { deleteComment } from '../../../actions/comment_actions';
 import { resourceAge } from '../../../util/resource_age_util';
 
 class CommentListItem extends React.Component {
@@ -109,26 +108,23 @@ class CommentListItem extends React.Component {
           {this.renderReplyForm()}
           <div id={`comment-${comment.id}-reply-button-div`}>
             <span id={`comment-${comment.id}-reply-button`}
-              className={`${type}-comment-show-listitem-child-comments-button`} onClick={() => {
+              className={`${type}-comment-show-listitem-child-comments-button`}
+              onClick={() => {
                 const boolean = !this.state.displayChildren;
-                const text = boolean ? 'Hide comments' : `View all ${this.props.comment.child_comment_ids.length} replies`;
-
-                this.setState({
-                  displayChildren: boolean,
-                })
+                const text = (boolean ? 'Hide comments' :
+                `View all ${this.props.comment.child_comment_ids.length} replies`);
+                this.setState({ displayChildren: boolean });
               }}>{this.showChildrenText()}<span className={`${type}-down-carrot`}>&or;</span>
             </span>
             {this.renderChildren()}
           </div>
         </div>
       </div>
-
       <CommentActionMenu id={comment.id}
         currentUserId={this.props.currentUserId}
         commentUserId={this.props.comment.user_id}
         displayEditForm={() => this.setState({displayEditForm: true})}
         />
-
     </li>);
   }
 }
@@ -143,40 +139,4 @@ const msp = (state, ownProps) => {
  };
 };
 
-const mdp = (dispatch, ownProps) => {
-  return {
-    deleteComment: id => dispatch(deleteComment(id))
-  };
-}
-
-export default withRouter(connect(msp, mdp)(CommentListItem));
-
-// <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu"}
-//   onClick={() => {
-//     if (this.props.comment && this.props.currentUserId === this.props.comment.user_id) {
-//       const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
-//       dropDown.classList.toggle('hidden');
-//     }
-//   }}>
-//
-//     <ul id="no-list-bullets">
-//       <li>
-//         <img src={window.tripleDotIcon} width="20px" height="20px" />
-//       </li>
-//       <li>
-//         <ul id={`${comment.id}-action-menu-dropdown`} className={"action-menu-dropdown" + " hidden"}>
-//           <li>
-//             <ul>
-//               <li onClick={() => {
-//                   this.setState({displayEditForm: true});
-//                 }}><span>Edit</span></li>
-//               <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
-//             </ul>
-//           </li>
-//         </ul>
-//
-//       </li>
-//     </ul>
-//
-//
-// </div>
+export default withRouter(connect(msp)(CommentListItem));
