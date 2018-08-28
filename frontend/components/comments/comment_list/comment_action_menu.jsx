@@ -17,11 +17,14 @@ const CommentActionMenu = ({id, deleteComment, currentUserId, commentUserId, dis
             <img src={window.tripleDotIcon} width="20px" height="20px" />
           </li>
           <li>
-            <ul id={`${id}-action-menu-dropdown`} className={"action-menu-dropdown" + " hidden"}>
+            <ul id={`${id}-action-menu-dropdown`}
+              className={"action-menu-dropdown" + " hidden"}>
               <li>
                 <ul>
                   <li onClick={displayEditForm}><span>Edit</span></li>
-                  <li onClick={deleteComment.bind(null, id)}><span>Delete</span></li>
+                  <li onClick={deleteComment.bind(null, id)}>
+                    <span>Delete</span>
+                  </li>
                 </ul>
               </li>
             </ul>
