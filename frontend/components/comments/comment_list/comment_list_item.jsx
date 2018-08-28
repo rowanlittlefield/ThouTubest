@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from '../comment_form/create_comment_form_container';
 import EditCommentFormContainer from '../comment_form/edit_comment_form_container';
+import CommentActionMenu from './comment_action_menu';
 import { deleteComment } from '../../../actions/comment_actions';
 import { resourceAge } from '../../../util/resource_age_util';
 
@@ -121,35 +122,13 @@ class CommentListItem extends React.Component {
           </div>
         </div>
       </div>
-      <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu"}
-        onClick={() => {
-          if (this.props.comment && this.props.currentUserId === this.props.comment.user_id) {
-            const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
-            dropDown.classList.toggle('hidden');
-          }
-        }}>
 
-          <ul id="no-list-bullets">
-            <li>
-              <img src={window.tripleDotIcon} width="20px" height="20px" />
-            </li>
-            <li>
-              <ul id={`${comment.id}-action-menu-dropdown`} className={"action-menu-dropdown" + " hidden"}>
-                <li>
-                  <ul>
-                    <li onClick={() => {
-                        this.setState({displayEditForm: true});
-                      }}><span>Edit</span></li>
-                    <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
-                  </ul>
-                </li>
-              </ul>
+      <CommentActionMenu id={comment.id}
+        currentUserId={this.props.currentUserId}
+        commentUserId={this.props.comment.user_id}
+        displayEditForm={() => this.setState({displayEditForm: true})}
+        />
 
-            </li>
-          </ul>
-
-
-      </div>
     </li>);
   }
 }
@@ -171,3 +150,33 @@ const mdp = (dispatch, ownProps) => {
 }
 
 export default withRouter(connect(msp, mdp)(CommentListItem));
+
+// <div id={`${comment.id}-comment-action-menu`} className={"comment-listitem-action-menu"}
+//   onClick={() => {
+//     if (this.props.comment && this.props.currentUserId === this.props.comment.user_id) {
+//       const dropDown = document.getElementById(`${comment.id}-action-menu-dropdown`);
+//       dropDown.classList.toggle('hidden');
+//     }
+//   }}>
+//
+//     <ul id="no-list-bullets">
+//       <li>
+//         <img src={window.tripleDotIcon} width="20px" height="20px" />
+//       </li>
+//       <li>
+//         <ul id={`${comment.id}-action-menu-dropdown`} className={"action-menu-dropdown" + " hidden"}>
+//           <li>
+//             <ul>
+//               <li onClick={() => {
+//                   this.setState({displayEditForm: true});
+//                 }}><span>Edit</span></li>
+//               <li onClick={this.props.deleteComment.bind(this, comment.id)}><span>Delete</span></li>
+//             </ul>
+//           </li>
+//         </ul>
+//
+//       </li>
+//     </ul>
+//
+//
+// </div>
