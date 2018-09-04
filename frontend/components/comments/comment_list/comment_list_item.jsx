@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import CommentList from './comment_list';
 import CreateCommentFormContainer from '../comment_form/create_comment_form_container';
 import EditCommentFormContainer from '../comment_form/edit_comment_form_container';
 import CommentActionMenu from './comment_action_menu';
+import CommentLikeMenu from './comment_like_menu';
 import { resourceAge } from '../../../util/resource_age_util';
 
 class CommentListItem extends React.Component {
@@ -100,6 +101,7 @@ class CommentListItem extends React.Component {
             <span className={`${type}-comment-show-listitem-content-timestamp`}>{whenUploaded} days ago</span>
           </div>
           <span className={`${type}-comment-show-listitem-content-body`}>{comment.body}</span>
+          <CommentLikeMenu />
           <span onClick={() => {
               this.redirectUnlessSignedIn();
               const boolean = !this.state.displayReplyForm;
