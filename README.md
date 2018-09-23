@@ -1,6 +1,6 @@
 # ThouTubest
 
-ThouTubest is a clone of the popular video sharing web app YouTube. The backend of ThouTubest was implemented using the Ruby on Rails framework with the ffmpeg library and Rails' new Active Storage feature being used to handle video processing and manipulation. The frontend was implemented using React.js and Redux.  
+ThouTubest is a clone of the popular video sharing web app YouTube. The backend of ThouTubest was implemented using the Ruby on Rails framework with the ffmpeg library and Rails' new Active Storage feature being used to handle video processing and manipulation. The frontend was implemented using React.js and Redux.  jkfld;sa
 
 The live version of ThouTubest can be found [here](https://thoutubest.herokuapp.com/).
 
